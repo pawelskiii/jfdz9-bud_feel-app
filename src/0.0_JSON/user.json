@@ -1,0 +1,19 @@
+[
+  {
+    "id": 1,
+    "name": "Kazimierz",
+    "email": "kazik@jest.super",
+    "age": 68,
+    "favs": [
+      {
+        "id": 1,
+        "name": "paleo"
+      },
+      {
+        "id": 2,
+        "name": "kfc"
+      }
+    ],
+    "subscription": 365
+  }
+]

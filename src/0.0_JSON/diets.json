@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "name": "paleo",
+    "description": "mass",
+    "typeId": 1,
+    // ???
+    "createdAt": "???",
+    // ???
+    "weight": {
+      "max": 80,
+      "min": 50
+    },
+    "age": {
+      "max": 60,
+      "min": 20
+    },
+    "period": 14,
+    // na pewno tutaj?
+    "proposalMeals": {
+      "breakfast": "scrambled eggs",
+      "lunch": "smoothie",
+      "dessert": "cocoa cake",
+      "dinner": "beef with buckwheat",
+      "supper": "chicken breast with rice"
+    }
+  },
+  {
+    "id": 2,
+    "name": "wege",
+    "description": "reduce",
+    "typeId": 2,
+    "createdAt": "???",
+    "weight": {
+      "max": 180,
+      "min": 65
+    },
+    "age": {
+      "max": 70,
+      "min": 18
+    },
+    "period": 14,
+    "proposalMeals": {
+      "breakfast": "avocado",
+      "lunch": "smoothie",
+      "dessert": "hipster cocoa cake",
+      "dinner": "greek salad",
+      "supper": "rice with apple"
+    }
+  },
+  {
+    "id": 3,
+    "name": "kfc",
+    "description": "mass",
+    "typeId": 1,
+    "createdAt": "???",
+    "weight": {
+      "max": 65,
+      "min": 40
+    },
+    "age": {
+      "max": 40,
+      "min": 18
+    },
+    "period": 14,
+    "proposalMeals": {
+      "breakfast": "mega pocket box",
+      "lunch": "double california zinger",
+      "dessert": "peanut butter shake",
+      "dinner": "hot & spicy strips box",
+      "supper": "caesar salad"
+    }
+  }
+]

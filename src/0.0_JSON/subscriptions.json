@@ -1,0 +1,27 @@
+[
+  {
+    "id": 1,
+    "name": "two weeks",
+    "subscription": 14
+  },
+  {
+    "id": 2,
+    "name": "one month",
+    "subscription": 31
+  },
+  {
+    "id": 3,
+    "name": "three months",
+    "subscription": 92
+  },
+  {
+    "id": 4,
+    "name": "half year",
+    "subscription": 183
+  },
+  {
+    "id": 5,
+    "name": "one year",
+    "subscription": 365
+  }
+]
