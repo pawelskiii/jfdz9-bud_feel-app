@@ -1,0 +1,71 @@
+[
+  {
+    "id": 1,
+    "name": "Dieta Samuraja",
+    "description": "Dieta bezglutenowa, bezlaktozowa z dużą ilością białka oraz węglowodanów złożonych",
+    "typeId": 1,
+    "createdAt": "2018-09-09",
+    "weight": {
+      "max": 85,
+      "min": 50
+    },
+    "age": {
+      "max": 60,
+      "min": 20
+    },
+    "period": 7,
+    "proposalMeals": {
+      "breakfast": "Sajgonki z tuńczykiem i domowym majonezem chilli",
+      "lunch": "Tikka masala z kurczakiem z ryżem basmati",
+      "dessert": "Dwukolorowe smootkie z mango, banana i pomarańczy oraz musem wiśniowym",
+      "dinner": "Wieprzowina szefa na miodzie z czosnkiem na styl wietnamski z makaronem ryżowym",
+      "supper": "Placki marchewkowo-kokosowe z sosem wiśniowym i korą czekoladową oraz orzechami włoskimi"
+    }
+  },
+  {
+    "id": 2,
+    "name": "Fitbox",
+    "description": "Zbilansowana i urozmaicona dieta bez wykluczeń",
+    "typeId": 2,
+    "createdAt": "2018-09-09",
+    "weight": {
+      "max": 100,
+      "min": 40
+    },
+    "age": {
+      "max": 95,
+      "min": 15
+    },
+    "period": 7,
+    "proposalMeals": {
+      "breakfast": "Razowe bułeczki z jagodami i prażonymi płatkami migdałów, serek brzoskwiniowy",
+      "lunch": "Makaron razowy z sosem szpinakowym i suszonymi pomidorami",
+      "dessert": "Lekkie ciasto a’la Kinder Country",
+      "dinner": "Wołowina na sposób orientalny na makaronie ryżowym, sałatka z pak choi",
+      "supper": "Kremowa zupa cytrynowa z kurczakiem"
+    }
+  },
+  {
+    "id": 3,
+    "name": "Dieta wegańska",
+    "description": "Dieta bezmięsna, bez produktów pochodzenia zwierzęcego",
+    "typeId": 3,
+    "createdAt": "2018-09-09",
+    "weight": {
+      "max": 180,
+      "min": 60
+    },
+    "age": {
+      "max": 70,
+      "min": 21
+    },
+    "period": 7,
+    "proposalMeals": {
+      "breakfast": "Foccacia z jarmużem i mozzarellą, twarożek z suszonymi pomidorami",
+      "lunch": "Zapiekana kofta serowa w sosie curry, mix ryżu z groszkiem, surówka z roszponki i ogórka",
+      "dessert": "Tapioka czekoladowa z truskawkowym musem",
+      "dinner": "Wegańskie klopsiki z tempehu w sosie koperkowo-chrzanowym, buraczano-ziemniaczane puree, surówka z kiszonego ogórka",
+      "supper": "Kokosowy krem a’la rafaello na fasoli, chrupkie pieczywo, gruszka i ananas"
+    }
+  }
+]
