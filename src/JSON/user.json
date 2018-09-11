@@ -1,0 +1,11 @@
+{
+  "id": 1,
+  "name": "Kazimierz",
+  "email": "kazik@jest.super",
+  "age": 68,
+  "favsIds": [
+    1,
+    2
+  ],
+  "subscription": 365
+}
