@@ -3,13 +3,9 @@
   "name": "Kazimierz",
   "email": "kazik@jest.super",
   "age": 68,
-  "favs": [
-    {
-      "id": 1
-    },
-    {
-      "id": 2
-    }
+  "favsIds": [
+    1,
+    2
   ],
   "subscription": 365
 }
