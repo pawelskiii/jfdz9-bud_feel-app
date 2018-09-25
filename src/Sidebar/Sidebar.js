@@ -13,7 +13,7 @@ class Sidebar extends Component {
     render() {
         return (
             <Drawer variant="permanent">
-                <List component="nav" style={{marginTop: '5rem'}}>
+                <List component="nav" style={{marginTop: '4rem', width: '180px'}}>
                     <ListItem button>
                         <ListItemIcon>
                             <InboxIcon/>
