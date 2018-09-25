@@ -9,12 +9,11 @@ import logo from '../assets/logo.png' ;
 export default class Header extends Component {
     render() {
         return (
-            <AppBar>
+            <AppBar style={{zIndex: 1300}}>
                 <Toolbar>
                     <img src={logo} alt="eat smarter logo" />
                     <SignIn/>
                     <SignUp/>
-
                 </Toolbar>
             </AppBar>
         )
