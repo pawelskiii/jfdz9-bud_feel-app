@@ -1,14 +1,12 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {withStyles} from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
-import List from '@material-ui/core/List';
-import Divider from '@material-ui/core/Divider';
 import {
     ListItem,
     ListItemIcon,
-    ListItemText
-} from '@material-ui/core';
+    ListItemText,
+    Divider,
+    List,
+    Drawer } from '@material-ui/core';
 import InboxIcon from '@material-ui/icons/Inbox';
 import DraftsIcon from '@material-ui/icons/Drafts';
 
@@ -34,7 +32,7 @@ function Sidebar(props) {
             }}
         >
             <div className={classes.toolbar}/>
-            <List component="nav">
+            <List>
                 <ListItem button>
                     <ListItemIcon>
                         <InboxIcon/>
@@ -49,7 +47,7 @@ function Sidebar(props) {
                 </ListItem>
             </List>
             <Divider/>
-            <List component="nav">
+            <List>
                 <ListItem button>
                     <ListItemText primary="Trash"/>
                 </ListItem>
@@ -60,9 +58,5 @@ function Sidebar(props) {
         </Drawer>
     );
 }
-
-Sidebar.propTypes = {
-    classes: PropTypes.object.isRequired,
-};
 
 export default withStyles(styles)(Sidebar);
