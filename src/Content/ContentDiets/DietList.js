@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from 'react';
-import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import {
     Typography,
@@ -9,6 +8,8 @@ import {
     TableCell,
     TableHead,
     TableRow } from '@material-ui/core';
+
+import DietTableRow from './DietTableRow'
 
 const CustomTableCell = withStyles(theme => ({
     head: {
@@ -29,11 +30,6 @@ const styles = theme => ({
     table: {
         minWidth: 700,
     },
-    row: {
-        '&:nth-of-type(odd)': {
-            backgroundColor: theme.palette.background.default,
-        },
-    },
 });
 
 
@@ -41,58 +37,47 @@ class DietList extends Component {
 
     state = {
         diets: [],
+        dietTypes: [],
     };
 
     componentDidMount() {
         fetch('/data/diets.json')
             .then(response => response.json())
-            .then(diets => this.setState({diets}))
+            .then(diets => this.setState({diets}));
+        fetch('/data/types.json')
+            .then(response => response.json())
+            .then(dietTypes => this.setState({dietTypes}));
     }
 
 
     render() {
-        const { diets } = this.state;
+        const { diets, dietTypes } = this.state;
+        const { classes } = this.props;
 
         return (
             <Fragment>
                 <Typography variant='display3'>Diet List</Typography>
-                <Paper>
-                    <Table>
+                <Paper className={classes.root}>
+                    <Table className={classes.table}>
                         <TableHead>
                             <TableRow>
                                 <CustomTableCell>Name</CustomTableCell>
                                 <CustomTableCell>Description</CustomTableCell>
+                                <CustomTableCell>Diet Type</CustomTableCell>
                                 <CustomTableCell numeric>Age (years)</CustomTableCell>
                                 <CustomTableCell numeric>Weight (kg)</CustomTableCell>
                                 <CustomTableCell numeric>Period (days)</CustomTableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {diets.map(diet => {
-                                return (
-                                    <TableRow key={diet.id}>
-                                        <TableCell >{diet.name}</TableCell>
-                                        <TableCell >
-                                            <Typography >{diet.description}</Typography>
-                                            </TableCell>
-                                        <TableCell numeric>{`${diet.age.min}-${diet.age.max}`}</TableCell>
-                                        <TableCell numeric>{`${diet.weight.min}-${diet.weight.max}`}</TableCell>
-                                        <TableCell numeric>{diet.period}</TableCell>
-                                    </TableRow>
-                                )
-                            })}
+                            {diets.map(diet => <DietTableRow diet={diet} dietTypes={dietTypes} key={diet.id}/>)}
                         </TableBody>
                     </Table>
-
                 </Paper>
             </Fragment>
         )
     }
 }
-
-DietList.propTypes = {
-    classes: PropTypes.object.isRequired,
-};
 
 export default withStyles(styles)(DietList);
 

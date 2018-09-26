@@ -1,12 +1,14 @@
-import React, { Component, Fragment } from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import React, {Component} from 'react';
+import {withStyles} from '@material-ui/core/styles';
 
-import Carousel from './CentralCarousel/index';
-import Fees from './ContentFees/index';
-import Dashboard from './Dashboard/index';
-import DietList from './ContentDiets/index';
 
-const styles = {
+import Sidebar from '../Sidebar'
+import Carousel from './CentralCarousel';
+import Fees from './ContentFees';
+import Dashboard from './Dashboard';
+import DietList from './ContentDiets';
+
+const styles = theme => ({
     dietContainer: {
         marginBottom: '1rem',
     },
@@ -16,27 +18,45 @@ const styles = {
     feesContainer: {
         marginBottom: '1rem',
     },
-};
+    root: {
+        flexGrow: 1,
+        zIndex: 1,
+        overflow: 'hidden',
+        // position: 'relative',
+        display: 'flex',
+    },
+    content: {
+        flexGrow: 1,
+        backgroundColor: theme.palette.background.default,
+        padding: theme.spacing.unit * 2,
+        minWidth: 0, // So the Typography noWrap works
+    },
+    toolbar: theme.mixins.toolbar,
+});
 
 class Content extends Component {
 
     render() {
-        const { classes } = this.props;
+        const {classes} = this.props;
         return (
-            <Fragment>
-                <div className={classes.dietContainer}>
-                    <DietList/>
-                </div>
-                <div className={classes.carouselContainer}>
-                    <Carousel/>
-                </div>
-                <div className={classes.feesContainer}>
-                    <Fees/>
-                </div>
-                <div className={classes.dashboardContainer}>
-                    <Dashboard/>
-                </div>
-            </Fragment>
+            <div className={classes.root}>
+                <Sidebar/>
+                <main className={classes.content}>
+                    <div className={classes.toolbar}/>
+                    <div className={classes.dietContainer}>
+                        <DietList/>
+                    </div>
+                    <div className={classes.carouselContainer}>
+                        <Carousel/>
+                    </div>
+                    <div className={classes.feesContainer}>
+                        <Fees/>
+                    </div>
+                    <div className={classes.dashboardContainer}>
+                        <Dashboard/>
+                    </div>
+                </main>
+            </div>
         )
     }
 }
