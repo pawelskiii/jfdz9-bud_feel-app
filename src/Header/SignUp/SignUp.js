@@ -23,6 +23,10 @@ class SignUp extends Component {
         this.setState({ open: false });
     };
 
+    handleSubmit = () => {
+        this.setState({ open: false });
+    };
+
     render() {
         return (
             <div>
@@ -75,7 +79,7 @@ class SignUp extends Component {
                         <Button onClick={this.handleClose} color="primary">
                             Cancel
                         </Button>
-                        <Button onClick={this.handleClose} color="primary">
+                        <Button onClick={this.handleSubmit} color="primary">
                             Sign In
                         </Button>
                     </DialogActions>
