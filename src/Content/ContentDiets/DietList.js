@@ -70,7 +70,7 @@ class DietList extends Component {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {diets.map(diet => <DietTableRow diet={diet} dietTypes={dietTypes} key={diet.id}/>)}
+                            {diets.map(diet => <DietTableRow diet={diet} dietType={dietTypes.map(type => diet.typeId === type.id && type.name)} key={diet.id}/>)}
                         </TableBody>
                     </Table>
                 </Paper>

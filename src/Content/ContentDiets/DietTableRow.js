@@ -15,8 +15,9 @@ const styles = theme => ({
 
 class DietTableRow extends Component {
     render() {
-        const { dietTypes, diet: { id, name, description, typeId, age, weight, period } } = this.props;
+        const { dietType, diet: { id, name, description, age, weight, period } } = this.props;
         const { classes } = this.props;
+        console.log(dietType);
 
         return (
             <TableRow key={id} className={classes.row}>
@@ -24,7 +25,7 @@ class DietTableRow extends Component {
                 <TableCell >
                     <Typography >{description}</Typography>
                 </TableCell>
-                <TableCell >{dietTypes.map(type => typeId === type.id ? type.name : null)}</TableCell>
+                <TableCell >{dietType}</TableCell>
                 <TableCell numeric>{`${age.min} - ${age.max}`}</TableCell>
                 <TableCell numeric>{`${weight.min} - ${weight.max}`}</TableCell>
                 <TableCell numeric>{period}</TableCell>
