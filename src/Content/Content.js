@@ -1,12 +1,15 @@
 import React, { Component, Fragment } from 'react';
-import { Typography } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
 import Carousel from './CentralCarousel/index';
 import Fees from './ContentFees/index';
 import Dashboard from './Dashboard/index';
+import DietList from './ContentDiets/index';
 
 const styles = {
+    dietContainer: {
+        marginBottom: '1rem',
+    },
     carouselContainer: {
         marginBottom: '1rem',
     },
@@ -21,15 +24,18 @@ class Content extends Component {
         const { classes } = this.props;
         return (
             <Fragment>
-                <Typography className={classes.carouselContainer}>
+                <div className={classes.dietContainer}>
+                    <DietList/>
+                </div>
+                <div className={classes.carouselContainer}>
                     <Carousel/>
-                </Typography>
-                <Typography className={classes.feesContainer}>
+                </div>
+                <div className={classes.feesContainer}>
                     <Fees/>
-                </Typography>
-                <Typography className={classes.dashboardContainer}>
+                </div>
+                <div className={classes.dashboardContainer}>
                     <Dashboard/>
-                </Typography>
+                </div>
             </Fragment>
         )
     }

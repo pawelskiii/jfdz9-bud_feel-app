@@ -67,5 +67,74 @@
       "dinner": "Wegańskie klopsiki z tempehu w sosie koperkowo-chrzanowym, buraczano-ziemniaczane puree, surówka z kiszonego ogórka",
       "supper": "Kokosowy krem a’la rafaello na fasoli, chrupkie pieczywo, gruszka i ananas"
     }
+  },
+  {
+    "id": 4,
+    "name": "Dieta amerykańska",
+    "description": "Tony tłuszczu i hamburgrów!",
+    "typeId": 1,
+    "createdAt": "2018-09-13",
+    "weight": {
+      "max": 200,
+      "min": 40
+    },
+    "age": {
+      "max": 90,
+      "min": 21
+    },
+    "period": 28,
+    "proposalMeals": {
+      "breakfast": "Happy meal",
+      "lunch": "Zestaw McNuggets powiększony z frytkami",
+      "dessert": "Shake czekoladowy duży",
+      "dinner": "Podwójny McRoyal w powiększonym zestawie z frytkami",
+      "supper": "Zestaw z BigMac'iem"
+    }
+  },
+  {
+    "id": 5,
+    "name": "Dieta Subway",
+    "description": "Dieta kanapkowa na każdą pogodę",
+    "typeId": 2,
+    "createdAt": "2018-09-19",
+    "weight": {
+      "max": 140,
+      "min": 40
+    },
+    "age": {
+      "max": 60,
+      "min": 11
+    },
+    "period": 14,
+    "proposalMeals": {
+      "breakfast": "Kanapka dnia",
+      "lunch": "Kanapka BLT",
+      "dessert": "Ciastko",
+      "dinner": "Kanapka włoska",
+      "supper": "Kanapka z kurczakiem i awokado"
+    }
+  },
+  {
+    "id": 6,
+    "name": "Dieta cud",
+    "description": "Cudowna dieta, która w magiczny sposób redukuje wagę",
+    "typeId": 3,
+    "createdAt": "2018-10-29",
+    "weight": {
+      "max": 100,
+      "min": 70
+    },
+    "age": {
+      "max": 50,
+      "min": 21
+    },
+    "period": 7,
+    "proposalMeals": {
+      "breakfast": "Pomidor z ogórkiem posypany oregano",
+      "lunch": "Wafle ryżowe z awokado i oliwkami",
+      "dessert": "Owsianka z truskawkami",
+      "dinner": "Pierś z kurczaka gotowana, makaron zbożowy",
+      "supper": "Ryż na mleku z wiśniami"
+    }
   }
 ]
