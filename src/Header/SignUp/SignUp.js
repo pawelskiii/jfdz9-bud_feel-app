@@ -30,24 +30,24 @@ class SignUp extends Component {
     render() {
         return (
             <div>
-                <Button onClick={this.handleClickOpen} color='inherit'>Sign Up</Button>
+                <Button onClick={this.handleClickOpen} color='inherit'>Zarejestruj</Button>
                 <Dialog
                     open={this.state.open}
                     onClose={this.handleClose}
                     aria-labelledby="form-dialog-title"
                 >
-                    <DialogTitle id="form-dialog-title">Sign In</DialogTitle>
+                    <DialogTitle id="form-dialog-title">Zarejestruj</DialogTitle>
                     <Divider style={{marginBottom: '.6rem'}}/>
 
                     <DialogContent>
                         <DialogContentText>
-                            To sign up please enter your e-mail address and password.
+                            Aby się zarejestrować wprowadź adres e-mail, hasło oraz potwierdź je.
                         </DialogContentText>
                         <TextField
                             autoFocus
                             margin="dense"
                             id="outlined-name"
-                            label="Email Address"
+                            label="E-mail"
                             type="email"
                             variant='outlined'
                             required
@@ -58,7 +58,7 @@ class SignUp extends Component {
                             autoFocus
                             margin="dense"
                             id="outlined-password"
-                            label="Password"
+                            label="Hasło"
                             type="password"
                             variant='outlined'
                             required
@@ -67,8 +67,8 @@ class SignUp extends Component {
                         <TextField
                             autoFocus
                             margin="dense"
-                            id="outlined-password"
-                            label="Repeat Password"
+                            id="outlined-repeat-password"
+                            label="Powtórz hasło"
                             type="password"
                             variant='outlined'
                             required
@@ -77,10 +77,10 @@ class SignUp extends Component {
                     </DialogContent>
                     <DialogActions>
                         <Button onClick={this.handleClose} color="primary">
-                            Cancel
+                            Zamknij
                         </Button>
                         <Button onClick={this.handleSubmit} color="primary">
-                            Sign In
+                            Zarejestruj
                         </Button>
                     </DialogActions>
                 </Dialog>
