@@ -1,13 +1,17 @@
-import React, {Component, Fragment} from 'react';
-import {Typography} from '@material-ui/core';
+import React, {Component} from 'react';
 import {withStyles} from '@material-ui/core/styles';
+
 
 import Sidebar from '../Sidebar'
 import Carousel from './CentralCarousel';
 import Fees from './ContentFees';
 import Dashboard from './Dashboard';
+import DietList from './ContentDiets';
 
 const styles = theme => ({
+    dietContainer: {
+        marginBottom: '1rem',
+    },
     carouselContainer: {
         marginBottom: '1rem',
     },
@@ -39,6 +43,9 @@ class Content extends Component {
                 <Sidebar/>
                 <main className={classes.content}>
                     <div className={classes.toolbar}/>
+                    <div className={classes.dietContainer}>
+                        <DietList/>
+                    </div>
                     <div className={classes.carouselContainer}>
                         <Carousel/>
                     </div>
