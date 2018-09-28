@@ -26,23 +26,23 @@ class SignIn extends Component {
     render() {
         return (
             <div style={{marginLeft: 'auto'}}>
-                <Button onClick={this.handleClickOpen} color='inherit'>Sign In</Button>
+                <Button onClick={this.handleClickOpen} color='inherit'>Zaloguj</Button>
                 <Dialog
                     open={this.state.open}
                     onClose={this.handleClose}
                     aria-labelledby="form-dialog-title"
                 >
-                    <DialogTitle id="form-dialog-title">Sign In</DialogTitle>
+                    <DialogTitle id="form-dialog-title">Zaloguj</DialogTitle>
                     <Divider style={{marginBottom: '.6rem'}}/>
                     <DialogContent>
                         <DialogContentText>
-                            To sign in please enter your e-mail address and password.
+                            Aby się zalogować wpisz adres e-mail oraz hasło.
                         </DialogContentText>
                         <TextField
                             autoFocus
                             margin="dense"
                             id="outlined-name"
-                            label="Email Address"
+                            label="E-mail"
                             type="email"
                             variant='outlined'
                             fullWidth
@@ -52,7 +52,7 @@ class SignIn extends Component {
                             autoFocus
                             margin="dense"
                             id="outlined-password"
-                            label="Password"
+                            label="Hasło"
                             type="password"
                             variant='outlined'
                             fullWidth
@@ -60,10 +60,10 @@ class SignIn extends Component {
                     </DialogContent>
                     <DialogActions>
                         <Button onClick={this.handleClose} color="primary">
-                            Cancel
+                            Zamknij
                         </Button>
                         <Button onClick={this.handleClose} color="primary">
-                            Sign In
+                            Zaloguj
                         </Button>
                     </DialogActions>
                 </Dialog>

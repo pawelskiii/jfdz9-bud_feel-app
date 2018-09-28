@@ -17,7 +17,6 @@ class DietTableRow extends Component {
     render() {
         const { dietType, diet: { id, name, description, age, weight, period } } = this.props;
         const { classes } = this.props;
-        console.log(dietType);
 
         return (
             <TableRow key={id} className={classes.row}>
