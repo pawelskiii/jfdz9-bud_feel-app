@@ -49,7 +49,6 @@ class SignIn extends Component {
                             style={{marginTop: '1.2rem'}}
                         />
                         <TextField
-                            autoFocus
                             margin="dense"
                             id="outlined-password"
                             label="Hasło"

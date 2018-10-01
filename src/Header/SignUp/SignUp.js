@@ -55,7 +55,6 @@ class SignUp extends Component {
                             style={{marginTop: '1.2rem'}}
                         />
                         <TextField
-                            autoFocus
                             margin="dense"
                             id="outlined-password"
                             label="Hasło"
@@ -65,7 +64,6 @@ class SignUp extends Component {
                             fullWidth
                         />
                         <TextField
-                            autoFocus
                             margin="dense"
                             id="outlined-repeat-password"
                             label="Powtórz hasło"
