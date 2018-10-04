@@ -7,21 +7,20 @@ import slide_3 from '../../assets/carousel_slide_3.jpg';
 import slide_4 from '../../assets/carousel_slide_4.jpg';
 
 
-class SectionCarousel extends React.Component {
+const SectionCarousel = () => {
 
-    state = {
+   const carouselParameters = {
         width: "60%",
         autoplay: true,
         wrapAround: true
         };
 
-    render() {
         return (
 
             <Carousel
-                width={this.state.width}
-                autoplay={this.state.autoplay}
-                wrapAround={this.state.wrapAround}
+                width={carouselParameters.width}
+                autoplay={carouselParameters.autoplay}
+                wrapAround={carouselParameters.wrapAround}
             >
                 <img src={ slide_1 } />
                 <img src={ slide_2 } />
@@ -29,6 +28,5 @@ class SectionCarousel extends React.Component {
                 <img src={ slide_4 } />
             </Carousel>
         );
-    }
-}
+};
 export default SectionCarousel;
