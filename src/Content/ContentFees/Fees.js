@@ -1,14 +1,17 @@
 import React, {Component} from 'react';
-import {Paper, Typography} from '@material-ui/core';
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardContent from '@material-ui/core/CardContent';
 
 class Fees extends Component {
     render() {
         return (
-            <Paper>
-                <Typography>
-
-                </Typography>
-            </Paper>
+            <Card>
+                <CardActionArea>
+                    <CardContent>
+                    </CardContent>
+                </CardActionArea>
+            </Card>
         )
     }
 }
