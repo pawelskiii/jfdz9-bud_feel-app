@@ -8,7 +8,7 @@ import {withStyles} from '@material-ui/core/styles';
 
 const styles = {
     card: {
-        maxWidth: 300,
+        maxWidth: 350,
     },
     media: {
         height: 200,
@@ -27,8 +27,14 @@ class Fees extends Component {
                         title="7-dniowy abenament"
                     />
                     <CardContent>
-                        <Typography gutterBottom variant="h2" component="h2">
+                        <Typography gutterBottom variant="h2" component="h1">
                             Abonament na 7 dni
+                        </Typography>
+                        <Typography gutterBottom component="p">
+                            Potrzebujesz zgubić jedynie parę kilogramów? Bądź też po prostu chcesz nas przetestować?
+                        </Typography>
+                        <Typography gutterBottom variant="h2" component="h2">
+                            Ten abonament jest dla Ciebie!!
                         </Typography>
                     </CardContent>
                 </CardActionArea>
