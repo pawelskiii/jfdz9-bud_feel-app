@@ -14,14 +14,18 @@ const styles = {
     content: {
         textAlign: 'center'
     },
+    gridElementCenter: {
+        display: 'flex',
+        justifyContent: 'space-evenly'
+    },
 };
 
 class Fees extends Component {
     render() {
         const {classes} = this.props;
         return (
-            <Grid container>
-                <Grid item xs>
+            <Grid container className={classes.gridElementCenter}>
+                <Grid item>
                     <Card className={classes.card}>
                         <CardActionArea>
                             <CardMedia
@@ -34,7 +38,7 @@ class Fees extends Component {
                                     Abonament na 7 dni
                                 </Typography>
                                 <Typography gutterBottom component="p">
-                                    Potrzebujesz zgubić jedynie parę kilogramów?
+                                    Chcesz wypróbować którąkolwiek dietę z oferty?
                                     Bądź też po prostu chcesz nas przetestować?
                                 </Typography>
                                 <Typography variant="h2" component="h2">
@@ -44,7 +48,7 @@ class Fees extends Component {
                         </CardActionArea>
                     </Card>
                 </Grid>
-                <Grid item xs>
+                <Grid item>
                     <Card className={classes.card}>
                         <CardActionArea>
                             <CardMedia
@@ -67,7 +71,7 @@ class Fees extends Component {
                         </CardActionArea>
                     </Card>
                 </Grid>
-                <Grid item xs>
+                <Grid item>
                     <Card className={classes.card}>
                         <CardActionArea>
                             <CardMedia
