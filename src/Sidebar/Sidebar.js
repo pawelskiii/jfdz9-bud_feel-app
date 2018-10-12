@@ -1,15 +1,16 @@
 import React from 'react';
 import {withStyles} from '@material-ui/core/styles';
 import {
-    ListItem,
-    ListItemIcon,
-    ListItemText,
-    Divider,
-    List,
+    // ListItem,
+    //ListItemIcon,
+    //ListItemText,
+    //Divider,
+    //List,
     Drawer } from '@material-ui/core';
-import InboxIcon from '@material-ui/icons/Inbox';
-import DraftsIcon from '@material-ui/icons/Drafts';
+//import InboxIcon from '@material-ui/icons/Inbox';
+//import DraftsIcon from '@material-ui/icons/Drafts';
 
+import { Link } from 'react-router-dom';
 
 const drawerWidth = 200;
 
@@ -32,29 +33,17 @@ function Sidebar(props) {
             }}
         >
             <div className={classes.toolbar}/>
-            <List>
-                <ListItem button>
-                    <ListItemIcon>
-                        <InboxIcon/>
-                    </ListItemIcon>
-                    <ListItemText primary="Inbox"/>
-                </ListItem>
-                <ListItem button>
-                    <ListItemIcon>
-                        <DraftsIcon/>
-                    </ListItemIcon>
-                    <ListItemText primary="Drafts"/>
-                </ListItem>
-            </List>
-            <Divider/>
-            <List>
-                <ListItem button>
-                    <ListItemText primary="Trash"/>
-                </ListItem>
-                <ListItem button component="a" href="#simple-list">
-                    <ListItemText primary="Spam"/>
-                </ListItem>
-            </List>
+            <nav>
+                <ul>
+                    <li><Link to="/">Strona Główna</Link></li>
+                    <li><Link to="/UserPanel">Moje Ustawienia</Link></li>
+                    <li><Link to="/Favourites">Moje ulubione</Link></li>
+                    <li><Link to="/diets">Wybór diet</Link></li>
+                    <li><Link to="/AddDiet">Dodaj dietę</Link></li>
+                </ul>
+            </nav>
+
+
         </Drawer>
     );
 }
