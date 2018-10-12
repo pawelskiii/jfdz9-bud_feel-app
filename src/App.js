@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import './App.css';
 import {
     BrowserRouter as Router,
@@ -17,6 +17,7 @@ import Content from './Content';
 
 
 class App extends Component {
+
   render() {
     return (
       <div className="App">
@@ -34,6 +35,7 @@ class App extends Component {
       </div>
     );
   }
+
 }
 
 export default App;
