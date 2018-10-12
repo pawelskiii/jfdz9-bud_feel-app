@@ -3,13 +3,16 @@ import {Card, CardActionArea, CardContent, CardMedia} from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import {withStyles} from '@material-ui/core/styles';
+import stage_1 from '../../assets/fees_stage_1.jpg';
+import stage_2 from '../../assets/fees_stage_2.jpg';
+import stage_3 from '../../assets/fees_stage_3.jpg';
 
 const styles = {
     card: {
-        maxWidth: 350,
+        width: 350,
     },
     media: {
-        height: 200,
+        height: 233,
     },
     content: {
         textAlign: 'center'
@@ -28,10 +31,10 @@ class Fees extends Component {
                 <Grid item>
                     <Card className={classes.card}>
                         <CardActionArea>
-                            <CardMedia
+                            <img
                                 className={classes.media}
-                                image=""
-                                title="7-dniowy abenament"
+                                src={stage_1}
+                                title="7-dniowy abonament"
                             />
                             <CardContent className={classes.content}>
                                 <Typography gutterBottom variant="h2" component="h1">
@@ -51,10 +54,10 @@ class Fees extends Component {
                 <Grid item>
                     <Card className={classes.card}>
                         <CardActionArea>
-                            <CardMedia
+                            <img
                                 className={classes.media}
-                                image=""
-                                title="7-dniowy abenament"
+                                src={stage_2}
+                                title="14-dniowy abonament"
                             />
                             <CardContent className={classes.content}>
                                 <Typography gutterBottom variant="h2" component="h1">
@@ -74,10 +77,10 @@ class Fees extends Component {
                 <Grid item>
                     <Card className={classes.card}>
                         <CardActionArea>
-                            <CardMedia
+                            <img
                                 className={classes.media}
-                                image=""
-                                title="7-dniowy abenament"
+                                src={stage_3}
+                                title="28-dniowy abonament"
                             />
                             <CardContent className={classes.content}>
                                 <Typography gutterBottom variant="h2" component="h1">
