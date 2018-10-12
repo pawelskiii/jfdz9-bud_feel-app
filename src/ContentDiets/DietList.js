@@ -4,20 +4,27 @@ import {Typography, Paper} from '@material-ui/core';
 
 import DietFilter from './DietFilter';
 import DietTable from './DietTable';
+import Sidebar from '../Sidebar'
 
 const styles = theme => ({
+    panelContainer: {
+
+    },
     root: {
-        width: '100%',
-        marginTop: theme.spacing.unit * 3,
-        overflowX: 'auto',
+        flexGrow: 1,
+        zIndex: 1,
+        overflow: 'hidden',
+        display: 'flex',
     },
-    root2: {
-        width: '100%',
+    content: {
+        flexGrow: 1,
+        backgroundColor: theme.palette.background.default,
+        padding: theme.spacing.unit * 2,
+        minWidth: 0, // So the Typography noWrap works
     },
-    table: {
-        minWidth: 700,
-    },
+    toolbar: theme.mixins.toolbar,
 });
+
 
 
 class DietList extends Component {
@@ -94,8 +101,12 @@ class DietList extends Component {
 
         return (
             <Fragment>
+                <div  className={classes.root}>
+                <Sidebar/>
+                <main className={classes.content}>
+                    <div className={classes.toolbar}/>
                 <Typography variant='display3'>Lista Diet</Typography>
-                <Paper className={classes.root}>
+                <Paper>
                     <DietFilter
                         onFilterChanged={this.onFilterChanged}
                         onTypeChanged={this.onTypeChanged}
@@ -104,9 +115,11 @@ class DietList extends Component {
                         dietTypes={dietTypes}
                         filter={this.state.filter.text}/>
                 </Paper>
-                <Paper className={classes.root}>
+                <Paper>
                     <DietTable diets={this.getDiets()} dietTypes={dietTypes}/>
                 </Paper>
+                </main>
+                </div>
             </Fragment>
         )
     }
