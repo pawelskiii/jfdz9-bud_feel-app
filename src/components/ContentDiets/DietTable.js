@@ -1,56 +1,53 @@
-import React, {Component} from 'react';
-import {Table, TableHead, TableRow, TableBody, TableCell, Typography } from '@material-ui/core';
+import React, {Component, Fragment} from 'react';
+import {Table, TableHead, TableRow, TableBody, TableCell, Typography, Paper} from '@material-ui/core';
 import {withStyles} from '@material-ui/core/styles';
+import {Card, CardActionArea, CardContent, CardMedia} from '@material-ui/core';
+import Grid from '@material-ui/core/Grid';
 
 import DietTableRow from './DietTableRow';
+import DietFilter from './DietFilter';
 
-const CustomTableCell = withStyles(theme => ({
-    head: {
-        backgroundColor: theme.palette.common.black,
-        color: theme.palette.common.white,
+const styles = {
+    card: {
+        width: 350,
     },
-    body: {
-        fontSize: 14,
+    media: {
+        height: 233,
     },
-}))(TableCell);
+    content: {
+        textAlign: 'center'
+    },
+    gridElementCenter: {
+        display: 'flex',
+        justifyContent: 'space-evenly'
+    },
+};
 
-const styles = theme => ({
-    table: {
-        minWidth: 700,
-    },
-});
 
 class DietTable extends Component {
     render() {
-        const {diets, types} = this.props;
-        const {classes} = this.props;
+        const {classes, diets, types} = this.props;
 
         return (
-            <Table className={classes.table}>
-                <TableHead>
-                    <TableRow>
-                        <CustomTableCell>Nazwa</CustomTableCell>
-                        <CustomTableCell>Opis</CustomTableCell>
-                        <CustomTableCell>Typ</CustomTableCell>
-                        <CustomTableCell numeric>Wiek (lata)</CustomTableCell>
-                        <CustomTableCell numeric>Waga (kg)</CustomTableCell>
-                        <CustomTableCell numeric>Okres (dni)</CustomTableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {(diets !== undefined)
-                        ? diets.map(diet =>
-                            <DietTableRow
-                                diet={diet}
-                                dietType={(types !== undefined) && types.find(type => diet.typeId === type.id).name}
-                                key={diet.id}
-                            />)
-                        : <TableCell>
-                            <Typography variant='headline'> Brak diet spełniających wymagania</Typography>
-                        </TableCell>
-                    }
-                </TableBody>
-            </Table>
+            <Grid container className={classes.gridElementCenter}>
+                {(diets !== undefined)
+                    ? diets.map(diet =>
+                        <DietTableRow
+                            diet={diet}
+                            dietType={(types !== undefined) && types.find(type => diet.typeId === type.id).name}
+                            key={diet.id}
+                        />)
+                    : <Grid item>
+                        <Card className={classes.card}>
+                            <CardActionArea>
+                                <CardContent>
+                                    <Typography>BRAK DIET</Typography>
+                                </CardContent>
+                            </CardActionArea>
+                        </Card>
+                    </Grid>
+                }
+            </Grid>
         )
     }
 }

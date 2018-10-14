@@ -1,34 +1,57 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {
     TableRow,
     TableCell,
-    Typography } from '@material-ui/core';
-import { withStyles } from '@material-ui/core/styles';
+    Typography
+} from '@material-ui/core';
+import {withStyles} from '@material-ui/core/styles';
+import {Card, CardActionArea, CardContent, CardMedia} from '@material-ui/core';
+import Grid from '@material-ui/core/Grid';
+import slim from '../../assets/slim.jpeg';
 
-const styles = theme => ({
-    row: {
-        '&:nth-of-type(even)': {
-            backgroundColor: theme.palette.background.default,
-        },
+const styles = {
+    card: {
+        width: 350,
     },
-});
+    media: {
+        height: 233,
+    },
+    content: {
+        textAlign: 'center'
+    },
+    gridElementCenter: {
+        display: 'flex',
+        justifyContent: 'space-evenly'
+    },
+};
 
 class DietTableRow extends Component {
     render() {
-        const { dietType, diet: { id, name, description, age, weight, period } } = this.props;
-        const { classes } = this.props;
+        const {dietType, diet: {id, name, description, age, weight, period}} = this.props;
+        const {classes} = this.props;
 
         return (
-            <TableRow key={id} className={classes.row}>
-                <TableCell >{name}</TableCell>
-                <TableCell >
-                    <Typography >{description}</Typography>
-                </TableCell>
-                <TableCell >{dietType}</TableCell>
-                <TableCell numeric>{`${age.min} - ${age.max}`}</TableCell>
-                <TableCell numeric>{`${weight.min} - ${weight.max}`}</TableCell>
-                <TableCell numeric>{period}</TableCell>
-            </TableRow>
+            <Grid item key={id}>
+                <Card key={id} className={classes.card}>
+                    <CardActionArea>
+                        <img
+                            className={classes.media}
+                            src={slim}
+                            title="redukcja"
+                        />
+                        <CardContent>
+                            <Typography>{name}</Typography>
+                            <Typography>
+                                <Typography>{description}</Typography>
+                            </Typography>
+                            <Typography>{dietType}</Typography>
+                            <Typography>{`${age.min} - ${age.max}`}</Typography>
+                            <Typography>{`${weight.min} - ${weight.max}`}</Typography>
+                            <Typography>{period}</Typography>
+                        </CardContent>
+                    </CardActionArea>
+                </Card>
+            </Grid>
         )
     }
 }

@@ -27,6 +27,7 @@ const styles = theme => ({
 
 class DietFilter extends Component {
     state = {
+        periods: [7, 14, 28],
         type: '',
         period: '',
     };
@@ -47,7 +48,8 @@ class DietFilter extends Component {
     };
 
     render() {
-        const { classes, periods, types } = this.props;
+        const { periods } = this.state;
+        const { classes, types } = this.props;
 
         return (
             <div className={classes.root}>

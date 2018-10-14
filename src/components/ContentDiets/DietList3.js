@@ -1,34 +1,35 @@
-import React, {Component, Fragment} from 'react';
+import React, {Component} from 'react';
+import {connect} from 'react-redux'
+
+import {Card, CardActionArea, CardContent, CardMedia} from '@material-ui/core';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
 import {withStyles} from '@material-ui/core/styles';
-import {Typography, Paper, Grid} from '@material-ui/core';
-import { connect } from 'react-redux'
+import slim from '../../assets/slim.jpeg';
 
 import DietFilter from './DietFilter';
+import DietCards from './DietCards';
 import DietTable from './DietTable';
 import Sidebar from '../Sidebar/index';
 
-const styles = theme => ({
-    panelContainer: {
 
+const styles = {
+    card: {
+        width: 350,
     },
-    root: {
-        flexGrow: 1,
-        zIndex: 1,
-        overflow: 'hidden',
-        display: 'flex',
+    media: {
+        height: 233,
     },
     content: {
-        flexGrow: 1,
-        backgroundColor: theme.palette.background.default,
-        padding: theme.spacing.unit * 2,
-        minWidth: 0, // So the Typography noWrap works
+        textAlign: 'center'
     },
-    toolbar: theme.mixins.toolbar,
-});
+    gridElementCenter: {
+        display: 'flex',
+        justifyContent: 'space-evenly'
+    },
+};
 
-
-
-class DietList extends Component {
+class DietList3 extends Component {
 
     state = {
         filter: {
@@ -81,29 +82,21 @@ class DietList extends Component {
         const {classes, types} = this.props;
 
         return (
-            <Fragment>
-                <div  className={classes.root}>
+            <Grid container className={classes.gridElementCenter}>
+                <Grid item xs={12}>
+                    <Paper>
+                        <DietFilter
+                            onFilterChanged={this.onFilterChanged}
+                            onTypeChanged={this.onTypeChanged}
+                            onPeriodChanged={this.onPeriodChanged}
+                            types={types}
+                            filter={this.state.filter.text}/>
+                    </Paper>
+                </Grid>
 
-                    <Sidebar/>
-                <main className={classes.content}>
-                    <div className={classes.toolbar}/>
-                <Typography variant='display3'>Lista Diet</Typography>
-                    <Grid item xs={12}>
-                        <Paper>
-                            <DietFilter
-                                onFilterChanged={this.onFilterChanged}
-                                onTypeChanged={this.onTypeChanged}
-                                onPeriodChanged={this.onPeriodChanged}
-                                types={types}
-                                filter={this.state.filter.text}/>
-                        </Paper>
-                    </Grid>
-                <Paper>
-                    <DietTable diets={this.getDiets()} types={types}/>
-                </Paper>
-                </main>
-                </div>
-            </Fragment>
+                <DietCards diets={this.getDiets()} types={types}/>
+
+            </Grid>
         )
     }
 }
@@ -120,5 +113,5 @@ const mapStateToProps = state => ({
 
 export default connect(
     mapStateToProps
-)(withStyles(styles)(DietList));
+)(withStyles(styles)(DietList3));
 
