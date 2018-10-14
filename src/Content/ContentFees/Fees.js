@@ -37,15 +37,15 @@ class Fees extends Component {
                                 title="7-dniowy abonament"
                             />
                             <CardContent className={classes.content}>
-                                <Typography gutterBottom variant="h2" component="h1">
+                                <Typography gutterBottom variant="headline">
                                     Abonament na 7 dni
                                 </Typography>
-                                <Typography gutterBottom component="p">
+                                <Typography gutterBottom variant="body2">
                                     Chcesz wypróbować którąkolwiek dietę z oferty?
                                     Bądź też po prostu chcesz nas przetestować?
                                 </Typography>
-                                <Typography variant="h2" component="h2">
-                                    Ten abonament jest dla Ciebie!!
+                                <Typography variant="headline">
+                                    To abonament dla Ciebie!!
                                 </Typography>
                             </CardContent>
                         </CardActionArea>
@@ -60,14 +60,14 @@ class Fees extends Component {
                                 title="14-dniowy abonament"
                             />
                             <CardContent className={classes.content}>
-                                <Typography gutterBottom variant="h2" component="h1">
+                                <Typography gutterBottom variant="headline">
                                     Abonament na 14 dni
                                 </Typography>
-                                <Typography gutterBottom component="p">
+                                <Typography gutterBottom variant="body2">
                                     Zamierzasz powalczyć z nami o lepsze efekty?
                                     Dieting nie jest Ci obcy?
                                 </Typography>
-                                <Typography variant="h2" component="h2">
+                                <Typography variant="headline">
                                     To już wiesz czego chcesz!!
                                 </Typography>
                             </CardContent>
@@ -83,14 +83,14 @@ class Fees extends Component {
                                 title="28-dniowy abonament"
                             />
                             <CardContent className={classes.content}>
-                                <Typography gutterBottom variant="h2" component="h1">
+                                <Typography gutterBottom variant="headline">
                                     Abonament na 28 dni
                                 </Typography>
-                                <Typography gutterBottom component="p">
+                                <Typography gutterBottom variant="body2">
                                     Chcesz pójść w bój o coś więcej niż parę kg?
                                     Liczysz na naprawdę super efekty?
                                 </Typography>
-                                <Typography variant="h2" component="h2">
+                                <Typography variant="headline">
                                     Jeden klik i jestem Twój!!
                                 </Typography>
                             </CardContent>
