@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import firebase from 'firebase';
 import {
     Button,
     Dialog,
@@ -9,10 +10,13 @@ import {
     DialogActions,
     Divider } from '@material-ui/core';
 
-class SignUp extends Component {
+class SignIn extends Component {
 
     state = {
         open: false,
+        email: '',
+        password: '',
+        error: null
     };
 
     handleClickOpen = () => {
@@ -23,25 +27,37 @@ class SignUp extends Component {
         this.setState({ open: false });
     };
 
-    handleSubmit = () => {
-        this.setState({ open: false });
+    handleChange = event => {
+        this.setState({
+            [event.target.name]: event.target.value
+        })
+    };
+
+    handleSubmit = event => {
+        event.preventDefault();
+        this.setState({ error: null });
+        firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).catch(
+            error => this.setState({ error })
+        );
+        if (this.state.error !== null) {
+            this.handleClose()
+        }
     };
 
     render() {
         return (
-            <div>
-                <Button onClick={this.handleClickOpen} color='inherit'>Zarejestruj</Button>
+            <div style={{marginLeft: 'auto'}}>
+                <Button onClick={this.handleClickOpen} color='inherit'>Zaloguj</Button>
                 <Dialog
                     open={this.state.open}
                     onClose={this.handleClose}
                     aria-labelledby="form-dialog-title"
                 >
-                    <DialogTitle id="form-dialog-title">Zarejestruj</DialogTitle>
+                    <DialogTitle id="form-dialog-title">Zaloguj</DialogTitle>
                     <Divider style={{marginBottom: '.6rem'}}/>
-
                     <DialogContent>
                         <DialogContentText>
-                            Aby się zarejestrować wprowadź adres e-mail, hasło oraz potwierdź je.
+                            Aby się zalogować wpisz adres e-mail oraz hasło.
                         </DialogContentText>
                         <TextField
                             autoFocus
@@ -49,36 +65,29 @@ class SignUp extends Component {
                             id="outlined-name"
                             label="E-mail"
                             type="email"
+                            name="email"
                             variant='outlined'
-                            required
                             fullWidth
                             style={{marginTop: '1.2rem'}}
+                            onChange={this.handleChange}
                         />
                         <TextField
                             margin="dense"
                             id="outlined-password"
                             label="Hasło"
                             type="password"
+                            name="password"
                             variant='outlined'
-                            required
-                            fullWidth
-                        />
-                        <TextField
-                            margin="dense"
-                            id="outlined-repeat-password"
-                            label="Powtórz hasło"
-                            type="password"
-                            variant='outlined'
-                            required
+                            onChange={this.handleChange}
                             fullWidth
                         />
                     </DialogContent>
                     <DialogActions>
-                        <Button onClick={this.handleClose} color="primary">
+                        <Button onClick={this.handleClose}>
                             Zamknij
                         </Button>
-                        <Button onClick={this.handleSubmit} color="primary">
-                            Zarejestruj
+                        <Button onClick={this.handleSubmit}>
+                            Zaloguj
                         </Button>
                     </DialogActions>
                 </Dialog>
@@ -87,4 +96,4 @@ class SignUp extends Component {
     }
 }
 
-export default SignUp;
+export default SignIn;

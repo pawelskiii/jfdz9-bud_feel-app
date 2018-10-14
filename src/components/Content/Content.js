@@ -2,10 +2,10 @@ import React, {Component} from 'react';
 import {withStyles} from '@material-ui/core/styles';
 
 
-import Carousel from './CentralCarousel';
-import Fees from './ContentFees';
-import Dashboard from './Dashboard';
-import Sidebar from '../Sidebar'
+import Carousel from './CentralCarousel/index';
+import Fees from './ContentFees/index';
+import Dashboard from './Dashboard/index';
+import Sidebar from '../Sidebar/index'
 
 
 const styles = theme => ({

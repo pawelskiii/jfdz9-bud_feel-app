@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import Sidebar from '../Sidebar';
+import Sidebar from '../Sidebar/index';
 import {withStyles} from '@material-ui/core/styles';
 
 const styles = theme => ({
-    addDietContainer: {
+    favContainer: {
 
     },
     root: {
@@ -21,7 +21,8 @@ const styles = theme => ({
     toolbar: theme.mixins.toolbar,
 });
 
-class AddDiet extends Component {
+
+class Favourites extends Component {
     render() {
         const {classes} = this.props;
         return (
@@ -29,8 +30,8 @@ class AddDiet extends Component {
                 <Sidebar/>
                 <main className={classes.content}>
                     <div className={classes.toolbar}/>
-                    <div className={classes.addDietContainer}>
-                        Dodawanie diety
+                    <div className={classes.favContainer}>
+                        Moje ulubione
                     </div>
                 </main>
             </div>
@@ -38,4 +39,4 @@ class AddDiet extends Component {
 }
 
 
-export default withStyles(styles)(AddDiet);
+export default withStyles(styles)(Favourites);

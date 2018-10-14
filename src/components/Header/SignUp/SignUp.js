@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import firebase from 'firebase';
 import {
     Button,
     Dialog,
@@ -9,10 +10,13 @@ import {
     DialogActions,
     Divider } from '@material-ui/core';
 
-class SignIn extends Component {
+class SignUp extends Component {
 
     state = {
         open: false,
+        email: '',
+        password: '',
+        error: null
     };
 
     handleClickOpen = () => {
@@ -23,20 +27,38 @@ class SignIn extends Component {
         this.setState({ open: false });
     };
 
+    handleChange = event => {
+        this.setState({
+            [event.target.name]: event.target.value
+        })
+    };
+
+    handleSubmit = event => {
+        event.preventDefault();
+        this.setState({ error: null });
+        firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).catch(
+            error => this.setState({ error })
+        );
+        if (this.state.error !== null) {
+            this.handleClose()
+        }
+    };
+
     render() {
         return (
-            <div style={{marginLeft: 'auto'}}>
-                <Button onClick={this.handleClickOpen} color='inherit'>Zaloguj</Button>
+            <div>
+                <Button onClick={this.handleClickOpen} color='inherit'>Zarejestruj</Button>
                 <Dialog
                     open={this.state.open}
                     onClose={this.handleClose}
                     aria-labelledby="form-dialog-title"
                 >
-                    <DialogTitle id="form-dialog-title">Zaloguj</DialogTitle>
+                    <DialogTitle id="form-dialog-title">Zarejestruj</DialogTitle>
                     <Divider style={{marginBottom: '.6rem'}}/>
+
                     <DialogContent>
                         <DialogContentText>
-                            Aby się zalogować wpisz adres e-mail oraz hasło.
+                            Aby się zarejestrować wprowadź adres e-mail oraz hasło.
                         </DialogContentText>
                         <TextField
                             autoFocus
@@ -44,8 +66,11 @@ class SignIn extends Component {
                             id="outlined-name"
                             label="E-mail"
                             type="email"
+                            name="email"
                             variant='outlined'
+                            required
                             fullWidth
+                            onChange={this.handleChange}
                             style={{marginTop: '1.2rem'}}
                         />
                         <TextField
@@ -53,7 +78,10 @@ class SignIn extends Component {
                             id="outlined-password"
                             label="Hasło"
                             type="password"
+                            name="password"
                             variant='outlined'
+                            onChange={this.handleChange}
+                            required
                             fullWidth
                         />
                     </DialogContent>
@@ -61,8 +89,8 @@ class SignIn extends Component {
                         <Button onClick={this.handleClose} color="primary">
                             Zamknij
                         </Button>
-                        <Button onClick={this.handleClose} color="primary">
-                            Zaloguj
+                        <Button onClick={this.handleSubmit} color="primary">
+                            Zarejestruj
                         </Button>
                     </DialogActions>
                 </Dialog>
@@ -71,4 +99,4 @@ class SignIn extends Component {
     }
 }
 
-export default SignIn;
+export default SignUp;

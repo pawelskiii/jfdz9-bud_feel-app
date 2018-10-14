@@ -4,7 +4,7 @@ import {Typography, Paper} from '@material-ui/core';
 
 import DietFilter from './DietFilter';
 import DietTable from './DietTable';
-import Sidebar from '../Sidebar'
+import Sidebar from '../Sidebar/index'
 
 const styles = theme => ({
     panelContainer: {
