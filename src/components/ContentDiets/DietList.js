@@ -1,6 +1,7 @@
 import React, {Component, Fragment} from 'react';
 import {withStyles} from '@material-ui/core/styles';
 import {Typography, Paper} from '@material-ui/core';
+import { connect } from 'react-redux';
 
 import DietFilter from './DietFilter';
 import DietTable from './DietTable';
@@ -30,9 +31,9 @@ const styles = theme => ({
 class DietList extends Component {
 
     state = {
-        diets: [],
-        dietTypes: [],
-        periods: [],
+        /*diets: [],
+        types: [],*/
+        periods: [7, 14, 28],
         filter: {
             text: '',
             type: '',
@@ -40,23 +41,23 @@ class DietList extends Component {
         }
     };
 
-    componentDidMount() {
+    /*componentDidMount() {
         const p1 = fetch('/data/diets.json')
             .then(response => response.json());
         const p2 = fetch('/data/types.json')
             .then(response => response.json());
-        Promise.all([p1, p2]).then(([diets, dietTypes]) => {
+        Promise.all([p1, p2]).then(([diets, types]) => {
             const periods =
                 diets.map(diet => diet.period)
                     .filter((value, index, self) => self.indexOf(value) === index)
                     .sort((a, b) => a - b);
             this.setState({
                 diets,
-                dietTypes,
+                types,
                 periods,
             })
         })
-    }
+    }*/
 
     onFilterChanged = filter => {
         this.setState({
@@ -86,18 +87,18 @@ class DietList extends Component {
     };
 
     getDiets() {
-        return this.state.diets.filter(diet => {
+        return this.props.diets.filter(diet => {
             return diet.name.toLowerCase().includes(this.state.filter.text.toLowerCase())
                 && (this.state.filter.type === ''
-                    || this.state.dietTypes[diet.typeId - 1].name === this.state.filter.type)
+                    || this.props.types[diet.typeId - 1].name === this.state.filter.type)
                 && (this.state.filter.period === ''
                     || diet.period === this.state.filter.period);
         })
     }
 
     render() {
-        const {dietTypes, periods} = this.state;
-        const {classes} = this.props;
+        const {periods} = this.state;
+        const {classes, types} = this.props;
 
         return (
             <Fragment>
@@ -112,11 +113,11 @@ class DietList extends Component {
                         onTypeChanged={this.onTypeChanged}
                         onPeriodChanged={this.onPeriodChanged}
                         periods={periods}
-                        dietTypes={dietTypes}
+                        types={types}
                         filter={this.state.filter.text}/>
                 </Paper>
                 <Paper>
-                    <DietTable diets={this.getDiets()} dietTypes={dietTypes}/>
+                    <DietTable diets={this.getDiets()} types={types}/>
                 </Paper>
                 </main>
                 </div>
@@ -125,5 +126,16 @@ class DietList extends Component {
     }
 }
 
-export default withStyles(styles)(DietList);
+const mapStateToProps = state => ({
+    diets: state.diets === null
+        ? []
+        : state.diets,
+    types: state.types === null
+        ? []
+        : state.types,
+})
+
+export default connect(
+    mapStateToProps
+)(withStyles(styles)(DietList));
 

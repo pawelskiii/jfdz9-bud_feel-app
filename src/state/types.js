@@ -2,9 +2,9 @@ const initialState = [];
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case 'DIETS/SET_DIETS':
+        case 'TYPES/SET_TYPES':
             return {
-                data: action.diets
+                data: action.types
             };
         default:
             return state

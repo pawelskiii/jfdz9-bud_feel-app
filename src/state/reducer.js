@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux'
 import auth from './auth'
 import favs from './favs'
-import userList from './userList'
+import diets from './diets'
+import types from './types'
 
 export default combineReducers({
-    userList,
     auth,
-    favs
+    favs,
+    diets,
+    types
 })
