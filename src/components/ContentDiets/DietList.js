@@ -123,7 +123,7 @@ class DietList extends Component {
                 </Paper>
                 <Paper>
                     <DietList2/>
-                    <DietTable diets={this.getDiets()} dietTypes={types}/>
+                    <DietTable diets={this.getDiets()} types={types}/>
                 </Paper>
                 </main>
                 </div>
