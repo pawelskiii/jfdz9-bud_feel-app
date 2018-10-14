@@ -36,6 +36,7 @@ class DietFilter extends Component {
     };
 
     onTypeChange = event => {
+        console.log(event.target.value);
         this.props.onTypeChanged(event.target.value);
         this.setState({type: event.target.value})
     };

@@ -35,7 +35,7 @@ class DietList extends Component {
     state = {
         /*diets: [],
         dietTypes: [],*/
-        periods: [],
+        periods: [7,14,28],
         filter: {
             text: '',
             type: '',
@@ -118,7 +118,7 @@ class DietList extends Component {
                         onTypeChanged={this.onTypeChanged}
                         onPeriodChanged={this.onPeriodChanged}
                         periods={periods}
-                        dietTypes={types}
+                        types={types}
                         filter={this.state.filter.text}/>
                 </Paper>
                 <Paper>
