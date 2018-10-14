@@ -4,7 +4,9 @@ import {Typography, Paper} from '@material-ui/core';
 
 import DietFilter from './DietFilter';
 import DietTable from './DietTable';
-import Sidebar from '../Sidebar/index'
+import Sidebar from '../Sidebar/index';
+
+import DietList2 from '../ContentDiets/DietList2';
 
 const styles = theme => ({
     panelContainer: {
@@ -102,7 +104,8 @@ class DietList extends Component {
         return (
             <Fragment>
                 <div  className={classes.root}>
-                <Sidebar/>
+
+                    <Sidebar/>
                 <main className={classes.content}>
                     <div className={classes.toolbar}/>
                 <Typography variant='display3'>Lista Diet</Typography>
@@ -116,6 +119,7 @@ class DietList extends Component {
                         filter={this.state.filter.text}/>
                 </Paper>
                 <Paper>
+                    <DietList2/>
                     <DietTable diets={this.getDiets()} dietTypes={dietTypes}/>
                 </Paper>
                 </main>
