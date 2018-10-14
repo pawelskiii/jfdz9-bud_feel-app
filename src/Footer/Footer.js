@@ -1,43 +1,23 @@
-import React, { Component } from 'react';
-import { withStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-
-const styles = {
-    root: {
-        flexGrow: 1,
-    },
-};
+import React, {Component} from 'react';
+import Grid from '@material-ui/core/Grid';
 
 class Footer extends Component {
-    state = {
-        value: 0,
-    };
-
-    handleChange = (event, value) => {
-        this.setState({ value });
-    };
-
     render() {
-        const { classes } = this.props;
 
         return (
-            <Paper className={classes.root}>
-                <Tabs
-                    value={this.state.value}
-                    onChange={this.handleChange}
-                    indicatorColor="primary"
-                    textColor="primary"
-                    centered
-                >
-                    <Tab label="Item One" />
-                    <Tab label="Item Two" />
-                    <Tab label="Item Three" />
-                </Tabs>
-            </Paper>
+            <Grid container>
+                <Grid item>
+
+                </Grid>
+                <Grid item>
+
+                </Grid>
+                <Grid item>
+
+                </Grid>
+            </Grid>
         );
     }
 }
 
-export default withStyles(styles)(Footer);
+export default Footer;
