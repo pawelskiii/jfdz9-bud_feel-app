@@ -23,7 +23,6 @@ firebase.auth().onAuthStateChanged(user => {
 });
 
 firebase.database().ref('/data/diets').on('value', snapshot => {
-    console.log(snapshot.val());
     store.dispatch({
         type: 'DIETS/SET_DIETS',
         diets: snapshot.val()
@@ -31,7 +30,6 @@ firebase.database().ref('/data/diets').on('value', snapshot => {
 });
 
 firebase.database().ref('/data/types').on('value', snapshot => {
-    console.log(snapshot.val());
     store.dispatch({
         type: 'TYPES/SET_TYPES',
         types: snapshot.val()

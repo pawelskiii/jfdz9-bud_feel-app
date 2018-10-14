@@ -4,7 +4,7 @@ import {Typography, Paper, Grid} from '@material-ui/core';
 import { connect } from 'react-redux'
 
 import DietFilter from './DietFilter';
-import DietTable from './DietTable';
+import DietTable from './DietCards';
 import Sidebar from '../Sidebar/index';
 
 const styles = theme => ({
@@ -25,8 +25,6 @@ const styles = theme => ({
     },
     toolbar: theme.mixins.toolbar,
 });
-
-
 
 class DietList extends Component {
 
@@ -87,7 +85,7 @@ class DietList extends Component {
                     <Sidebar/>
                 <main className={classes.content}>
                     <div className={classes.toolbar}/>
-                <Typography variant='display3'>Lista Diet</Typography>
+                <Typography variant='display3' color='primary' align='center'>Lista Diet</Typography>
                     <Grid item xs={12}>
                         <Paper>
                             <DietFilter
@@ -95,7 +93,8 @@ class DietList extends Component {
                                 onTypeChanged={this.onTypeChanged}
                                 onPeriodChanged={this.onPeriodChanged}
                                 types={types}
-                                filter={this.state.filter.text}/>
+                                filter={this.state.filter.text}
+                            />
                         </Paper>
                     </Grid>
                 <Paper>

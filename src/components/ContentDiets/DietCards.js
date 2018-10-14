@@ -1,14 +1,8 @@
-import React, {Component, Fragment} from 'react';
-import {Table, TableHead, TableRow, TableBody, TableCell, Typography } from '@material-ui/core';
+import React, {Component} from 'react';
 import {withStyles} from '@material-ui/core/styles';
+import {Grid} from '@material-ui/core';
 
-import {Card, CardActionArea, CardContent, CardMedia} from '@material-ui/core';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import {withStyles} from '@material-ui/core/styles';
-import slim from '../../assets/slim.jpeg';
-
-import DietCard from './DietCard';
+import DietTableRow from './DietCard';
 
 const styles = {
     card: {
@@ -22,35 +16,28 @@ const styles = {
     },
     gridElementCenter: {
         display: 'flex',
-        justifyContent: 'space-evenly'
+        justifyContent: 'space-evenly',
+        marginTop: '1rem',
     },
 };
+
+
 class DietCards extends Component {
     render() {
         const {classes, diets, types} = this.props;
 
         return (
-            <Fragment>
+            <Grid container className={classes.gridElementCenter}>
                 {(diets !== undefined)
-                && diets.map(diet =>
-                    <Grid item>
-                        <Card className={classes.card}>
-                            <CardActionArea>
-                                <img
-                                    className={classes.media}
-                                    src={slim}
-                                    title="redukcja"
-                                />
-                                <CardContent className={classes.content}>
-                                    <Typography gutterBottom variant="h2" component="h1">
-                                        {`${diet.id}, ${diet.name}`}
-                                    </Typography>
-                                </CardContent>
-                            </CardActionArea>
-                        </Card>
-                    </Grid>
-                )}
-            </Fragment>
+                    ? diets.map(diet =>
+                        <DietTableRow
+                            diet={diet}
+                            dietType={(types !== undefined) && types.find(type => diet.typeId === type.id).name}
+                            key={diet.id}
+                        />)
+                    : null
+                }
+            </Grid>
         )
     }
 }

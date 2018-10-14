@@ -16,7 +16,7 @@ const styles = theme => ({
     root: {
         flexGrow: 1,
         zIndex: theme.zIndex.drawer + 1,
-        overflow: 'hidden',
+        // overflow: 'hidden',
         position: 'absolute',
         display: 'flex',
         width: '100%',
@@ -29,8 +29,8 @@ class Header extends Component {
         const {classes} = this.props;
 
         return (
-            <div className={classes.root} color="secondary">
-                <AppBar position="relative" className={classes.appBar} color="secondary">
+            <div className={classes.root}>
+                <AppBar position="static" className={classes.appBar}>
                     <Toolbar>
                         <img src={logo} alt="eat smarter logo"/>
                         {

@@ -6,6 +6,7 @@ const styles = theme => ({
     root: {
         display: 'flex',
         flexWrap: 'wrap',
+        justifyContent: 'center'
     },
     margin: {
         margin: theme.spacing.unit,
@@ -14,10 +15,12 @@ const styles = theme => ({
         marginTop: theme.spacing.unit * 3,
     },
     textField: {
-        flexBasis: 200,
+        flexBasis: 400,
     },
     formControl: {
         margin: theme.spacing.unit,
+        marginLeft: theme.spacing.unit * 4,
+        marginRight: theme.spacing.unit * 4,
         minWidth: 120,
     },
     selectEmpty: {
@@ -37,7 +40,6 @@ class DietFilter extends Component {
     };
 
     onTypeChange = event => {
-        console.log(event.target.value);
         this.props.onTypeChanged(event.target.value);
         this.setState({type: event.target.value})
     };
