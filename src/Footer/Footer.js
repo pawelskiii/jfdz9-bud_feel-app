@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography'
+import {Grid, Typography, Divider} from '@material-ui/core';
 import {withStyles} from '@material-ui/core/styles';
 
 const styles = {
@@ -10,6 +9,9 @@ const styles = {
     },
     content: {
         textAlign: 'center'
+    },
+    firstElement: {
+        marginTop: 10
     },
     lastElement: {
         marginBottom: 20
@@ -26,7 +28,8 @@ class Footer extends Component {
                     <Typography gutterBottom variant="display1">
                         Adres:
                     </Typography>
-                    <Typography gutterBottom variant="subheading">
+                    <Divider/>
+                    <Typography gutterBottom className={classes.firstElement} variant="subheading">
                         Bud-Feel
                     </Typography>
                     <Typography gutterBottom variant="subheading">
@@ -40,7 +43,8 @@ class Footer extends Component {
                     <Typography gutterBottom variant="display1">
                         E-mail:
                     </Typography>
-                    <Typography className={classes.lastElement} variant="headline">
+                    <Divider/>
+                    <Typography className={`${classes.lastElement} ${classes.firstElement}`} variant="headline">
                         bud-feel@infoshare.com
                     </Typography>
                 </Grid>
@@ -48,7 +52,8 @@ class Footer extends Component {
                     <Typography gutterBottom variant="display1">
                         Numer telefonu:
                     </Typography>
-                    <Typography className={classes.lastElement} variant="headline">
+                    <Divider/>
+                    <Typography className={`${classes.lastElement} ${classes.firstElement}`} variant="headline">
                         +012 345 6789
                     </Typography>
                 </Grid>
