@@ -5,6 +5,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import {connect} from 'react-redux';
 import firebase from 'firebase';
 import {Button} from '@material-ui/core';
+import { Link } from 'react-router-dom';
 
 import SignIn from './SignIn/index';
 import SignUp from './SignUp/index';
@@ -32,7 +33,7 @@ class Header extends Component {
             <div className={classes.root}>
                 <AppBar position="static" className={classes.appBar}>
                     <Toolbar>
-                        <img src={logo} alt="eat smarter logo"/>
+                        <Link to="/"><img src={logo} alt="eat smarter logo"/></Link>
                         {
                             this.props.user ?
                                 <Fragment>

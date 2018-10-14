@@ -38,10 +38,12 @@ class SignIn extends Component {
         this.setState({ error: null });
         firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).catch(
             error => this.setState({ error })
-        );
-        if (this.state.error !== null) {
-            this.handleClose()
-        }
+        ).then(() => {
+            if (this.state.error === null) {
+                this.handleClose()
+            }
+        });
+
     };
 
     render() {
@@ -56,9 +58,12 @@ class SignIn extends Component {
                     <DialogTitle id="form-dialog-title">Zaloguj</DialogTitle>
                     <Divider style={{marginBottom: '.6rem'}}/>
                     <DialogContent>
-                        <DialogContentText>
-                            Aby się zalogować wpisz adres e-mail oraz hasło.
-                        </DialogContentText>
+                        {
+                            this.state.error === null
+                                ? <DialogContentText>Aby się zalogować wpisz adres e-mail oraz hasło.</DialogContentText>
+                                : <DialogContentText color='error'>Niepoprawny adres e-mail lub hasło.</DialogContentText>
+
+                        }
                         <TextField
                             autoFocus
                             margin="dense"

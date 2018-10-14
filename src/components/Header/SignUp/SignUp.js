@@ -38,10 +38,11 @@ class SignUp extends Component {
         this.setState({ error: null });
         firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).catch(
             error => this.setState({ error })
-        );
-        if (this.state.error !== null) {
-            this.handleClose()
-        }
+        ).then(() => {
+            if (this.state.error === null) {
+                this.handleClose()
+            }
+        });
     };
 
     render() {
@@ -57,9 +58,12 @@ class SignUp extends Component {
                     <Divider style={{marginBottom: '.6rem'}}/>
 
                     <DialogContent>
-                        <DialogContentText>
-                            Aby się zarejestrować wprowadź adres e-mail oraz hasło.
-                        </DialogContentText>
+                        {
+                            this.state.error === null
+                                ? <DialogContentText>Aby się zarejestrować wprowadź adres e-mail oraz hasło.</DialogContentText>
+                                : <DialogContentText color='error'>Niepoprawny format adresu e-mail lub taki użytkownik już istnieje.</DialogContentText>
+
+                        }
                         <TextField
                             autoFocus
                             margin="dense"
