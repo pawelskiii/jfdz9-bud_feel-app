@@ -22,7 +22,7 @@ const styles = theme => ({
 
 class DietTable extends Component {
     render() {
-        const {diets, dietTypes} = this.props;
+        const {diets, types} = this.props;
         const {classes} = this.props;
 
         return (
@@ -38,11 +38,11 @@ class DietTable extends Component {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {(diets.length > 0)
+                    {(diets !== undefined)
                         ? diets.map(diet =>
                             <DietTableRow
                                 diet={diet}
-                                dietType={dietTypes.find(type => diet.typeId === type.id).name}
+                                dietType={(types !== undefined) && types.find(type => diet.typeId === type.id).name}
                                 key={diet.id}
                             />)
                         : <TableCell>

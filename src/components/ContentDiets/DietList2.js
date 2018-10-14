@@ -1,62 +1,74 @@
-import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import React, {Component} from 'react';
 import { connect } from 'react-redux'
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
+
+import {Card, CardActionArea, CardContent, CardMedia} from '@material-ui/core';
+import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
+import {withStyles} from '@material-ui/core/styles';
+import slim from '../../assets/slim.jpeg';
 
 const styles = {
     card: {
-        maxWidth: 345,
+        width: 350,
     },
     media: {
-        height: 140,
+        height: 233,
+    },
+    content: {
+        textAlign: 'center'
+    },
+    gridElementCenter: {
+        display: 'flex',
+        justifyContent: 'space-evenly'
     },
 };
 
-function DietList2(props) {
-    const { classes } = props;
-    return (
-        <Card className={classes.card}>
-            <CardActionArea>
-                <CardMedia
-                    className={classes.media}
-                    image="/static/images/cards/contemplative-reptile.jpg"
-                    title="Contemplative Reptile"
-                />
-                <CardContent>
-                    <Typography gutterBottom variant="h5" component="h2">
-                        Lizard
-                    </Typography>
-                    <Typography component="p">
-                        Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-                        across all continents except Antarctica
-                    </Typography>
-                </CardContent>
-            </CardActionArea>
-            <CardActions>
-                <Button size="small" color="primary">
-                    Share
-                </Button>
-                <Button size="small" color="primary">
-                    Learn More
-                </Button>
-            </CardActions>
-        </Card>
-    );
+class DietList2 extends Component {
+    render() {
+        const {classes, diets} = this.props;
+
+        if (diets !== undefined) {
+            diets.forEach(el => console.log(el.age))
+        }
+
+
+        return (
+            <Grid container className={classes.gridElementCenter}>
+                <Grid item>
+                    <Card className={classes.card}>
+                        <CardActionArea>
+                            <img
+                                className={classes.media}
+                                src={slim}
+                                title="7-dniowy abonament"
+                            />
+                            <CardContent className={classes.content}>
+                                <Typography gutterBottom variant="h2" component="h1">
+                                    Abonament na 7 dni
+                                </Typography>
+                                <Typography gutterBottom component="p">
+                                    Chcesz wypróbować którąkolwiek dietę z oferty?
+                                    Bądź też po prostu chcesz nas przetestować?
+                                </Typography>
+                                <Typography variant="h2" component="h2">
+                                    Ten abonament jest dla Ciebie!!
+                                </Typography>
+                            </CardContent>
+                        </CardActionArea>
+                    </Card>
+                </Grid>
+            </Grid>
+        )
+    }
 }
 
 const mapStateToProps = state => ({
     diets: state.diets === null
-        ? []
-        : state.diets,
+        ? {}
+        : state.diets.data,
     types: state.types === null
-        ? []
-        : state.types,
+        ? {}
+        : state.types.data,
 });
 
 export default connect(

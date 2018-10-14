@@ -46,7 +46,7 @@ class DietFilter extends Component {
     };
 
     render() {
-        const { classes, periods, dietTypes } = this.props;
+        const { classes, periods, types } = this.props;
 
         return (
             <div className={classes.root}>
@@ -70,7 +70,7 @@ class DietFilter extends Component {
                         <MenuItem value="">
                             <em>Brak</em>
                         </MenuItem>
-                        {dietTypes.map(type => <MenuItem value={type.name} key={type.name}>{type.name}</MenuItem>)}
+                        {(types !== undefined) && types.map(type => <MenuItem value={type.name} key={type.name}>{type.name}</MenuItem>)}
                     </Select>
                 </FormControl>
                 <FormControl className={classes.formControl}>
