@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import firebase from 'firebase';
 import {
     Button,
     Dialog,
@@ -13,6 +14,9 @@ class SignIn extends Component {
 
     state = {
         open: false,
+        email: '',
+        password: '',
+        error: null
     };
 
     handleClickOpen = () => {
@@ -21,6 +25,23 @@ class SignIn extends Component {
 
     handleClose = () => {
         this.setState({ open: false });
+    };
+
+    handleChange = event => {
+        this.setState({
+            [event.target.name]: event.target.value
+        })
+    };
+
+    handleSubmit = event => {
+        event.preventDefault();
+        this.setState({ error: null });
+        firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).catch(
+            error => this.setState({ error })
+        );
+        if (this.state.error !== null) {
+            this.handleClose()
+        }
     };
 
     render() {
@@ -44,24 +65,28 @@ class SignIn extends Component {
                             id="outlined-name"
                             label="E-mail"
                             type="email"
+                            name="email"
                             variant='outlined'
                             fullWidth
                             style={{marginTop: '1.2rem'}}
+                            onChange={this.handleChange}
                         />
                         <TextField
                             margin="dense"
                             id="outlined-password"
                             label="Hasło"
                             type="password"
+                            name="password"
                             variant='outlined'
+                            onChange={this.handleChange}
                             fullWidth
                         />
                     </DialogContent>
                     <DialogActions>
-                        <Button onClick={this.handleClose} color="primary">
+                        <Button onClick={this.handleClose}>
                             Zamknij
                         </Button>
-                        <Button onClick={this.handleClose} color="primary">
+                        <Button onClick={this.handleSubmit}>
                             Zaloguj
                         </Button>
                     </DialogActions>

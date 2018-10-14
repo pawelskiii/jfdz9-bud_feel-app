@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import firebase from 'firebase';
 import {
     Button,
     Dialog,
@@ -13,6 +14,9 @@ class SignUp extends Component {
 
     state = {
         open: false,
+        email: '',
+        password: '',
+        error: null
     };
 
     handleClickOpen = () => {
@@ -23,8 +27,21 @@ class SignUp extends Component {
         this.setState({ open: false });
     };
 
-    handleSubmit = () => {
-        this.setState({ open: false });
+    handleChange = event => {
+        this.setState({
+            [event.target.name]: event.target.value
+        })
+    };
+
+    handleSubmit = event => {
+        event.preventDefault();
+        this.setState({ error: null });
+        firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).catch(
+            error => this.setState({ error })
+        );
+        if (this.state.error !== null) {
+            this.handleClose()
+        }
     };
 
     render() {
@@ -41,7 +58,7 @@ class SignUp extends Component {
 
                     <DialogContent>
                         <DialogContentText>
-                            Aby się zarejestrować wprowadź adres e-mail, hasło oraz potwierdź je.
+                            Aby się zarejestrować wprowadź adres e-mail oraz hasło.
                         </DialogContentText>
                         <TextField
                             autoFocus
@@ -49,9 +66,11 @@ class SignUp extends Component {
                             id="outlined-name"
                             label="E-mail"
                             type="email"
+                            name="email"
                             variant='outlined'
                             required
                             fullWidth
+                            onChange={this.handleChange}
                             style={{marginTop: '1.2rem'}}
                         />
                         <TextField
@@ -59,16 +78,9 @@ class SignUp extends Component {
                             id="outlined-password"
                             label="Hasło"
                             type="password"
+                            name="password"
                             variant='outlined'
-                            required
-                            fullWidth
-                        />
-                        <TextField
-                            margin="dense"
-                            id="outlined-repeat-password"
-                            label="Powtórz hasło"
-                            type="password"
-                            variant='outlined'
+                            onChange={this.handleChange}
                             required
                             fullWidth
                         />

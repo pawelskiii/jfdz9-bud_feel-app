@@ -14,26 +14,30 @@ import AddDiet from '../AddDiet/index';
 import ContentDiets from '../ContentDiets/index';
 import Content from '../Content/index';
 
+import {MuiThemeProvider} from '@material-ui/core/styles';
+import theme from './theme'
 
 class App extends Component {
 
-  render() {
-    return (
-      <div className="App">
-          <Router>
-              <div>
-                  <Header/>
-                  <Route path="/"  exact component={Content}/>
-                  <Route path="/UserPanel" exact component={UserPanel}/>
-                  <Route path="/Favourites" exact component={Favourites}/>
-                  <Route path="/Diets" component={ContentDiets}/>
-                  <Route path="/AddDiet" exact component={AddDiet}/>
-                  <Footer/>
-              </div>
-          </Router>
-      </div>
-    );
-  }
+    render() {
+        return (
+            <MuiThemeProvider theme={theme}>
+                <div className="App">
+                    <Router>
+                        <div>
+                            <Header/>
+                            <Route path="/" exact component={Content}/>
+                            <Route path="/UserPanel" exact component={UserPanel}/>
+                            <Route path="/Favourites" exact component={Favourites}/>
+                            <Route path="/Diets" component={ContentDiets}/>
+                            <Route path="/AddDiet" exact component={AddDiet}/>
+                            <Footer/>
+                        </div>
+                    </Router>
+                </div>
+            </MuiThemeProvider>
+        );
+    }
 
 }
 
