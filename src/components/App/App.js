@@ -1,19 +1,18 @@
 import React, {Component} from 'react';
-import './App.css';
 import {
     BrowserRouter as Router,
     Route,
     Link
 } from 'react-router-dom';
 
-import Header from './Header';
+import Header from '../Header/index';
 
-import Footer from './Footer';
-import UserPanel from "./UserPanel";
-import Favourites from "./Favourites";
-import AddDiet from './AddDiet';
-import ContentDiets from './ContentDiets';
-import Content from './Content';
+import Footer from '../Footer/index';
+import UserPanel from "../UserPanel/index";
+import Favourites from "../Favourites/index";
+import AddDiet from '../AddDiet/index';
+import ContentDiets from '../ContentDiets/index';
+import Content from '../Content/index';
 
 
 class App extends Component {

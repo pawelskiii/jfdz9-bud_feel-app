@@ -3,10 +3,10 @@ import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 
-import SignIn from './SignIn';
-import SignUp from './SignUp';
+import SignIn from './SignIn/index';
+import SignUp from './SignUp/index';
 
-import logo from '../assets/logo.png' ;
+import logo from '../../assets/logo.png' ;
 
 
 const styles = theme => ({

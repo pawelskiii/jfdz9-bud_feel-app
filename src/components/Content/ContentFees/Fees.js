@@ -3,9 +3,9 @@ import {Card, CardActionArea, CardContent, CardMedia} from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import {withStyles} from '@material-ui/core/styles';
-import stage_1 from '../../assets/fees_stage_1.jpg';
-import stage_2 from '../../assets/fees_stage_2.jpg';
-import stage_3 from '../../assets/fees_stage_3.jpg';
+import stage_1 from '../../../assets/fees_stage_1.jpg';
+import stage_2 from '../../../assets/fees_stage_2.jpg';
+import stage_3 from '../../../assets/fees_stage_3.jpg';
 
 const styles = {
     card: {
