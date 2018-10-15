@@ -6,6 +6,9 @@ import slim3 from '../../assets/slim3.jpeg';
 import mass from '../../assets/mass.jpeg';
 import fit from '../../assets/fit.jpg';
 
+import IconButton from '@material-ui/core/IconButton';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+
 const styles = {
     card: {
         width: 350,
@@ -46,7 +49,12 @@ class DietCard extends Component {
                             title={dietType ? dietType : null}
                         />
                         <CardContent>
-                            <Typography variant='headline' gutterBottom>{name}</Typography>
+                            <Typography variant='headline' gutterBottom>
+                                {name}
+                                    <IconButton aria-label="Add to favorites">
+                                        <FavoriteIcon />
+                                    </IconButton>
+                            </Typography>
                             <Divider/>
                             <Typography variant='subheading'><b>Typ:</b> {dietType}</Typography>
                             <Typography variant='subheading'><b>Wiek:</b> {`${age.min} - ${age.max}`} lat</Typography>

@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import Sidebar from '../Sidebar/index';
 import {withStyles} from '@material-ui/core/styles';
+import IconButton from '@material-ui/core/IconButton';
+import FavoriteIcon from '@material-ui/icons/Favorite';
 
 const styles = theme => ({
     favContainer: {
@@ -32,6 +34,9 @@ class Favourites extends Component {
                     <div className={classes.toolbar}/>
                     <div className={classes.favContainer}>
                         Moje ulubione
+                        <IconButton aria-label="Add to favorites">
+                            <FavoriteIcon />
+                        </IconButton>
                     </div>
                 </main>
             </div>
