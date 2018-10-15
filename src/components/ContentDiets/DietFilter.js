@@ -6,6 +6,7 @@ const styles = theme => ({
     root: {
         display: 'flex',
         flexWrap: 'wrap',
+        justifyContent: 'center'
     },
     margin: {
         margin: theme.spacing.unit,
@@ -14,10 +15,12 @@ const styles = theme => ({
         marginTop: theme.spacing.unit * 3,
     },
     textField: {
-        flexBasis: 200,
+        flexBasis: 400,
     },
     formControl: {
         margin: theme.spacing.unit,
+        marginLeft: theme.spacing.unit * 4,
+        marginRight: theme.spacing.unit * 4,
         minWidth: 120,
     },
     selectEmpty: {
@@ -27,6 +30,7 @@ const styles = theme => ({
 
 class DietFilter extends Component {
     state = {
+        periods: [7, 14, 28],
         type: '',
         period: '',
     };
@@ -46,7 +50,8 @@ class DietFilter extends Component {
     };
 
     render() {
-        const { classes, periods, dietTypes } = this.props;
+        const { periods } = this.state;
+        const { classes, types } = this.props;
 
         return (
             <div className={classes.root}>
@@ -70,7 +75,7 @@ class DietFilter extends Component {
                         <MenuItem value="">
                             <em>Brak</em>
                         </MenuItem>
-                        {dietTypes.map(type => <MenuItem value={type.name} key={type.name}>{type.name}</MenuItem>)}
+                        {(types !== undefined) && types.map(type => <MenuItem value={type.name} key={type.name}>{type.name}</MenuItem>)}
                     </Select>
                 </FormControl>
                 <FormControl className={classes.formControl}>
