@@ -10,6 +10,7 @@ import stage_3 from '../../../assets/fees_stage_3.jpg';
 const styles = {
     card: {
         width: 350,
+        margin: '2rem'
     },
     media: {
         height: 233,
@@ -19,7 +20,10 @@ const styles = {
     },
     gridElementCenter: {
         display: 'flex',
-        justifyContent: 'space-evenly'
+        justifyContent: 'space-evenly',
+    },
+    lastElement: {
+        marginBottom: '1rem'
     },
 };
 
@@ -44,8 +48,11 @@ class Fees extends Component {
                                     Chcesz wypróbować którąkolwiek dietę z oferty?
                                     Bądź też po prostu chcesz nas przetestować?
                                 </Typography>
-                                <Typography variant="headline">
+                                <Typography className={classes.lastElement} variant="headline">
                                     To abonament dla Ciebie!!
+                                </Typography>
+                                <Typography gutterBottom variant="display1">
+                                    Jedyne <strong>199zł</strong>
                                 </Typography>
                             </CardContent>
                         </CardActionArea>
@@ -67,8 +74,11 @@ class Fees extends Component {
                                     Zamierzasz powalczyć z nami o lepsze efekty?
                                     Dieting nie jest Ci obcy?
                                 </Typography>
-                                <Typography variant="headline">
+                                <Typography className={classes.lastElement} variant="headline">
                                     To już wiesz czego chcesz!!
+                                </Typography>
+                                <Typography gutterBottom variant="display1">
+                                    Tylko <strong>299zł</strong>
                                 </Typography>
                             </CardContent>
                         </CardActionArea>
@@ -90,8 +100,11 @@ class Fees extends Component {
                                     Chcesz pójść w bój o coś więcej niż parę kg?
                                     Liczysz na naprawdę super efekty?
                                 </Typography>
-                                <Typography variant="headline">
+                                <Typography className={classes.lastElement} variant="headline">
                                     Jeden klik i jestem Twój!!
+                                </Typography>
+                                <Typography gutterBottom variant="display1">
+                                    Zaledwie <strong>399zł</strong>
                                 </Typography>
                             </CardContent>
                         </CardActionArea>
