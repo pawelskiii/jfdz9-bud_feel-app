@@ -8,6 +8,7 @@ import fit from '../../assets/fit.jpg';
 
 import IconButton from '@material-ui/core/IconButton';
 import FavoriteIcon from '@material-ui/icons/Favorite';
+import firebase from 'firebase';
 
 const styles = {
     card: {
@@ -27,6 +28,24 @@ const styles = {
 };
 
 class DietCard extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {isToggleOn: true};
+        this.handleClick = this.handleClick.bind(this);
+    }
+
+    handleClick() {
+        this.setState(state => ({
+            isToggleOn: !state.isToggleOn
+        }));
+
+        this.state.isToggleOn ?
+            firebase.database().ref(`/users/${firebase.auth().currentUser.uid}`).set({favs: 'jakas dieta'})
+        :
+            /*firebase.database().ref(`/users/${firebase.auth().currentUser.uid}`).child({favs: 'jakas dieta'}).remove()*/
+    };
+
     render() {
         const {dietType, diet: {id, name, age, weight, period}} = this.props;
         const {classes} = this.props;
@@ -51,7 +70,7 @@ class DietCard extends Component {
                         <CardContent>
                             <Typography variant='headline' gutterBottom>
                                 {name}
-                                    <IconButton aria-label="Add to favorites">
+                                    <IconButton aria-label="Add to favorites" onClick={this.handleClick}>
                                         <FavoriteIcon />
                                     </IconButton>
                             </Typography>
