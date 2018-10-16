@@ -40,6 +40,7 @@ class SignUp extends Component {
             error => this.setState({ error })
         ).then(() => {
             if (this.state.error === null) {
+                firebase.database().ref(`/users/${firebase.auth().currentUser.uid}`).set({favs: ''});
                 this.handleClose()
             }
         });
