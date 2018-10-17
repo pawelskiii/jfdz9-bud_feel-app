@@ -23,7 +23,7 @@ const styles = theme => ({
             duration: theme.transitions.duration.enteringScreen,
         }),
         backgroundColor: blueGrey[900],
-       // opacity: 0.5,
+        opacity: 0.5,
     },
 
     drawerPaperClose: {
