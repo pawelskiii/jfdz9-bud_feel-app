@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Sidebar from '../Sidebar';
 import {withStyles} from '@material-ui/core/styles';
-import { TextField, Button } from "@material-ui/core";
+import { TextField, Button, Input, InputLabel, FormControl, MenuItem, Select } from '@material-ui/core';
 import firebase from "firebase";
 
 const styles = theme => ({
@@ -21,21 +21,21 @@ const styles = theme => ({
     toolbar: theme.mixins.toolbar,
 });
 
-// const types = [
-//     {
-//         value: 'masa',
-//         label: 'masa',
-//     },
-//     {
-//         value: 'utrzymanie',
-//         label: 'utrzymanie',
-//     },
-//     {
-//         value: 'redukcja',
-//         label: 'redukcja',
-//     },
-// ];
-//
+const types = [
+    {
+        value: 'masa',
+        label: 'masa',
+    },
+    {
+        value: 'utrzymanie',
+        label: 'utrzymanie',
+    },
+    {
+        value: 'redukcja',
+        label: 'redukcja',
+    },
+];
+
 // const time = [
 //     {
 //         value: '7',
@@ -50,6 +50,24 @@ const styles = theme => ({
 //         label: '28 dni',
 //     },
 // ];
+
+let newPostKey = firebase.database().ref().child('/data/diets');
+let key = Object.keys(newPostKey);
+
+// let lalala = firebase.database().ref.child("/data/diets").on("value", function(snapshot) {
+//     console.log("There are "+snapshot.numChildren()+" messages");
+// });
+
+let ialala = Object.keys('/data').length;
+console.log(ialala);
+
+// let key = newPostKey.key();
+console.log(newPostKey);
+console.log(key);
+
+let adsaod = Object.keys(snapshot.val())[0];
+
+console.log(adsaod);
 
 class AddDiet extends Component {
 
@@ -77,22 +95,26 @@ class AddDiet extends Component {
         }
     };
 
-    handleChange = event => {
+    handleChange = prop => event => {
         this.setState({
-            [event.target.name]: event.target.value
+            [prop]: event.target.value
         })
     };
 
     handleSubmit = event => {
         event.preventDefault();
-        this.setState({ error: null });
-        firebase.database().ref('/data/diets').push(this.state).catch(
-            error => this.setState({ error })
-        );
+        firebase.database().ref('/data/diets').push(this.state);
+    };
+
+    onTypeChange = event => {
+        this.props.onTypeChanged(event.target.value);
+        this.setState({type: event.target.value})
     };
 
     render() {
         const {classes} = this.props;
+        let newPostKey = firebase.database().ref().child('posts').push().key;
+        console.log(newPostKey);
         return (
             <div className={classes.root}>
                 <Sidebar/>
@@ -104,11 +126,50 @@ class AddDiet extends Component {
                             margin="dense"
                             id="outlined-name"
                             label="Nazwa diety"
-                            type="name"
-                            name="name"
                             variant='outlined'
-                            onChange={this.handleChange}
+                            onChange={this.handleChange('name')}
                         />
+                        <TextField
+                            margin="dense"
+                            id="outlined-description"
+                            label="Opis diety"
+                            variant='outlined'
+                            onChange={this.handleChange('description')}
+                        />
+                        <TextField
+                            select
+                            margin="dense"
+                            id="outlined-name"
+                            label="Typ diety"
+                            variant='outlined'
+                            value={this.state.typeId}
+                            onChange={this.handleChange('typeId')}
+                        />
+                        {types.map(type => (
+                            <MenuItem key={type.value} value={type.value}>
+                                {type.label}
+                            </MenuItem>
+                        ))}
+
+                        <FormControl>
+                            <InputLabel htmlFor="type">Typ diety</InputLabel>
+                            <Select
+                                value={this.state.typeId}
+                                onChange={this.onTypeChange}
+                                inputProps={{
+                                    name: 'type',
+                                    id: 'type-simple',
+                                }}
+                            >
+                                <MenuItem value="">
+                                    <em>Brak</em>
+                                </MenuItem>
+                                {(types !== undefined) && types.map(type => <MenuItem value={type.value} key={type.value}>{type.label}</MenuItem>)}
+                            </Select>
+                        </FormControl>
+
+
+
                         <Button onClick={this.handleSubmit}>
                             Dodaj dietę
                         </Button>
