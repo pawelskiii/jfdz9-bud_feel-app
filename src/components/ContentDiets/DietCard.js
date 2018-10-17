@@ -33,17 +33,18 @@ class DietCard extends Component {
         super(props);
         this.state = {isToggleOn: true};
         this.handleClick = this.handleClick.bind(this);
-    }
+    };
 
     handleClick() {
         this.setState(state => ({
             isToggleOn: !state.isToggleOn
         }));
 
-        this.state.isToggleOn ?
-            firebase.database().ref(`/users/${firebase.auth().currentUser.uid}`).set({favs: 'jakas dieta'})
-        :
-            /*firebase.database().ref(`/users/${firebase.auth().currentUser.uid}`).child({favs: 'jakas dieta'}).remove()*/
+        this.state.isToggleOn
+            ?
+            firebase.database().ref(`/users/${firebase.auth().currentUser.uid}/favs/${this.props.diet.id}`).set(true)
+            :
+            firebase.database().ref(`/users/${firebase.auth().currentUser.uid}/favs/${this.props.diet.id}`).remove()
     };
 
     render() {
