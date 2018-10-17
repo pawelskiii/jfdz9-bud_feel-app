@@ -9,8 +9,6 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import {withStyles, MuiThemeProvider, createMuiTheme} from '@material-ui/core/styles';
 
-
-
 import Sidebar from '../Sidebar'
 import SignIn from './SignIn/index';
 import SignUp from './SignUp/index';

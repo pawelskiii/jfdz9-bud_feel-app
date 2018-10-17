@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import Sidebar from '../Sidebar'
 
-
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import {Typography, Paper, Grid} from '@material-ui/core';
