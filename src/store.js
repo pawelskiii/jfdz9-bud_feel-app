@@ -22,6 +22,13 @@ firebase.auth().onAuthStateChanged(user => {
     });
 });
 
+firebase.database().ref(`/users/${firebase.auth().currentUser}/favs/`).on('value', snapshot => {
+    store.dispatch({
+        type: 'FAVS/SET_FAVS',
+        favs: snapshot.val()
+    })
+});
+
 firebase.database().ref('/data/diets').on('value', snapshot => {
     store.dispatch({
         type: 'DIETS/SET_DIETS',

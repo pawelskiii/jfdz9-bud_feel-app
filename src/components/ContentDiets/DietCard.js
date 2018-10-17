@@ -9,6 +9,7 @@ import fit from '../../assets/fit.jpg';
 import IconButton from '@material-ui/core/IconButton';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import firebase from 'firebase';
+import { connect } from 'react-redux'
 
 const styles = {
     card: {
@@ -88,4 +89,12 @@ class DietCard extends Component {
     }
 }
 
-export default withStyles(styles)(DietCard);
+const mapStateToProps = state => ({
+    favs: state.favs === null
+        ? {}
+        : "dupa"
+});
+
+export default connect(
+    mapStateToProps
+)(withStyles(styles)(DietCard));
