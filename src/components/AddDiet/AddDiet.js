@@ -74,15 +74,15 @@ const types = [
 
 const time = [
     {
-        value: '7',
+        value: '7 dni',
         label: '7 dni',
     },
     {
-        value: '14',
+        value: '14 dni',
         label: '14 dni',
     },
     {
-        value: '28',
+        value: '28 dni',
         label: '28 dni',
     },
 ];
@@ -129,11 +129,18 @@ class AddDiet extends Component {
             data: {
                 ...this.state.data,
                 typeId: event.target.value === 'masa' ? 1 : event.target.value === 'utrzymanie' ? 2 : 3,
-                period: event.target.value === '7' ? 1 : event.target.value === '14' ? 2 : 3,
             }
         })
     };
 
+    onTimeChange = event => {
+        this.setState({
+            data: {
+                ...this.state.data,
+                period: event.target.value === '7 dni' ? 7 : event.target.value === '14 dni' ? 14 : 28,
+            }
+        })
+    };
 
     weightChange = prop => event => {
         this.setState({
@@ -208,14 +215,14 @@ class AddDiet extends Component {
                                     required
                                     className={classes.textField}
                                     margin="normal"
-                                    id="outlined-type"
+                                    id="outlined-time"
                                     label="Czas trwania"
                                     variant="outlined"
-                                    value={this.state.data.period === 7 ? '7' : this.state.data.period === 14 ? '14 dni' : this.state.data.period === 28 ? '28 dni' : ''}
-                                    onChange={this.onTypeChange}
+                                    value={this.state.data.period === 7 ? '7 dni' : this.state.data.period === 14 ? '14 dni' : this.state.data.period === 28 ? '28 dni' : ''}
+                                    onChange={this.onTimeChange}
                                 >
                                     {(time !== undefined) && time.map(type => <MenuItem value={type.value}
-                                                                                          key={type.value}>{type.label}</MenuItem>)}
+                                                                                        key={type.value}>{type.label}</MenuItem>)}
                                 </TextField>
 
                                 <TextField
