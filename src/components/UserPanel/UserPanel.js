@@ -1,6 +1,8 @@
 import React, {Component, Fragment} from 'react';
 import {Grid, Typography} from '@material-ui/core';
 import {withStyles} from '@material-ui/core/styles';
+import firebase from 'firebase';
+import { connect } from 'react-redux'
 
 import Sidebar from '../Sidebar';
 import BmiNote from './BmiNote';
@@ -30,6 +32,7 @@ const styles = theme => ({
 class UserPanel extends Component {
 
     state = {
+
         form: {
             nickName:'',
             name: '',
@@ -44,6 +47,18 @@ class UserPanel extends Component {
         open: false,
     };
 
+   // getUser = () => {
+      //  firebase.database().ref(`/users/${firebase.auth().currentUser.uid}`).on('value', snapshot => {
+          //  this.setState({
+               // form: snapshot.val()
+          //  })
+       // });
+    //};
+
+    handleClickSend = () => {
+        firebase.database().ref(`/users/${firebase.auth().currentUser.uid}`).set(this.state.form);
+    };
+
     handleChange = name => event => {
         this.setState({
             form: {
@@ -51,7 +66,6 @@ class UserPanel extends Component {
                 [name]: event.target.value}
         });
     };
-
 
     handleClickOpen = () => {
         this.setState({ open: true });
@@ -61,8 +75,13 @@ class UserPanel extends Component {
         this.setState({ open: false });
     };
 
+
+
+
     render() {
         const {classes} = this.props;
+
+       console.log(this.props.form);
 
         return (
             <Fragment>
@@ -75,16 +94,27 @@ class UserPanel extends Component {
                                 <Typography variant='display3' color='primary' align='center'>Moje dane</Typography>
                             </Grid>
                             <Grid container spacing={24}>
-                            <UserForm form={this.state.form} handleClickOpen={this.handleClickOpen} handleChange={this.handleChange}/>
+                            <UserForm form={this.state.form} handleChange={this.handleChange} handleClickSend={this.handleClickSend}/>
                             <BmiNote handleClickOpen={this.handleClickOpen}/>
                             </Grid>
                         </Grid>
-                       <BmiInfo form={this.state.form} open={this.state.open} handleClose={this.handleClose} />
+                       <BmiInfo form={this.getUser} open={this.state.open} handleClose={this.handleClose} />
                     </main>
                 </div>
             </Fragment>
-        )
-    }
+        )}
 }
 
-export default withStyles(styles)(UserPanel);
+const mapStateToProps = state => ({
+    form: state.form === null
+        ? {}
+        : state.form.data,
+    types: state.types === null
+        ? {}
+        : state.types.data,
+});
+
+export default connect(
+    mapStateToProps
+)(withStyles(styles)(UserPanel));
+

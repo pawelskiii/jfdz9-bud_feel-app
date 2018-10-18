@@ -203,7 +203,7 @@ class UserForm extends Component {
                             variant="contained"
                             color="primary"
                             className={classes.button}
-                            onClick={this.props.handleClickOpen}
+                            onClick={this.props.handleClickSend}
                             style={{color: blueGrey[800]}}>
                             Zapisz dane
                         </Button>

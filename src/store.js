@@ -36,6 +36,15 @@ firebase.database().ref('/data/types').on('value', snapshot => {
     })
 });
 
+firebase.database().ref(`/users/${firebase.auth().currentUser}/form/`).on('value', snapshot => {
+    store.dispatch({
+        type: 'FORM/SET_FORM',
+        types: snapshot.val()
+    });
+
+});
+
+
 
 
 export default store ;
