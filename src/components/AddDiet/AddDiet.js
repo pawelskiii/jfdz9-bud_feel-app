@@ -3,7 +3,7 @@ import Sidebar from '../Sidebar';
 import {withStyles, MuiThemeProvider, createMuiTheme} from '@material-ui/core/styles';
 import {Typography, Paper, Grid} from '@material-ui/core';
 import {TextField, MenuItem, Button} from '@material-ui/core';
-import {amber, blueGrey, green} from '@material-ui/core/colors';
+import {blueGrey, green} from '@material-ui/core/colors';
 import firebase from "firebase";
 import {connect} from "react-redux";
 
@@ -29,6 +29,16 @@ const styles = theme => ({
     textField: {
         width: '50%',
         margin: '1% 25%'
+    },
+    textFieldLeft: {
+        width: '24%',
+        margin: '1%',
+        marginLeft: '25%'
+    },
+    textFieldRight: {
+        width: '24%',
+        margin: '1%',
+        marginRight: '25%'
     },
     button: {
         width: '25%',
@@ -62,20 +72,20 @@ const types = [
     },
 ];
 
-// const time = [
-//     {
-//         value: '7',
-//         label: '7 dni',
-//     },
-//     {
-//         value: '14',
-//         label: '14 dni',
-//     },
-//     {
-//         value: '28',
-//         label: '28 dni',
-//     },
-// ];
+const time = [
+    {
+        value: '7',
+        label: '7 dni',
+    },
+    {
+        value: '14',
+        label: '14 dni',
+    },
+    {
+        value: '28',
+        label: '28 dni',
+    },
+];
 
 class AddDiet extends Component {
 
@@ -87,8 +97,8 @@ class AddDiet extends Component {
             typeId: 2,
             createdAt: new Date().toISOString().substr(0, 10),
             weight: {
-                max: 100,
-                min: 10
+                max: '',
+                min: ''
             },
             age: {
                 max: 100,
@@ -109,7 +119,7 @@ class AddDiet extends Component {
         this.setState({
             data: {
                 ...this.state.data,
-                [prop]: event.target.value
+                [prop]: event.target.value,
             }
         })
     };
@@ -119,6 +129,19 @@ class AddDiet extends Component {
             data: {
                 ...this.state.data,
                 typeId: event.target.value === 'masa' ? 1 : event.target.value === 'utrzymanie' ? 2 : 3,
+                period: event.target.value === '7' ? 1 : event.target.value === '14' ? 2 : 3,
+            }
+        })
+    };
+
+
+    weightChange = prop => event => {
+        this.setState({
+            data: {
+                ...this.state.data,
+                weight: {
+                    [prop]: event.target.value
+                }
             }
         })
     };
@@ -179,6 +202,42 @@ class AddDiet extends Component {
                                     {(types !== undefined) && types.map(type => <MenuItem value={type.value}
                                                                                           key={type.value}>{type.label}</MenuItem>)}
                                 </TextField>
+
+                                <TextField
+                                    select
+                                    required
+                                    className={classes.textField}
+                                    margin="normal"
+                                    id="outlined-type"
+                                    label="Czas trwania"
+                                    variant="outlined"
+                                    value={this.state.data.period === 7 ? '7' : this.state.data.period === 14 ? '14 dni' : this.state.data.period === 28 ? '28 dni' : ''}
+                                    onChange={this.onTypeChange}
+                                >
+                                    {(time !== undefined) && time.map(type => <MenuItem value={type.value}
+                                                                                          key={type.value}>{type.label}</MenuItem>)}
+                                </TextField>
+
+                                <TextField
+                                    required
+                                    className={classes.textFieldLeft}
+                                    margin="normal"
+                                    id="outlined-min-weight"
+                                    label="Minimalna waga"
+                                    variant="outlined"
+                                    onChange={this.weightChange('min')}
+                                />
+                                <TextField
+                                    required
+                                    className={classes.textFieldRight}
+                                    margin="normal"
+                                    id="outlined-max-weight"
+                                    label="Maksymalna waga"
+                                    variant="outlined"
+                                    onChange={this.weightChange('max')}
+                                />
+
+
                                 <MuiThemeProvider theme={theme}>
                                     <Button
                                         variant="contained"
