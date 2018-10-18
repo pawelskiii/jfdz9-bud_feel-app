@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
 import Sidebar from '../Sidebar';
-import {withStyles} from '@material-ui/core/styles';
+import {withStyles, MuiThemeProvider, createMuiTheme} from '@material-ui/core/styles';
 import {Typography, Paper, Grid} from '@material-ui/core';
 import {TextField, MenuItem, Button} from '@material-ui/core';
-
-
+import {amber, blueGrey, green} from '@material-ui/core/colors';
 import firebase from "firebase";
 import {connect} from "react-redux";
 
@@ -30,6 +29,21 @@ const styles = theme => ({
     textField: {
         width: '50%',
         margin: '1% 25%'
+    },
+    button: {
+        width: '25%',
+        margin: '2%',
+        fontSize: '1rem',
+        color: blueGrey[800],
+    }
+});
+
+const theme = createMuiTheme({
+    palette: {
+        primary: green,
+    },
+    typography: {
+        useNextVariants: true,
     }
 });
 
@@ -165,9 +179,16 @@ class AddDiet extends Component {
                                     {(types !== undefined) && types.map(type => <MenuItem value={type.value}
                                                                                           key={type.value}>{type.label}</MenuItem>)}
                                 </TextField>
-                                <Button onClick={this.handleSubmit}>
-                                    Dodaj dietę
-                                </Button>
+                                <MuiThemeProvider theme={theme}>
+                                    <Button
+                                        variant="contained"
+                                        color="primary"
+                                        className={classes.button}
+                                        onClick={this.handleSubmit}
+                                    >
+                                        Dodaj dietę
+                                    </Button>
+                                </MuiThemeProvider>
                             </Paper>
                         </Grid>
                         <Grid item xs>
