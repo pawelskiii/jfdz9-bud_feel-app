@@ -166,6 +166,18 @@ class AddDiet extends Component {
         })
     };
 
+    onProposalChange = prop => event => {
+        this.setState({
+            data: {
+                ...this.state.data,
+                proposalMeals: {
+                    ...this.state.data.proposalMeals,
+                    [prop]: event.target.value
+                }
+            }
+        })
+    };
+
     handleSubmit = event => {
         event.preventDefault();
         if (this.state.data.name) {
@@ -279,6 +291,56 @@ class AddDiet extends Component {
                                     label="Maksymalny wiek"
                                     variant="outlined"
                                     onChange={this.onAgeChange('max')}
+                                />
+
+                                <TextField
+                                    required
+                                    className={classes.textField}
+                                    margin="normal"
+                                    id="outlined-name"
+                                    label="Propozycja śniadania"
+                                    variant="outlined"
+                                    onChange={this.onProposalChange('breakfast')}
+                                />
+
+                                <TextField
+                                    required
+                                    className={classes.textField}
+                                    margin="normal"
+                                    id="outlined-name"
+                                    label="Propozycja lunchu"
+                                    variant="outlined"
+                                    onChange={this.onProposalChange('lunch')}
+                                />
+
+                                <TextField
+                                    required
+                                    className={classes.textField}
+                                    margin="normal"
+                                    id="outlined-name"
+                                    label="Propozycja obiadu"
+                                    variant="outlined"
+                                    onChange={this.onProposalChange('dinner')}
+                                />
+
+                                <TextField
+                                    required
+                                    className={classes.textField}
+                                    margin="normal"
+                                    id="outlined-name"
+                                    label="Propozycja deseru"
+                                    variant="outlined"
+                                    onChange={this.onProposalChange('dessert')}
+                                />
+
+                                <TextField
+                                    required
+                                    className={classes.textField}
+                                    margin="normal"
+                                    id="outlined-name"
+                                    label="Propozycja kolacji"
+                                    variant="outlined"
+                                    onChange={this.onProposalChange('supper')}
                                 />
 
                                 <MuiThemeProvider theme={theme}>
