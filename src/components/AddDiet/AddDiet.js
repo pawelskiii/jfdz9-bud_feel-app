@@ -101,8 +101,8 @@ class AddDiet extends Component {
                 min: ''
             },
             age: {
-                max: 100,
-                min: 10
+                max: '',
+                min: ''
             },
             period: 7,
             proposalMeals: {
@@ -142,12 +142,24 @@ class AddDiet extends Component {
         })
     };
 
-    weightChange = prop => event => {
+    onWeightChange = prop => event => {
         this.setState({
             data: {
                 ...this.state.data,
                 weight: {
                     ...this.state.data.weight,
+                    [prop]: event.target.value
+                }
+            }
+        })
+    };
+
+    onAgeChange = prop => event => {
+        this.setState({
+            data: {
+                ...this.state.data,
+                age: {
+                    ...this.state.data.age,
                     [prop]: event.target.value
                 }
             }
@@ -179,6 +191,7 @@ class AddDiet extends Component {
                     <Grid container spacing={24}>
                         <Grid item xs>
                             <Paper className={classes.paper}>
+
                                 <TextField
                                     required
                                     className={classes.textField}
@@ -188,6 +201,7 @@ class AddDiet extends Component {
                                     variant="outlined"
                                     onChange={this.handleChange('name')}
                                 />
+
                                 <TextField
                                     className={classes.textField}
                                     margin="normal"
@@ -196,6 +210,7 @@ class AddDiet extends Component {
                                     variant="outlined"
                                     onChange={this.handleChange('description')}
                                 />
+
                                 <TextField
                                     select
                                     required
@@ -233,8 +248,9 @@ class AddDiet extends Component {
                                     id="outlined-min-weight"
                                     label="Minimalna waga"
                                     variant="outlined"
-                                    onChange={this.weightChange('min')}
+                                    onChange={this.onWeightChange('min')}
                                 />
+
                                 <TextField
                                     required
                                     className={classes.textFieldRight}
@@ -242,9 +258,28 @@ class AddDiet extends Component {
                                     id="outlined-max-weight"
                                     label="Maksymalna waga"
                                     variant="outlined"
-                                    onChange={this.weightChange('max')}
+                                    onChange={this.onWeightChange('max')}
                                 />
 
+                                <TextField
+                                    required
+                                    className={classes.textFieldLeft}
+                                    margin="normal"
+                                    id="outlined-min-weight"
+                                    label="Minimalny wiek"
+                                    variant="outlined"
+                                    onChange={this.onAgeChange('min')}
+                                />
+
+                                <TextField
+                                    required
+                                    className={classes.textFieldRight}
+                                    margin="normal"
+                                    id="outlined-max-weight"
+                                    label="Maksymalny wiek"
+                                    variant="outlined"
+                                    onChange={this.onAgeChange('max')}
+                                />
 
                                 <MuiThemeProvider theme={theme}>
                                     <Button
