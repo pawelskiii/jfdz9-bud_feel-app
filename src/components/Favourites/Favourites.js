@@ -3,6 +3,7 @@ import Sidebar from '../Sidebar/index';
 import {withStyles} from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import FavoriteIcon from '@material-ui/icons/Favorite';
+import { connect } from 'react-redux'
 
 const styles = theme => ({
     favContainer: {
@@ -25,6 +26,11 @@ const styles = theme => ({
 
 
 class Favourites extends Component {
+
+    state = {
+        favs: ''
+    };
+
     render() {
         const {classes} = this.props;
         return (
@@ -44,4 +50,12 @@ class Favourites extends Component {
 }
 
 
-export default withStyles(styles)(Favourites);
+const mapStateToProps = state => ({
+    favs: state.favs === null
+        ? {}
+        : state.favs.data
+});
+
+export default connect(
+    mapStateToProps
+)(withStyles(styles)(Favourites));

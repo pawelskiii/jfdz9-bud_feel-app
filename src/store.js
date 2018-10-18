@@ -22,11 +22,21 @@ firebase.auth().onAuthStateChanged(user => {
     });
 });
 
-firebase.database().ref(`/users/${firebase.auth().currentUser}/favs/`).on('value', snapshot => {
-    store.dispatch({
-        type: 'FAVS/SET_FAVS',
-        favs: snapshot.val()
-    })
+let ref;
+firebase.auth().onAuthStateChanged(user => {
+    if (user !== null) {
+        ref = firebase.database().ref(`/users/${user.uid}/favs/`);
+        ref.on('value', snapshot => {
+            store.dispatch({
+                type: 'FAVS/SET_FAVS',
+                favs: snapshot.val()
+            })})
+    } else {
+        if (ref) {
+            ref.off('value');
+            ref = undefined;
+        }
+    }
 });
 
 firebase.database().ref('/data/diets').on('value', snapshot => {
