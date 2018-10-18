@@ -147,6 +147,7 @@ class AddDiet extends Component {
             data: {
                 ...this.state.data,
                 weight: {
+                    ...this.state.data.weight,
                     [prop]: event.target.value
                 }
             }
