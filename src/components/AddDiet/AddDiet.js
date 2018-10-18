@@ -1,12 +1,14 @@
 import React, {Component} from 'react';
 import Sidebar from '../Sidebar';
 import {withStyles} from '@material-ui/core/styles';
-import {TextField, Button, MenuItem} from '@material-ui/core';
+import {Typography, Paper, Grid} from '@material-ui/core';
+import {TextField, MenuItem, Button} from '@material-ui/core';
+
+
 import firebase from "firebase";
 import {connect} from "react-redux";
 
 const styles = theme => ({
-    addDietContainer: {},
     root: {
         flexGrow: 1,
         zIndex: 1,
@@ -20,6 +22,15 @@ const styles = theme => ({
         minWidth: 0,
     },
     toolbar: theme.mixins.toolbar,
+    paper: {
+        padding: theme.spacing.unit * 2,
+        textAlign: 'center',
+        marginTop: '2rem'
+    },
+    textField: {
+        width: '50%',
+        margin: '1% 25%'
+    }
 });
 
 const types = [
@@ -56,11 +67,11 @@ class AddDiet extends Component {
 
     state = {
         data: {
-            id: 999,
+            id: '',
             name: '',
             description: '',
-            typeId: '',
-            createdAt: "2018-09-09",
+            typeId: 2,
+            createdAt: new Date().toISOString().substr(0, 10),
             weight: {
                 max: 100,
                 min: 10
@@ -93,14 +104,19 @@ class AddDiet extends Component {
         this.setState({
             data: {
                 ...this.state.data,
-                typeId: event.target.value === 'masa' ? 1 : event.target.value === 'utrzymanie' ? 2 : 3
+                typeId: event.target.value === 'masa' ? 1 : event.target.value === 'utrzymanie' ? 2 : 3,
             }
         })
     };
 
     handleSubmit = event => {
         event.preventDefault();
-        firebase.database().ref(`/data/diets/${this.props.diets.length}`).set(this.state.data);
+        if (this.state.data.name) {
+            firebase.database().ref(`/data/diets/${this.props.diets.length}`).set({
+                ...this.state.data,
+                id: `${this.props.diets.length + 1}`
+            });
+        }
     };
 
     render() {
@@ -110,42 +126,55 @@ class AddDiet extends Component {
                 <Sidebar/>
                 <main className={classes.content}>
                     <div className={classes.toolbar}/>
-                    <div className={classes.addDietContainer}>
-                        <TextField
-                            autoFocus
-                            margin="dense"
-                            id="outlined-name"
-                            label="Nazwa diety"
-                            variant='outlined'
-                            onChange={this.handleChange('name')}
-                        />
-                        <TextField
-                            margin="dense"
-                            id="outlined-description"
-                            label="Opis diety"
-                            variant='outlined'
-                            onChange={this.handleChange('description')}
-                        />
-                        <TextField
-                            select
-                            margin="dense"
-                            id="outlined-name"
-                            label="Typ diety"
-                            variant='outlined'
-                            value={this.state.typeId}
-                            onChange={this.onTypeChange}
-                            inputProps={{
-                                name: 'type',
-                                id: 'type-simple',
-                            }}
-                        >
-                            {(types !== undefined) && types.map(type => <MenuItem value={type.value}
-                                                                                  key={type.value}>{type.label}</MenuItem>)}
-                        </TextField>
-                        <Button onClick={this.handleSubmit}>
-                            Dodaj dietę
-                        </Button>
-                    </div>
+                    <Grid container>
+                        <Grid item xs>
+                            <Typography variant='display3' color='primary' align='center'>Dodaj dietę</Typography>
+                        </Grid>
+                    </Grid>
+                    <Grid container spacing={24}>
+                        <Grid item xs>
+                            <Paper className={classes.paper}>
+                                <TextField
+                                    required
+                                    className={classes.textField}
+                                    margin="normal"
+                                    id="outlined-name"
+                                    label="Nazwa diety"
+                                    variant="outlined"
+                                    onChange={this.handleChange('name')}
+                                />
+                                <TextField
+                                    className={classes.textField}
+                                    margin="normal"
+                                    id="outlined-description"
+                                    label="Opis diety"
+                                    variant="outlined"
+                                    onChange={this.handleChange('description')}
+                                />
+                                <TextField
+                                    select
+                                    required
+                                    className={classes.textField}
+                                    margin="normal"
+                                    id="outlined-type"
+                                    label="Typ diety"
+                                    variant="outlined"
+                                    value={this.state.data.typeId === 1 ? 'masa' : this.state.data.typeId === 2 ? 'utrzymanie' : this.state.data.typeId === 3 ? 'redukcja' : ''}
+                                    onChange={this.onTypeChange}
+                                >
+                                    {(types !== undefined) && types.map(type => <MenuItem value={type.value}
+                                                                                          key={type.value}>{type.label}</MenuItem>)}
+                                </TextField>
+                                <Button onClick={this.handleSubmit}>
+                                    Dodaj dietę
+                                </Button>
+                            </Paper>
+                        </Grid>
+                        <Grid item xs>
+                            <Paper className={classes.paper}>
+                            </Paper>
+                        </Grid>
+                    </Grid>
                 </main>
             </div>
         )
