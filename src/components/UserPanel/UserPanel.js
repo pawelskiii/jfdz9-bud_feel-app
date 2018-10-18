@@ -319,8 +319,9 @@ class UserPanel extends Component {
                                     – współczynnik powstały przez podzielenie masy ciała podanej w kilogramach<br/>
                                         przez kwadrat wysokości podanej w metrach.</Typography>
                                     <Typography component="h2" variant="headline" paragraph="true" style={{color:amber[900]}} align='centre'>Odrobinę skomplikowane?</Typography>
-                                    <Typography variant="title" paragraph="true" align='centre' style={{color:blueGrey[800]}}> Nie przejmuj się tym,
-                                    właśnie dlatego przygotowaliśmy dla Ciebie nasz kalkulator,<br/>
+                                    <Typography variant="title" paragraph="true" align='centre' style={{color:blueGrey[800]}}>
+                                        Nie przejmuj się tym!<br/>
+                                    Właśnie dlatego przygotowaliśmy dla Ciebie nasz kalkulator,<br/>
                                         wystarczy, że uzupełnisz dane, a my obliczymy dla Ciebie Twoje BMI.</Typography>
                                     <MuiThemeProvider theme={theme}>
                                         <Button
@@ -341,9 +342,11 @@ class UserPanel extends Component {
                             aria-labelledby="alert-dialog-title"
                             aria-describedby="alert-dialog-description"
                         >
-                            <DialogTitle id="alert-dialog-title" style={{color:amber[900]}}>
+                            <DialogTitle>
+                                <Typography component="h2" variant="headline" style={{color:amber[900]}}>
                                 Twoje BMI wynosi:   {(this.state.form.weight/(this.state.form.height/100*this.state.form.height/100)).toFixed(2)}
-                            </DialogTitle>
+                                </Typography>
+                                </DialogTitle>
                             <DialogContent>
                                 <Paper className={classes.root}>
                                     <Table className={classes.table}>
