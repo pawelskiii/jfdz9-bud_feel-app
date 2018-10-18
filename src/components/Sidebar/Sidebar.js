@@ -8,32 +8,15 @@ import amber from '@material-ui/core/colors/amber';
 import blueGrey from '@material-ui/core/colors/blueGrey';
 import {Typography, Paper, Grid} from '@material-ui/core';
 
-
 const drawerWidth = 200;
 
 const styles = theme => ({
-
-
     drawerPaper: {
         position: 'relative',
-        whiteSpace: 'nowrap',
         width: drawerWidth,
-        transition: theme.transitions.create('width', {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.enteringScreen,
-        }),
         backgroundColor: blueGrey[900],
-        opacity: 0.5,
     },
-
-    drawerPaperClose: {
-        overflowX: 'hidden',
-        transition: theme.transitions.create('width', {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.leavingScreen,
-        }),
-        width:theme.spacing.unit
-    },
+    toolbar: theme.mixins.toolbar,
 
     button: {
         margin: theme.spacing.unit*2,
@@ -43,6 +26,7 @@ const styles = theme => ({
     }
 });
 
+
 const theme = createMuiTheme({
     palette: {
         primary: amber,
@@ -51,51 +35,43 @@ const theme = createMuiTheme({
 });
 
 
-
-
-class Sidebar extends Component {
-
-
-    render() {
-        const {classes, theme} = this.props;
+function Sidebar(props) {
+    const {classes} = props;
 
     return (
         <Drawer
-            variant='temporary'
-            color="secondary"
+            variant="permanent"
             classes={{
-                paper: classNames(classes.drawerPaper, !this.props.open && classes.drawerPaperClose),
+                paper: classes.drawerPaper,
             }}
-            open={this.props.open}
         >
             <div className={classes.toolbar}/>
             <MuiThemeProvider theme={theme}>
                 <Link to="/" style={{ textDecoration: 'none', color:'white'  }}>
                     <Button variant="contained" color="inherit" style={{backgroundColor: amber[900], color: 'white', marginTop:96}} className={classes.button}>
-                    Strona Główna
+                        Strona Główna
                     </Button></Link>
                 <Link to="/UserPanel" style={{ textDecoration: 'none', color:'white' }}>
                     <Button variant="contained" style={{backgroundColor: amber[700]}} className={classes.button}>
-                    Moje Ustawienia
+                        Moje Ustawienia
                     </Button></Link>
                 <Link to="/Favourites" style={{ textDecoration: 'none', color:'white'  }}>
                     <Button variant="contained" style={{backgroundColor: amber[600]}} className={classes.button}>
-                    Moje ulubione
+                        Moje ulubione
                     </Button>
                 </Link>
                 <Link to="/diets" style={{ textDecoration: 'none', color:'secondary'  }}>
                     <Button variant="contained" style={{backgroundColor: amber[500], listStyleType: "none"}} className={classes.button}>
-                    Wybór diet
-                        </Button></Link>
+                        Wybór diet
+                    </Button></Link>
                 <Link to="/AddDiet" style={{ textDecoration: 'none', color:'secondary'  }}>
                     <Button variant="contained" style={{backgroundColor: amber[400]}} className={classes.button}>
-                    Dodaj dietę
+                        Dodaj dietę
                     </Button></Link>
             </MuiThemeProvider>
+
         </Drawer>
-
     );
-}}
+}
 
-
-export default withStyles(styles, { withTheme: true })(Sidebar);
+export default withStyles(styles)(Sidebar);
