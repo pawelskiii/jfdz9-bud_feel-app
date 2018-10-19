@@ -84,7 +84,7 @@ class Footer extends Component {
                         <div className={classes.phoneImage}>
                             <Typography style={{color: amber[900]}} gutterBottom className={classes.firstElement}
                                         variant="headline">
-                                Numer telefonu:
+                                Telefon:
                             </Typography>
                             <hr style={{border: "1px solid #4f5b62", width: '100%'}}/>
                             <Typography style={{color: blueGrey[200]}}

@@ -3,7 +3,7 @@ import Sidebar from '../Sidebar';
 import {withStyles, MuiThemeProvider, createMuiTheme} from '@material-ui/core/styles';
 import {Typography, Paper, Grid, Divider} from '@material-ui/core';
 import {TextField, MenuItem, Button, CardMedia} from '@material-ui/core';
-import {amber, blueGrey, green} from '@material-ui/core/colors';
+import {amber, blueGrey} from '@material-ui/core/colors';
 import firebase from "firebase";
 import {connect} from "react-redux";
 import Foto from '../../assets/addDiets_foto.png';
@@ -49,19 +49,9 @@ const styles = theme => ({
         marginRight: '10%'
     },
     button: {
-        width: '35%',
+        width: '80%',
         margin: '2%',
         fontSize: '1rem',
-        color: blueGrey[800],
-    }
-});
-
-const theme = createMuiTheme({
-    palette: {
-        primary: green,
-    },
-    typography: {
-        useNextVariants: true,
     }
 });
 
@@ -197,7 +187,7 @@ class AddDiet extends Component {
     };
 
     render() {
-        const {classes} = this.props;
+        const {classes, theme} = this.props;
         return (
             <div className={classes.root}>
                 <Sidebar/>
