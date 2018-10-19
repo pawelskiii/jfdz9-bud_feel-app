@@ -5,9 +5,7 @@ import {Card, CardMedia, CardContent, Typography, Grid, Divider} from '@material
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
 
 import DetailedDiet from './DetailedDiet';
 
@@ -46,7 +44,7 @@ const getImage = (dietType) => {
                 dietType === "utrzymanie"
                     ? fit : null
     )
-}
+};
 
 class DietCard extends Component {
     render() {
@@ -112,6 +110,7 @@ class DietCard extends Component {
                             weight={weight}
                             period={period}
                             proposalMeals={proposalMeals}
+                            image={getImage(dietType)}
                         />
                     </CardContent>
                 </Card>
