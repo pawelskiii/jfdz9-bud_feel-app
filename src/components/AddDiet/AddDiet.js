@@ -376,8 +376,7 @@ class AddDiet extends Component {
                                 />
                                 <Typography component="h2" variant="headline" gutterBottom
                                             style={{color: amber[900], margin: '1.5rem'}} align='center'>W jakim celu
-                                    mam to
-                                    robić?</Typography>
+                                    mam to robić?</Typography>
                                 <Typography variant="title" gutterBottom align='center'
                                             style={{color: blueGrey[800]}}>
                                     Jeżeli jesteś dietetykiem, bądź po prostu znasz się na układaniu diet zapraszamy do
@@ -389,8 +388,7 @@ class AddDiet extends Component {
                                     od nas maila potwierdzającego - prosimy wówaczas o kontakt.</Typography>
                                 <Typography component="h2" variant="headline" gutterBottom
                                             style={{color: amber[900], margin: '1.5rem'}} align='center'>W jaki sposób
-                                    mam to
-                                    zrobić?</Typography>
+                                    mam to zrobić?</Typography>
                                 <Typography variant="title" gutterBottom align='center'
                                             style={{color: blueGrey[800]}}>
                                     W celu dodania diety do wstępnej weryfikacji należy wypełnić wymagane pola

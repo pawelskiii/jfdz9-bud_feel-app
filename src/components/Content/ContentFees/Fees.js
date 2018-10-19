@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Card, CardActionArea, CardContent} from '@material-ui/core';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
+import {Grid, Typography, Divider} from '@material-ui/core';
+import {blueGrey} from '@material-ui/core/colors';
 import {withStyles} from '@material-ui/core/styles';
 import stage_1 from '../../../assets/fees_stage_1.jpg';
 import stage_2 from '../../../assets/fees_stage_2.jpg';
@@ -14,6 +14,7 @@ const styles = {
     },
     media: {
         height: 233,
+        borderBottom: '1px solid #263238'
     },
     content: {
         textAlign: 'center'
@@ -41,17 +42,20 @@ class Fees extends Component {
                                 title="7-dniowy abonament"
                             />
                             <CardContent className={classes.content}>
-                                <Typography gutterBottom variant="headline">
+                                <Typography gutterBottom variant="headline" style={{color: blueGrey[800]}}>
                                     Abonament na 7 dni
                                 </Typography>
-                                <Typography gutterBottom variant="body2">
+                                <Divider style={{margin: '1rem'}}/>
+                                <Typography gutterBottom variant="body2" style={{color: blueGrey[800]}}>
                                     Chcesz wypróbować którąkolwiek dietę z oferty?
                                     Bądź też po prostu chcesz nas przetestować?
                                 </Typography>
-                                <Typography className={classes.lastElement} variant="headline">
+                                <Typography className={classes.lastElement} variant="headline"
+                                            style={{color: blueGrey[800]}}>
                                     To abonament dla Ciebie!!
                                 </Typography>
-                                <Typography gutterBottom variant="display1">
+                                <Divider style={{margin: '1rem'}}/>
+                                <Typography gutterBottom variant="display1" style={{color: blueGrey[800]}}>
                                     Jedyne <strong>199zł</strong>
                                 </Typography>
                             </CardContent>
@@ -67,17 +71,19 @@ class Fees extends Component {
                                 title="14-dniowy abonament"
                             />
                             <CardContent className={classes.content}>
-                                <Typography gutterBottom variant="headline">
+                                <Typography gutterBottom variant="headline" style={{color: blueGrey[800]}}>
                                     Abonament na 14 dni
                                 </Typography>
-                                <Typography gutterBottom variant="body2">
+                                <Divider style={{margin: '1rem'}}/>
+                                <Typography gutterBottom variant="body2" style={{color: blueGrey[800]}}>
                                     Zamierzasz powalczyć z nami o lepsze efekty?
                                     Dieting nie jest Ci obcy?
                                 </Typography>
-                                <Typography className={classes.lastElement} variant="headline">
+                                <Typography className={classes.lastElement} variant="headline" style={{color: blueGrey[800]}}>
                                     To już wiesz czego chcesz!!
                                 </Typography>
-                                <Typography gutterBottom variant="display1">
+                                <Divider style={{margin: '1rem'}}/>
+                                <Typography gutterBottom variant="display1" style={{color: blueGrey[800]}}>
                                     Tylko <strong>299zł</strong>
                                 </Typography>
                             </CardContent>
@@ -93,17 +99,19 @@ class Fees extends Component {
                                 title="28-dniowy abonament"
                             />
                             <CardContent className={classes.content}>
-                                <Typography gutterBottom variant="headline">
+                                <Typography gutterBottom variant="headline" style={{color: blueGrey[800]}}>
                                     Abonament na 28 dni
                                 </Typography>
-                                <Typography gutterBottom variant="body2">
+                                <Divider style={{margin: '1rem'}}/>
+                                <Typography gutterBottom variant="body2" style={{color: blueGrey[800]}}>
                                     Chcesz pójść w bój o coś więcej niż parę kg?
                                     Liczysz na naprawdę super efekty?
                                 </Typography>
-                                <Typography className={classes.lastElement} variant="headline">
+                                <Typography className={classes.lastElement} variant="headline" style={{color: blueGrey[800]}}>
                                     Jeden klik i jestem Twój!!
                                 </Typography>
-                                <Typography gutterBottom variant="display1">
+                                <Divider style={{margin: '1rem'}}/>
+                                <Typography gutterBottom variant="display1" style={{color: blueGrey[800]}}>
                                     Zaledwie <strong>399zł</strong>
                                 </Typography>
                             </CardContent>
