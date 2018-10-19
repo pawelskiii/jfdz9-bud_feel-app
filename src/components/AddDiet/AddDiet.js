@@ -6,7 +6,7 @@ import {TextField, MenuItem, Button, CardMedia} from '@material-ui/core';
 import {amber, blueGrey, green} from '@material-ui/core/colors';
 import firebase from "firebase";
 import {connect} from "react-redux";
-import foto from '../../assets/addDiets_foto.png';
+import Foto from '../../assets/addDiets_foto.png';
 
 const styles = theme => ({
     root: {
@@ -371,7 +371,7 @@ class AddDiet extends Component {
                                    style={{marginTop: '2rem', paddingTop: '3rem', paddingBottom: '2rem'}}>
                                 <CardMedia
                                     className={classes.media}
-                                    image={foto}
+                                    image={Foto}
                                     title="Make your diet"
                                 />
                                 <Typography component="h2" variant="headline" gutterBottom
