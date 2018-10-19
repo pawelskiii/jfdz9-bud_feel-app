@@ -1,15 +1,11 @@
 import React, {Component, Fragment} from 'react';
 import {Grid, Typography, Paper} from '@material-ui/core';
-
-
 import ButtonBase from '@material-ui/core/ButtonBase';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import { withStyles, MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import green from '@material-ui/core/colors/green';
 import Avatar from '@material-ui/core/Avatar';
-import blueGrey from '@material-ui/core/colors/blueGrey';
 import fit from '../../assets/fit.jpg';
 import firebase from 'firebase';
 import { connect } from 'react-redux'
@@ -17,7 +13,7 @@ import { connect } from 'react-redux'
 import Sidebar from '../Sidebar';
 import BmiNote from './BmiNote';
 import BmiInfo from './BmiInfo';
-//import UserForm from './UserForm';
+
 
 
 const styles = theme => ({
@@ -47,6 +43,7 @@ const styles = theme => ({
         padding: theme.spacing.unit * 2,
         textAlign: 'center',
         color: theme.palette.text.secondary,
+        margin: 8
     },
 
     textField: {
@@ -56,9 +53,10 @@ const styles = theme => ({
     },
 
     button: {
-        width: '25%',
-        margin: '2%',
-        marginLeft: '26%',
+        width: '50%',
+        margin: 8,
+        marginRight: '25%',
+        marginLeft: '25%',
         fontSize: 17,
     },
 
@@ -68,14 +66,6 @@ const styles = theme => ({
     },
 });
 
-const theme = createMuiTheme({
-    palette: {
-        primary: green,
-    },
-    typography: {
-        useNextVariants: true,
-    }
-});
 
 const genderLabels = [
     {
@@ -110,6 +100,9 @@ const activityLabels = [
 class UserPanel extends Component {
 
     state = {
+
+        isInitialValue: false,
+
         form: {
             nickName: '',
             name: '',
@@ -128,11 +121,6 @@ class UserPanel extends Component {
             firebase.database().ref(`/users/${firebase.auth().currentUser.uid}`).set(this.state.form)
     };
 
-
-   // handleClickSend = () => {
-       // firebase.database().ref(`/users/${firebase.auth().currentUser.uid}`).set(this.state.form)
-   // };
-
     handleClickOpen = () => {
         this.setState({ open: true });
     };
@@ -140,12 +128,6 @@ class UserPanel extends Component {
     handleClose = () => {
         this.setState({ open: false });
     };
-
-   // componentDidUpdate() {
-      //  this.setState({form: this.props.form ? this.props.form : this.state.form})
-    //};
-
-
 
     handleChange = name => event => {
         this.setState({
@@ -155,30 +137,18 @@ class UserPanel extends Component {
         })
     };
 
-
-
-   // componentDidUpdate() {
-      // if (this.state.form !== this.props.form) {
-           //this.setState({form: this.props.form})
-      //  }
-       // else {
-         //  console.log('props')
-      // }
-   // }
+    componentDidUpdate() {
+        if (!this.state.isInitialValue && this.props.form) {
+            this.setState({form: this.props.form, isInitialValue: true})
+        }
+    }
 
 
 
     render() {
 
-        const {classes, form} = this.props;
+        const {classes, form, theme} = this.props;
 
-
-   // const newState = this.setState({
-      //  form: this.props.form ? this.props.form : this.state.form
-   // });
-
-       console.log(this.props.form ? this.props.form.nickName : 'jeszcze sie nie pobralo');
-        console.log(this.state.form);
 
         return (
             <Fragment>
@@ -198,8 +168,8 @@ class UserPanel extends Component {
                                             <Avatar alt="Adelle Charles" src={fit} className={classes.bigAvatar} align='right'/>
                                         </ButtonBase>
                                         <TextField
-                                            error
-                                            id="outlined-error"
+                                            required
+                                            id="outlined-name"
                                             fullWidth
                                             label="Mój nick"
                                             className={classes.textField}
@@ -223,7 +193,7 @@ class UserPanel extends Component {
                                             id="outlined-surname"
                                             label="Nazwisko"
                                             className={classes.textField}
-                                            value={this.props.form ? this.props.form.surname : this.state.form.surname}
+                                            value={this.state.form.surname}
                                             onChange={this.handleChange('surname')}
                                             margin="normal"
                                             variant="outlined"
@@ -281,8 +251,8 @@ class UserPanel extends Component {
                                             variant="outlined"
                                         />
                                         <TextField
-                                            error
-                                            id="outlined-error"
+                                            required
+                                            id="outlined-mane"
                                             label="Waga (kg)"
                                             className={classes.textField}
                                             value={this.state.form.weight}
@@ -292,8 +262,8 @@ class UserPanel extends Component {
                                             variant="outlined"
                                         />
                                         <TextField
-                                            error
-                                            id="outlined-error"
+                                            required
+                                            id="outlined-name"
                                             label="Wzrost (cm)"
                                             className={classes.textField}
                                             value={this.state.form.height}
@@ -304,12 +274,11 @@ class UserPanel extends Component {
                                         />
                                         <MuiThemeProvider theme={theme}>
                                             <Button
-                                                variant="contained"
-                                                color="primary"
-                                                className={classes.button}
                                                 onClick={this.handleClickSend}
-                                                style={{color: blueGrey[800]}}>
-                                                Zapisz dane
+                                                variant='contained'
+                                                color='primary'
+                                            className={classes.button}>
+                                                {this.props.form ? 'Zapisz zmiany' : 'Zapisz dane'}
                                             </Button>
                                         </MuiThemeProvider>
                                     </Paper>
