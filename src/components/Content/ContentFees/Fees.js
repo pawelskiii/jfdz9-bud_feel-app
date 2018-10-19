@@ -14,7 +14,6 @@ const styles = {
     },
     media: {
         height: 233,
-        borderBottom: '1px solid #263238'
     },
     content: {
         textAlign: 'center'
