@@ -11,6 +11,8 @@ import blueGrey from '@material-ui/core/colors/blueGrey';
 import fit from '../../assets/fit.jpg';
 
 
+
+
 const styles = theme => ({
 
     bigAvatar: {
@@ -88,6 +90,8 @@ class UserForm extends Component {
     render() {
         const {classes} = this.props;
 
+        console.log(this.props.form ? this.props.form.name : 'jeszcze sie nie pobralo');
+
         return (
             <Grid item xs={7}>
                 <Paper className={classes.paper} style={{marginTop: 32}}>
@@ -110,7 +114,7 @@ class UserForm extends Component {
                         fullWidth
                         label="Imię"
                         className={classes.textField}
-                        value={this.props.form.name}
+                        value={this.props.form ? this.props.form.name : ''}
                         onChange={this.props.handleChange('name')}
                         margin="normal"
                         variant="outlined"
@@ -210,7 +214,16 @@ class UserForm extends Component {
                     </MuiThemeProvider>
                 </Paper>
             </Grid>
-        )}
+        )
+    }
 }
+
+const mapStateToProps = state => ({
+    form: state.form === null
+        ? {}
+        : state.form.data,
+});
+
+
 
 export default withStyles(styles)(UserForm);

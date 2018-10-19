@@ -36,15 +36,23 @@ firebase.database().ref('/data/types').on('value', snapshot => {
     })
 });
 
-firebase.database().ref(`/users/${firebase.auth().currentUser}/form/`).on('value', snapshot => {
-    store.dispatch({
-        type: 'FORM/SET_FORM',
-        types: snapshot.val()
-    });
 
+let ref;
+firebase.auth().onAuthStateChanged(user => {
+    if (user !== null) {
+        ref = firebase.database().ref(`/users/${user.uid}`);
+        ref.on('value', snapshot => {
+            store.dispatch({
+                type: 'FORM/SET_FORM',
+                form: snapshot.val()
+            })})
+    } else {
+        if (ref) {
+            ref.off('value');
+            ref = undefined;
+        }
+    }
 });
-
-
 
 
 export default store ;

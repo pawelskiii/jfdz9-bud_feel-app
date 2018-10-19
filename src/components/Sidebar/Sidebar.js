@@ -49,30 +49,25 @@ function Sidebar(props) {
         >
             <div className={classes.toolbar}/>
             <MuiThemeProvider theme={theme}>
-                {(firebase.auth().currentUser !== null) &&
-                <Link to="/" style={{textDecoration: 'none', color: 'white'}}>
-                    <Button variant="contained" color="inherit"
-                            style={{backgroundColor: amber[900], color: 'white', marginTop: 96}}
-                            className={classes.button}>
+                <Link to="/" style={{textDecoration: 'none'}}>
+                    <Button variant="contained" style={{backgroundColor: amber[900], color: blueGrey[800], marginTop: 96}} className={classes.button}>
                         Strona Główna
                     </Button></Link>
-                }
-                <Link to="/UserPanel" style={{textDecoration: 'none', color: 'white'}}>
-                    <Button variant="contained" style={{backgroundColor: amber[700]}} className={classes.button}>
+                <Link to="/UserPanel" style={{textDecoration: 'none'}}>
+                    <Button variant="contained" style={{backgroundColor: amber[800], color: blueGrey[800]}} className={classes.button}>
                         Moje Ustawienia
                     </Button></Link>
-                <Link to="/Favourites" style={{textDecoration: 'none', color: 'white'}}>
-                    <Button variant="contained" style={{backgroundColor: amber[600]}} className={classes.button}>
-                        Moje ulubione
+                <Link to="/Favourites" style={{textDecoration: 'none'}}>
+                    <Button variant="contained" style={{backgroundColor: amber[700], color: blueGrey[800]}} className={classes.button}>
+                    Moje ulubione
                     </Button>
                 </Link>
-                <Link to="/diets" style={{textDecoration: 'none', color: 'secondary'}}>
-                    <Button variant="contained" style={{backgroundColor: amber[500], listStyleType: "none"}}
-                            className={classes.button}>
+                <Link to="/diets" style={{textDecoration: 'none'}}>
+                    <Button variant="contained" style={{backgroundColor: amber[600], color: blueGrey[800]}} className={classes.button}>
                         Wybór diet
                     </Button></Link>
-                <Link to="/AddDiet" style={{textDecoration: 'none', color: 'secondary'}}>
-                    <Button variant="contained" style={{backgroundColor: amber[400]}} className={classes.button}>
+                <Link to="/AddDiet" style={{textDecoration: 'none'}}>
+                    <Button variant="contained" style={{backgroundColor: amber[800], color: blueGrey[800]}} className={classes.button}>
                         Dodaj dietę
                     </Button></Link>
             </MuiThemeProvider>
