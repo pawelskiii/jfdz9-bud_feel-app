@@ -8,9 +8,7 @@ import DietTable from './DietCards';
 import Sidebar from '../Sidebar/index';
 
 const styles = theme => ({
-    panelContainer: {
 
-    },
     root: {
         flexGrow: 1,
         zIndex: 1,
