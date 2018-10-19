@@ -2,8 +2,8 @@ import React, {Component, Fragment} from 'react';
 import {withStyles} from '@material-ui/core/styles';
 
 import {
-    Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Slide,
-    Typography, Grid, Paper, Card, CardMedia, CardContent, Table, TableBody, TableCell, TableRow
+    Button, Dialog, DialogActions, DialogContent, Slide, Typography, Grid, Paper,
+    Card, CardMedia, CardContent, Table, TableBody, TableCell, TableRow, TableHead
 } from '@material-ui/core';
 
 function Transition(props) {
@@ -17,22 +17,19 @@ const styles = theme => ({
     cardContent: {
         backgroundColor: "#263238"
     },
-    paper: {
-        /*height: 140,
-        width: 100,*/
-    },
-    paperMargin: {
-        marginTop: '1rem',
-    },
     control: {
         padding: theme.spacing.unit * 2,
     },
     card: {
-        width: 450,
+        flexGrow: 1,
     },
     media: {
         height: 300,
+
     },
+    table: {
+        marginTop: theme.spacing.unit * 1,
+    }
 });
 
 class DetailedDiet extends Component {
@@ -62,17 +59,14 @@ class DetailedDiet extends Component {
                     onClose={this.handleClose}
                     aria-labelledby="alert-dialog-slide-title"
                     aria-describedby="alert-dialog-slide-description"
-                    maxWidth='md'
+                    scroll='body'
                 >
-                    {/*<DialogTitle id="alert-dialog-slide-title">
-                        <Typography variant='display2' color='primary'>{name}</Typography>
-                    </DialogTitle>*/}
                     <DialogContent>
                         <Grid container className={classes.root} spacing={16}>
                             <Grid item xs={12}>
-                                <Grid container className={classes.demo} justify="space-between" spacing={16}>
-                                    <Grid item>
-                                        <Card className={classes.card}>
+                                <Grid container justify="center" spacing={16}>
+                                    <Grid item className={classes.card}>
+                                        <Card>
                                             <CardContent className={classes.cardContent}>
                                                 <Typography variant='display2' color='secondary' align='center'>
                                                     {name}
@@ -85,22 +79,32 @@ class DetailedDiet extends Component {
                                                 title={dietType}
                                             />}
                                             <CardContent className={classes.cardContent}>
-                                                <Typography variant='subheading' color='secondary'>
+                                                <Typography variant='title' color='secondary' align='center'>
                                                     {description}
                                                 </Typography>
                                             </CardContent>
                                         </Card>
                                     </Grid>
-                                    <Grid item>
-                                        <Paper className={classes.paper}>
-                                            <Table>
+                                </Grid>
+                            </Grid>
+                            <Grid item xs={12}>
+                                <Grid container className={classes.demo} justify="center" spacing={16}>
+                                    <Grid item className={classes.card}>
+                                        <Card>
+                                            <CardContent className={classes.cardContent}>
+                                                <Typography variant='headline' color='secondary' align='center'>
+                                                    <b>Informacje ogólne</b>
+                                                </Typography>
+                                            </CardContent>
+                                            <Table className={classes.table}>
                                                 <TableBody>
                                                     <TableRow>
                                                         <TableCell component="th" scope="row">
                                                             <Typography variant='body2'><b>Typ:</b></Typography>
                                                         </TableCell>
                                                         <TableCell numeric>
-                                                            <Typography variant='body2'>{dietType}</Typography>
+                                                            <Typography
+                                                                variant='body2'>{dietType}</Typography>
                                                         </TableCell>
                                                     </TableRow>
                                                     <TableRow>
@@ -126,7 +130,8 @@ class DetailedDiet extends Component {
                                                             <Typography variant='body2'><b>Okres:</b></Typography>
                                                         </TableCell>
                                                         <TableCell numeric>
-                                                            <Typography variant='body2'>{period} dni</Typography>
+                                                            <Typography
+                                                                variant='body2'>{period} dni</Typography>
                                                         </TableCell>
                                                     </TableRow>
                                                     <TableRow>
@@ -134,20 +139,23 @@ class DetailedDiet extends Component {
                                                             <Typography variant='body2'><b>Dodano:</b></Typography>
                                                         </TableCell>
                                                         <TableCell numeric>
-                                                            <Typography variant='body2'>{createdAt}</Typography>
+                                                            <Typography
+                                                                variant='body2'>{createdAt}</Typography>
                                                         </TableCell>
                                                     </TableRow>
                                                 </TableBody>
                                             </Table>
-                                        </Paper>
+                                        </Card>
                                     </Grid>
-                                </Grid>
-                            </Grid>
-                            <Grid item xs={12}>
-                                <Grid container className={classes.demo} justify="center" spacing={16}>
-                                    <Grid item>
-                                        <Paper className={classes.paperMargin}>
-                                            <Table>
+                                    <Grid item className={classes.card}>
+                                        <Card>
+                                            <CardContent className={classes.cardContent}>
+                                                <Typography variant='headline' color='secondary' align='center'>
+                                                    <b>Posiłki</b>
+                                                </Typography>
+                                            </CardContent>
+
+                                            <Table className={classes.table}>
                                                 <TableBody>
                                                     <TableRow>
                                                         <TableCell component="th" scope="row">
@@ -196,17 +204,12 @@ class DetailedDiet extends Component {
                                                     </TableRow>
                                                 </TableBody>
                                             </Table>
-                                        </Paper>
+                                        </Card>
                                     </Grid>
+
                                 </Grid>
                             </Grid>
                         </Grid>
-
-
-                        {/*<DialogContentText id="alert-dialog-slide-description">
-                            Let Google help apps determine location. This means sending anonymous location data to
-                            Google, even when no apps are running.
-                        </DialogContentText>*/}
                     </DialogContent>
                     <DialogActions className={classes.dialogActions}>
                         <Button onClick={this.handleClose}>
