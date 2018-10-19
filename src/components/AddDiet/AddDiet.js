@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Sidebar from '../Sidebar';
-import {withStyles, MuiThemeProvider, createMuiTheme} from '@material-ui/core/styles';
+import {withStyles} from '@material-ui/core/styles';
 import {Typography, Paper, Grid, Divider} from '@material-ui/core';
 import {TextField, MenuItem, Button, CardMedia} from '@material-ui/core';
 import {amber, blueGrey} from '@material-ui/core/colors';
@@ -187,7 +187,7 @@ class AddDiet extends Component {
     };
 
     render() {
-        const {classes, theme} = this.props;
+        const {classes} = this.props;
         return (
             <div className={classes.root}>
                 <Sidebar/>
@@ -342,17 +342,15 @@ class AddDiet extends Component {
                                         onChange={this.onProposalChange('supper')}
                                     />
 
-                                    <MuiThemeProvider theme={theme}>
-                                        <Button
-                                            type='submit'
-                                            variant="contained"
-                                            color="primary"
-                                            className={classes.button}
-                                            onClick={this.handleSubmit}
-                                        >
-                                            Dodaj dietę
-                                        </Button>
-                                    </MuiThemeProvider>
+                                    <Button
+                                        type='submit'
+                                        variant="contained"
+                                        color="primary"
+                                        className={classes.button}
+                                        onClick={this.handleSubmit}
+                                    >
+                                        Dodaj dietę
+                                    </Button>
                                 </form>
                             </Paper>
                         </Grid>
