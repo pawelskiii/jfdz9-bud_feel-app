@@ -162,7 +162,7 @@ class UserPanel extends Component {
                     <main className={classes.content}>
                         <div className={classes.toolbar}/>
                         <Grid container spacing={24}>
-                            <Grid item xs={12}>
+                            <Grid item xs={12}
                                 <Typography variant='display3' color='primary' align='center'>Moje dane</Typography>
                             </Grid>
                             <Grid container spacing={24}>
