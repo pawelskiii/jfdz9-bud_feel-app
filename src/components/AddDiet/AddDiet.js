@@ -111,9 +111,15 @@ const superstate = {
     },
     error: {
         errorName: 'Potrzebujemy tych danych*',
-        errorWeight: 'Potrzebujemy tych danych*',
-        errorAge: 'Potrzebujemy tych danych*',
-        errorProposal: 'Potrzebujemy tych danych*'
+        errorWeightMin: 'Potrzebujemy tych danych*',
+        errorWeightMax: 'Potrzebujemy tych danych*',
+        errorAgeMin: 'Potrzebujemy tych danych*',
+        errorAgeMax: 'Potrzebujemy tych danych*',
+        errorProposalBreakfast: 'Potrzebujemy tych danych*',
+        errorProposalLunch: 'Potrzebujemy tych danych*',
+        errorProposalDinner: 'Potrzebujemy tych danych*',
+        errorProposalDessert: 'Potrzebujemy tych danych*',
+        errorProposalSupper: 'Potrzebujemy tych danych*'
     }
 };
 
@@ -184,7 +190,7 @@ class AddDiet extends Component {
         })
     };
 
-    onWeightChange = prop => event => {
+    onWeightChangeMin = prop => event => {
 
         if (event.target.value.match('^[0-9]+$')) {
             this.setState({
@@ -197,39 +203,76 @@ class AddDiet extends Component {
                 },
                 error: {
                     ...this.state.error,
-                    errorWeight: ''
+                    errorWeightMin: ''
                 }
             })
         } else if (event.target.value === '') {
             this.setState({
                 data: {
                     ...this.state.data,
-                    weight: {
-                        ...this.state.data.weight,
-                    }
+                    weight: {...this.state.data.weight}
                 },
                 error: {
                     ...this.state.error,
-                    errorWeight: 'Potrzebujemy tych danych'
+                    errorWeightMin: 'Potrzebujemy tych danych'
                 }
             })
         } else {
             this.setState({
                 data: {
                     ...this.state.data,
-                    weight: {
-                        ...this.state.data.weight,
-                    }
+                    weight: {...this.state.data.weight}
                 },
                 error: {
                     ...this.state.error,
-                    errorWeight: 'Wprowadź poprawne dane'
+                    errorWeightMin: 'Wprowadź poprawne dane'
                 }
             })
         }
     };
 
-    onAgeChange = prop => event => {
+    onWeightChangeMax = prop => event => {
+
+        if (event.target.value.match('^[0-9]+$')) {
+            this.setState({
+                data: {
+                    ...this.state.data,
+                    weight: {
+                        ...this.state.data.weight,
+                        [prop]: event.target.value
+                    }
+                },
+                error: {
+                    ...this.state.error,
+                    errorWeightMax: ''
+                }
+            })
+        } else if (event.target.value === '') {
+            this.setState({
+                data: {
+                    ...this.state.data,
+                    weight: {...this.state.data.weight}
+                },
+                error: {
+                    ...this.state.error,
+                    errorWeightMax: 'Potrzebujemy tych danych'
+                }
+            })
+        } else {
+            this.setState({
+                data: {
+                    ...this.state.data,
+                    weight: {...this.state.data.weight}
+                },
+                error: {
+                    ...this.state.error,
+                    errorWeightMax: 'Wprowadź poprawne dane'
+                }
+            })
+        }
+    };
+
+    onAgeChangeMin = prop => event => {
 
         if (event.target.value.match('^[0-9]+$')) {
             this.setState({
@@ -242,39 +285,76 @@ class AddDiet extends Component {
                 },
                 error: {
                     ...this.state.error,
-                    errorAge: ''
+                    errorAgeMin: ''
                 }
             })
         } else if (event.target.value === '') {
             this.setState({
                 data: {
                     ...this.state.data,
-                    age: {
-                        ...this.state.data.age,
-                    }
+                    age: {...this.state.data.age}
                 },
                 error: {
                     ...this.state.error,
-                    errorAge: 'Potrzebujemy tych danych'
+                    errorAgeMin: 'Potrzebujemy tych danych'
                 }
             })
         } else {
             this.setState({
                 data: {
                     ...this.state.data,
-                    age: {
-                        ...this.state.data.age,
-                    }
+                    age: {...this.state.data.age}
                 },
                 error: {
                     ...this.state.error,
-                    errorAge: 'Wprowadź poprawne dane'
+                    errorAgeMin: 'Wprowadź poprawne dane'
                 }
             })
         }
     };
 
-    onProposalChange = prop => event => {
+    onAgeChangeMax = prop => event => {
+
+        if (event.target.value.match('^[0-9]+$')) {
+            this.setState({
+                data: {
+                    ...this.state.data,
+                    age: {
+                        ...this.state.data.age,
+                        [prop]: event.target.value
+                    }
+                },
+                error: {
+                    ...this.state.error,
+                    errorAgeMax: ''
+                }
+            })
+        } else if (event.target.value === '') {
+            this.setState({
+                data: {
+                    ...this.state.data,
+                    age: {...this.state.data.age}
+                },
+                error: {
+                    ...this.state.error,
+                    errorAgeMax: 'Potrzebujemy tych danych'
+                }
+            })
+        } else {
+            this.setState({
+                data: {
+                    ...this.state.data,
+                    age: {...this.state.data.age}
+                },
+                error: {
+                    ...this.state.error,
+                    errorAgeMax: 'Wprowadź poprawne dane'
+                }
+            })
+        }
+    };
+
+    onProposalBreakfast = prop => event => {
 
         if (event.target.value.match('^[a-zA-Z\\s]+$')) {
             this.setState({
@@ -287,33 +367,193 @@ class AddDiet extends Component {
                 },
                 error: {
                     ...this.state.error,
-                    errorProposal: ''
+                    errorProposalBreakfast: ''
                 }
             })
         } else if (event.target.value === '') {
             this.setState({
                 data: {
                     ...this.state.data,
-                    proposalMeals: {
-                        ...this.state.data.proposalMeals,
-                    }
+                    proposalMeals: {...this.state.data.proposalMeals}
                 },
                 error: {
                     ...this.state.error,
-                    errorProposal: 'Potrzebujemy tych danych'
+                    errorProposalBreakfast: 'Potrzebujemy tych danych'
                 }
             })
         } else {
             this.setState({
                 data: {
                     ...this.state.data,
+                    proposalMeals: {...this.state.data.proposalMeals}
+                },
+                error: {
+                    ...this.state.error,
+                    errorProposalBreakfast: 'Wprowadź poprawne dane'
+                }
+            })
+        }
+    };
+
+    onProposalLunch = prop => event => {
+
+        if (event.target.value.match('^[a-zA-Z\\s]+$')) {
+            this.setState({
+                data: {
+                    ...this.state.data,
                     proposalMeals: {
                         ...this.state.data.proposalMeals,
+                        [prop]: event.target.value
                     }
                 },
                 error: {
                     ...this.state.error,
-                    errorProposal: 'Wprowadź poprawne dane'
+                    errorProposalLunch: ''
+                }
+            })
+        } else if (event.target.value === '') {
+            this.setState({
+                data: {
+                    ...this.state.data,
+                    proposalMeals: {...this.state.data.proposalMeals}
+                },
+                error: {
+                    ...this.state.error,
+                    errorProposalLunch: 'Potrzebujemy tych danych'
+                }
+            })
+        } else {
+            this.setState({
+                data: {
+                    ...this.state.data,
+                    proposalMeals: {...this.state.data.proposalMeals}
+                },
+                error: {
+                    ...this.state.error,
+                    errorProposalLunch: 'Wprowadź poprawne dane'
+                }
+            })
+        }
+    };
+
+    onProposalDinner = prop => event => {
+
+        if (event.target.value.match('^[a-zA-Z\\s]+$')) {
+            this.setState({
+                data: {
+                    ...this.state.data,
+                    proposalMeals: {
+                        ...this.state.data.proposalMeals,
+                        [prop]: event.target.value
+                    }
+                },
+                error: {
+                    ...this.state.error,
+                    errorProposalDinner: ''
+                }
+            })
+        } else if (event.target.value === '') {
+            this.setState({
+                data: {
+                    ...this.state.data,
+                    proposalMeals: {...this.state.data.proposalMeals}
+                },
+                error: {
+                    ...this.state.error,
+                    errorProposalDinner: 'Potrzebujemy tych danych'
+                }
+            })
+        } else {
+            this.setState({
+                data: {
+                    ...this.state.data,
+                    proposalMeals: {...this.state.data.proposalMeals}
+                },
+                error: {
+                    ...this.state.error,
+                    errorProposalDinner: 'Wprowadź poprawne dane'
+                }
+            })
+        }
+    };
+
+    onProposalDessert = prop => event => {
+
+        if (event.target.value.match('^[a-zA-Z\\s]+$')) {
+            this.setState({
+                data: {
+                    ...this.state.data,
+                    proposalMeals: {
+                        ...this.state.data.proposalMeals,
+                        [prop]: event.target.value
+                    }
+                },
+                error: {
+                    ...this.state.error,
+                    errorProposalDessert: ''
+                }
+            })
+        } else if (event.target.value === '') {
+            this.setState({
+                data: {
+                    ...this.state.data,
+                    proposalMeals: {...this.state.data.proposalMeals}
+                },
+                error: {
+                    ...this.state.error,
+                    errorProposalDessert: 'Potrzebujemy tych danych'
+                }
+            })
+        } else {
+            this.setState({
+                data: {
+                    ...this.state.data,
+                    proposalMeals: {...this.state.data.proposalMeals}
+                },
+                error: {
+                    ...this.state.error,
+                    errorProposalDessert: 'Wprowadź poprawne dane'
+                }
+            })
+        }
+    };
+
+    onProposalSupper = prop => event => {
+
+        if (event.target.value.match('^[a-zA-Z\\s]+$')) {
+            this.setState({
+                data: {
+                    ...this.state.data,
+                    proposalMeals: {
+                        ...this.state.data.proposalMeals,
+                        [prop]: event.target.value
+                    }
+                },
+                error: {
+                    ...this.state.error,
+                    errorProposalSupper: ''
+                }
+            })
+        } else if (event.target.value === '') {
+            this.setState({
+                data: {
+                    ...this.state.data,
+                    proposalMeals: {...this.state.data.proposalMeals}
+                },
+                error: {
+                    ...this.state.error,
+                    errorProposalSupper: 'Potrzebujemy tych danych'
+                }
+            })
+        } else {
+            this.setState({
+                data: {
+                    ...this.state.data,
+                    proposalMeals: {...this.state.data.proposalMeals}
+                },
+                error: {
+                    ...this.state.error,
+                    errorProposalSupper: 'Wprowadź poprawne dane'
                 }
             })
         }
@@ -400,101 +640,101 @@ class AddDiet extends Component {
 
                                     <TextField
                                         className={classes.textFieldLeft}
-                                        error={this.state.error.errorWeight !== 'Potrzebujemy tych danych*' && this.state.error.errorWeight.length !== 0}
-                                        helperText={this.state.error.errorWeight}
+                                        error={this.state.error.errorWeightMin !== 'Potrzebujemy tych danych*' && this.state.error.errorWeightMin.length !== 0}
+                                        helperText={this.state.error.errorWeightMin}
                                         margin="normal"
                                         id="outlined-min-weight"
                                         label="Min waga"
                                         variant="outlined"
-                                        onChange={this.onWeightChange('min').bind(this)}
+                                        onChange={this.onWeightChangeMin('min').bind(this)}
                                     />
 
                                     <TextField
                                         className={classes.textFieldRight}
-                                        error={this.state.error.errorWeight !== 'Potrzebujemy tych danych*' && this.state.error.errorWeight.length !== 0}
-                                        helperText={this.state.error.errorWeight}
+                                        error={this.state.error.errorWeightMax !== 'Potrzebujemy tych danych*' && this.state.error.errorWeightMax.length !== 0}
+                                        helperText={this.state.error.errorWeightMax}
                                         margin="normal"
                                         id="outlined-max-weight"
                                         label="Max waga"
                                         variant="outlined"
-                                        onChange={this.onWeightChange('max').bind(this)}
+                                        onChange={this.onWeightChangeMax('max').bind(this)}
                                     />
 
                                     <TextField
                                         className={classes.textFieldLeft}
-                                        error={this.state.error.errorAge !== 'Potrzebujemy tych danych*' && this.state.error.errorAge.length !== 0}
-                                        helperText={this.state.error.errorAge}
+                                        error={this.state.error.errorAgeMin !== 'Potrzebujemy tych danych*' && this.state.error.errorAgeMin.length !== 0}
+                                        helperText={this.state.error.errorAgeMin}
                                         margin="normal"
                                         id="outlined-min-age"
                                         label="Min wiek"
                                         variant="outlined"
-                                        onChange={this.onAgeChange('min').bind(this)}
+                                        onChange={this.onAgeChangeMin('min').bind(this)}
                                     />
 
                                     <TextField
                                         className={classes.textFieldRight}
-                                        error={this.state.error.errorAge !== 'Potrzebujemy tych danych*' && this.state.error.errorAge.length !== 0}
-                                        helperText={this.state.error.errorAge}
+                                        error={this.state.error.errorAgeMax !== 'Potrzebujemy tych danych*' && this.state.error.errorAgeMax.length !== 0}
+                                        helperText={this.state.error.errorAgeMax}
                                         margin="normal"
                                         id="outlined-max-age"
                                         label="Max wiek"
                                         variant="outlined"
-                                        onChange={this.onAgeChange('max').bind(this)}
+                                        onChange={this.onAgeChangeMax('max').bind(this)}
                                     />
 
                                     <TextField
                                         className={classes.textField}
-                                        error={this.state.error.errorProposal !== 'Potrzebujemy tych danych*' && this.state.error.errorProposal.length !== 0}
-                                        helperText={this.state.error.errorProposal}
+                                        error={this.state.error.errorProposalBreakfast !== 'Potrzebujemy tych danych*' && this.state.error.errorProposalBreakfast.length !== 0}
+                                        helperText={this.state.error.errorProposalBreakfast}
                                         margin="normal"
                                         id="outlined-breakfast"
                                         label="Propozycja śniadania"
                                         variant="outlined"
-                                        onChange={this.onProposalChange('breakfast').bind(this)}
+                                        onChange={this.onProposalBreakfast('breakfast').bind(this)}
                                     />
 
                                     <TextField
                                         className={classes.textField}
-                                        error={this.state.error.errorProposal !== 'Potrzebujemy tych danych*' && this.state.error.errorProposal.length !== 0}
-                                        helperText={this.state.error.errorProposal}
+                                        error={this.state.error.errorProposalLunch !== 'Potrzebujemy tych danych*' && this.state.error.errorProposalLunch.length !== 0}
+                                        helperText={this.state.error.errorProposalLunch}
                                         margin="normal"
                                         id="outlined-lunch"
                                         label="Propozycja lunchu"
                                         variant="outlined"
-                                        onChange={this.onProposalChange('lunch').bind(this)}
+                                        onChange={this.onProposalLunch('lunch').bind(this)}
                                     />
 
                                     <TextField
                                         className={classes.textField}
-                                        error={this.state.error.errorProposal !== 'Potrzebujemy tych danych*' && this.state.error.errorProposal.length !== 0}
-                                        helperText={this.state.error.errorProposal}
+                                        error={this.state.error.errorProposalDinner !== 'Potrzebujemy tych danych*' && this.state.error.errorProposalDinner.length !== 0}
+                                        helperText={this.state.error.errorProposalDinner}
                                         margin="normal"
                                         id="outlined-dinner"
                                         label="Propozycja obiadu"
                                         variant="outlined"
-                                        onChange={this.onProposalChange('dinner').bind(this)}
+                                        onChange={this.onProposalDinner('dinner').bind(this)}
                                     />
 
                                     <TextField
                                         className={classes.textField}
-                                        error={this.state.error.errorProposal !== 'Potrzebujemy tych danych*' && this.state.error.errorProposal.length !== 0}
-                                        helperText={this.state.error.errorProposal}
+                                        error={this.state.error.errorProposalDessert !== 'Potrzebujemy tych danych*' && this.state.error.errorProposalDessert.length !== 0}
+                                        helperText={this.state.error.errorProposalDessert}
                                         margin="normal"
                                         id="outlined-dessert"
                                         label="Propozycja deseru"
                                         variant="outlined"
-                                        onChange={this.onProposalChange('dessert').bind(this)}
+                                        onChange={this.onProposalDessert('dessert').bind(this)}
                                     />
 
                                     <TextField
                                         className={classes.textField}
-                                        error={this.state.error.errorProposal !== 'Potrzebujemy tych danych*' && this.state.error.errorProposal.length !== 0}
-                                        helperText={this.state.error.errorProposal}
+                                        error={this.state.error.errorProposalSupper !== 'Potrzebujemy tych danych*' && this.state.error.errorProposalSupper.length !== 0}
+                                        helperText={this.state.error.errorProposalSupper}
                                         margin="normal"
                                         id="outlined-supper"
                                         label="Propozycja kolacji"
                                         variant="outlined"
-                                        onChange={this.onProposalChange('supper').bind(this)}
+                                        onChange={this.onProposalSupper('supper').bind(this)}
                                     />
 
                                     <Button
