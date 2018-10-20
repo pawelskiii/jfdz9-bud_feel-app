@@ -56,7 +56,7 @@ function Sidebar(props) {
             <div className={classes.toolbar}/>
             <MuiThemeProvider theme={theme}>
                 <ul className={classes.listContainer}>
-                    <li className={classes.list} style={{marginTop: 96}}>
+                    <li className={classes.list}>
                         <Link to="/" style={{textDecoration: 'none'}}>
                             <Button variant="contained"
                                     style={{backgroundColor: amber[900], color: blueGrey[800]}}
