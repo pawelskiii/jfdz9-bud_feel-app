@@ -27,18 +27,25 @@ const styles = {
     },
 };
 
+
+
 class DietCard extends Component {
 
-    constructor(props) {
+    state = {
+        isToggleOn: false,
+    };
+
+    /*constructor(props) {
         super(props);
         this.state = {isToggleOn: true};
         this.handleClick = this.handleClick.bind(this);
     };
+*/
 
-    handleClick() {
-        this.setState(state => ({
-            isToggleOn: !state.isToggleOn
-        }));
+    handleClick = () => {
+        this.setState({
+            isToggleOn: !this.state.isToggleOn
+        });
 
         this.state.isToggleOn
             ?
