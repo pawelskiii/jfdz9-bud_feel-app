@@ -119,7 +119,7 @@ class Dashboard extends Component {
         data.labels = Object.keys(numberOfTypes);
         data.datasets[0].data = [numberOfTypes.masa,numberOfTypes.utrzymanie,numberOfTypes.redukcja];
 
-        const {classes, form, theme} = this.props;
+        const {classes} = this.props;
 
         return (
             <Fragment>

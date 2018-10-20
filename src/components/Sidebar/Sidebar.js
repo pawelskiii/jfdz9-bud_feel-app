@@ -1,6 +1,5 @@
-import React, {Component} from 'react';
+import React from 'react';
 import Drawer from '@material-ui/core/Drawer';
-import {Grid, Typography, Paper} from '@material-ui/core';
 import {withStyles, MuiThemeProvider, createMuiTheme} from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
