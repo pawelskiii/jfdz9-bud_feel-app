@@ -129,7 +129,7 @@ class Dashboard extends Component {
                             <Paper className={classes.paper}>
                                 <CardContent className={classes.description}>
                                     <Typography variant='headline' color='secondary' align='center'>
-                                        <h4>Bogata oferta diet, uwzględniajaca Twoje aktualne potrzeby</h4>
+                                        Bogata oferta diet, uwzględniajaca Twoje aktualne potrzeby
                                     </Typography>
                                 </CardContent>
                                 <Pie data={data}/>
@@ -139,7 +139,7 @@ class Dashboard extends Component {
                             <Paper className={classes.paper}>
                                 <CardContent className={classes.description}>
                                     <Typography variant='headline' color='secondary' align='center'>
-                                        <h4>Liczne grono zadowolonych klientów</h4>
+                                        Liczne grono zadowolonych klientów
                                     </Typography>
                                 </CardContent>
                                 <Doughnut data={donat} />
