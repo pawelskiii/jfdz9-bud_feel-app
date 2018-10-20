@@ -2,8 +2,8 @@ import React, {Component, Fragment} from 'react';
 import {withStyles} from '@material-ui/core/styles';
 
 import {
-    Button, Dialog, DialogActions, DialogContent, Slide, Typography, Grid, Paper,
-    Card, CardMedia, CardContent, Table, TableBody, TableCell, TableRow, TableHead
+    Button, Dialog, DialogActions, DialogContent, Slide, Typography, Grid,
+    Card, CardMedia, CardContent, Table, TableBody, TableCell, TableRow,
 } from '@material-ui/core';
 
 function Transition(props) {
@@ -46,7 +46,7 @@ class DetailedDiet extends Component {
     };
 
     render() {
-        const {dietType, id, name, description, createdAt, age, weight, period, proposalMeals, image} = this.props;
+        const {dietType, name, description, createdAt, age, weight, period, proposalMeals, image} = this.props;
         const {classes} = this.props;
 
         return (
