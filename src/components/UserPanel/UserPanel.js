@@ -147,6 +147,11 @@ class UserPanel extends Component {
             this.setState({form: this.props.form, isInitialValue: true})
         }
     }
+    componentDidMount() {
+        if (!this.state.isInitialValue && this.props.form) {
+            this.setState({form: this.props.form, isInitialValue: true})
+        }
+    }
 
 
 
