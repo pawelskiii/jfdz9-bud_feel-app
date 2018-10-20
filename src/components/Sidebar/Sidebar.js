@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import Drawer from '@material-ui/core/Drawer';
-import {Grid, Typography, Paper} from '@material-ui/core';
 import {withStyles, MuiThemeProvider, createMuiTheme} from '@material-ui/core/styles';
 import {Link} from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import amber from '@material-ui/core/colors/amber';
 import blueGrey from '@material-ui/core/colors/blueGrey';
+import {connect} from "react-redux";
 
 
 const drawerWidth = 200;
@@ -54,7 +54,7 @@ function Sidebar(props) {
             }}
         >
             <div className={classes.toolbar}/>
-            <MuiThemeProvider theme={theme}>
+            {props.user !== null && <MuiThemeProvider theme={theme}>
                 <ul className={classes.listContainer}>
                     <li className={classes.list}>
                         <Link to="/" style={{textDecoration: 'none'}}>
@@ -104,10 +104,15 @@ function Sidebar(props) {
                 </ul>
 
 
-            </MuiThemeProvider>
+            </MuiThemeProvider>}
         </Drawer>
     );
 }
 
+const mapStateToProps = state => ({
+    user: state.auth.user
+});
 
-export default (withStyles(styles)(Sidebar));
+export default connect(
+    mapStateToProps
+)(withStyles(styles)(Sidebar));
