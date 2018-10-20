@@ -169,8 +169,8 @@ class UserPanel extends Component {
 
                                 <Grid item xs={5}>
                                     <Paper className={classes.paper} style={{marginTop: 32}}>
-                                        <Typography variant='title' align='center' paragraph={true} style={{color:amber[900]}}>
-                                            Cześć, cieszymy się, że dalej walczysz z nami!
+                                        <Typography component="h2" variant="headline" align='center' paragraph={true} style={{color:amber[900]}}>
+                                            Cześć {this.state.form.nickName}, cieszymy się, że dalej walczysz z nami!
                                         </Typography>
                                         <TextField
                                             required
