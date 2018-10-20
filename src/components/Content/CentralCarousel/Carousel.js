@@ -1,6 +1,7 @@
 import React from 'react';
 import Carousel from 'nuka-carousel';
 import {withStyles} from '@material-ui/core/styles';
+import './Carousel.css';
 
 import slide_1 from '../../../assets/intoduction.jpg';
 import slide_2 from '../../../assets/intoduction2.jpg';
