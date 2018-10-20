@@ -85,39 +85,41 @@ const time = [
     },
 ];
 
+const superstate = {
+    data: {
+        id: '',
+        name: '',
+        description: '',
+        typeId: 2,
+        createdAt: new Date().toISOString().substr(0, 10),
+        weight: {
+            max: '',
+            min: ''
+        },
+        age: {
+            max: '',
+            min: ''
+        },
+        period: 7,
+        proposalMeals: {
+            breakfast: '',
+            lunch: '',
+            dessert: '',
+            dinner: '',
+            supper: '',
+        },
+    },
+    error: {
+        errorName: 'Potrzebujemy tych danych*',
+        errorWeight: 'Potrzebujemy tych danych*',
+        errorAge: 'Potrzebujemy tych danych*',
+        errorProposal: 'Potrzebujemy tych danych*'
+    }
+};
+
 class AddDiet extends Component {
 
-    state = {
-        data: {
-            id: '',
-            name: '',
-            description: '',
-            typeId: 2,
-            createdAt: new Date().toISOString().substr(0, 10),
-            weight: {
-                max: '',
-                min: ''
-            },
-            age: {
-                max: '',
-                min: ''
-            },
-            period: 7,
-            proposalMeals: {
-                breakfast: '',
-                lunch: '',
-                dessert: '',
-                dinner: '',
-                supper: '',
-            },
-        },
-        error: {
-            errorName: 'Potrzebujemy tych danych*',
-            errorWeight: 'Potrzebujemy tych danych*',
-            errorAge: 'Potrzebujemy tych danych*',
-            errorProposal: 'Potrzebujemy tych danych*'
-        }
-    };
+    state = superstate;
 
     handleChange = prop => event => {
         this.setState({
@@ -324,36 +326,7 @@ class AddDiet extends Component {
                 id: `${this.props.diets.length + 1}`
             });
             this.setState({
-                data: {
-                    id: '',
-                    name: '',
-                    description: '',
-                    typeId: 2,
-                    createdAt: new Date().toISOString().substr(0, 10),
-                    weight: {
-                        max: '',
-                        min: ''
-                    },
-                    age: {
-                        max: '',
-                        min: ''
-                    },
-                    period: 7,
-                    proposalMeals: {
-                        breakfast: '',
-                        lunch: '',
-                        dessert: '',
-                        dinner: '',
-                        supper: '',
-                    },
-                },
-                error: {
-                    errorName: 'Potrzebujemy tych danych*',
-                    errorWeight: 'Potrzebujemy tych danych*',
-                    errorAge: 'Potrzebujemy tych danych*',
-                    errorProposal: 'Potrzebujemy tych danych*'
-
-                }
+                superstate
             })
         } else {
             event.preventDefault();
