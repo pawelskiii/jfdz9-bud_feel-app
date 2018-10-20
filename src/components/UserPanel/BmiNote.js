@@ -28,7 +28,7 @@ class BmiNote extends Component {
 
         return (
             <Grid item xs={5}>
-                <Paper className={classes.info} style={{marginTop:32, backgroundColor: blueGrey[800]}}>
+                <Paper className={classes.info} style={{marginTop:32, backgroundColor: blueGrey[900]}}>
                     <Typography variant='display1' style={{color:'white'}} align='center'>Chcesz poznać swoje BMI?</Typography>
                 </Paper>
                 <Paper className={classes.info} style={{marginTop:32}}>
