@@ -1,3 +1,13 @@
 .slider-control-centerright {
     display: none;
 }
+.slider-control-centerleft {
+    display: none;
+}
+.slider{
+   margin: 0 auto;
+}
+.testBorder {
+    border: solid green 3px;
+    height: 400px;
+}
