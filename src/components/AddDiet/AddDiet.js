@@ -109,7 +109,19 @@ class AddDiet extends Component {
                 dessert: '',
                 dinner: '',
                 supper: '',
-            }
+            },
+        },
+        errorText: '',
+        error: {
+            errorName: '',
+            errorWeight: '',
+            errorAge: '',
+            errorBreakfast: '',
+            errorLunch: '',
+            errorDinner: '',
+            errorDessert: '',
+            errorSupper: '',
+            error: true
         }
     };
 
@@ -120,6 +132,44 @@ class AddDiet extends Component {
                 [prop]: event.target.value,
             }
         })
+    };
+
+    handleChangeName = prop => event => {
+        if (event.target.value.match('^[a-zA-Z\\s]+$')) {
+            this.setState({
+                data: {
+                    ...this.state.data,
+                    [prop]: event.target.value,
+                },
+                error: {
+                    ...this.state.error,
+                    errorName: '',
+                    error: false
+                }
+            })
+        } else if (event.target.value === '') {
+            this.setState({
+                data: {
+                    ...this.state.data,
+                },
+                error: {
+                    ...this.state.error,
+                    errorName: 'Potrzebujemy tych danych',
+                    error: true
+                }
+            })
+        } else {
+            this.setState({
+                data: {
+                    ...this.state.data,
+                },
+                error: {
+                    ...this.state.error,
+                    errorName: 'Wprowadź poprawne dane',
+                    error: true
+                }
+            })
+        }
     };
 
     onTypeChange = event => {
@@ -141,15 +191,52 @@ class AddDiet extends Component {
     };
 
     onWeightChange = prop => event => {
-        this.setState({
-            data: {
-                ...this.state.data,
-                weight: {
-                    ...this.state.data.weight,
-                    [prop]: event.target.value
+
+        if (event.target.value.match('^[0-9]+$')) {
+
+            this.setState({
+                data: {
+                    ...this.state.data,
+                    weight: {
+                        ...this.state.data.weight,
+                        [prop]: event.target.value
+                    }
+                },
+                error: {
+                    ...this.state.error,
+                    errorWeight: '',
+                    error: false
                 }
-            }
-        })
+            })
+        } else if (event.target.value === '') {
+            this.setState({
+                data: {
+                    ...this.state.data,
+                    weight: {
+                        ...this.state.data.weight,
+                    }
+                },
+                error: {
+                    ...this.state.error,
+                    errorWeight: 'Potrzebujemy tych danych',
+                    error: true
+                }
+            })
+        } else {
+            this.setState({
+                data: {
+                    ...this.state.data,
+                    weight: {
+                        ...this.state.data.weight,
+                    }
+                },
+                error: {
+                    ...this.state.error,
+                    errorWeight: 'Wprowadź poprawne dane',
+                    error: true
+                }
+            })
+        }
     };
 
     onAgeChange = prop => event => {
@@ -165,20 +252,50 @@ class AddDiet extends Component {
     };
 
     onProposalChange = prop => event => {
-        this.setState({
-            data: {
-                ...this.state.data,
-                proposalMeals: {
-                    ...this.state.data.proposalMeals,
-                    [prop]: event.target.value
-                }
-            }
-        })
+
+        if (event.target.value.match('^[a-zA-Z\\s]+$')) {
+            this.setState({
+                data: {
+                    ...this.state.data,
+                    proposalMeals: {
+                        ...this.state.data.proposalMeals,
+                        [prop]: event.target.value
+                    }
+                },
+                errorText: ''
+            })
+        } else if (event.target.value === '') {
+            this.setState({
+                data: {
+                    ...this.state.data,
+                    proposalMeals: {
+                        ...this.state.data.proposalMeals,
+                    }
+                },
+                errorText: 'Potrzebujemy tych danych'
+            })
+        } else {
+            this.setState({
+                data: {
+                    ...this.state.data,
+                    proposalMeals: {
+                        ...this.state.data.proposalMeals,
+                    }
+                },
+                errorText: 'Wprowadź poprawne dane'
+            })
+        }
     };
 
     handleSubmit = event => {
         event.preventDefault();
-        if (this.state.data.name) {
+        if (this.state.error.error === true) {
+            this.setState({
+                data: {
+                    ...this.state.data,
+                }
+            })
+        } else {
             firebase.database().ref(`/data/diets/${this.props.diets.length}`).set({
                 ...this.state.data,
                 id: `${this.props.diets.length + 1}`
@@ -206,11 +323,13 @@ class AddDiet extends Component {
                                     <TextField
                                         required
                                         className={classes.textField}
+                                        error={this.state.error.errorName.length !== 0}
+                                        helperText={this.state.error.errorName}
                                         margin="normal"
                                         id="outlined-name"
                                         label="Nazwa diety"
                                         variant="outlined"
-                                        onChange={this.handleChange('name')}
+                                        onChange={this.handleChangeName('name').bind(this)}
                                     />
 
                                     <TextField
@@ -253,94 +372,108 @@ class AddDiet extends Component {
                                     </TextField>
 
                                     <TextField
-                                        required
-                                        className={classes.textFieldLeft}
-                                        margin="normal"
-                                        id="outlined-min-weight"
-                                        label="Min waga"
-                                        variant="outlined"
-                                        onChange={this.onWeightChange('min')}
+                                    required
+                                    className={classes.textFieldLeft}
+                                    error={this.state.error.errorWeight.length !== 0}
+                                    helperText={this.state.error.errorWeight}
+                                    margin="normal"
+                                    id="outlined-min-weight"
+                                    label="Min waga"
+                                    variant="outlined"
+                                    onChange={this.onWeightChange('min').bind(this)}
                                     />
 
                                     <TextField
-                                        required
-                                        className={classes.textFieldRight}
-                                        margin="normal"
-                                        id="outlined-max-weight"
-                                        label="Max waga"
-                                        variant="outlined"
-                                        onChange={this.onWeightChange('max')}
+                                    required
+                                    className={classes.textFieldRight}
+                                    error={this.state.error.errorWeight.length !== 0}
+                                    helperText={this.state.error.errorWeight}
+                                    margin="normal"
+                                    id="outlined-max-weight"
+                                    label="Max waga"
+                                    variant="outlined"
+                                    onChange={this.onWeightChange('max').bind(this)}
                                     />
 
-                                    <TextField
-                                        required
-                                        className={classes.textFieldLeft}
-                                        margin="normal"
-                                        id="outlined-min-weight"
-                                        label="Min wiek"
-                                        variant="outlined"
-                                        onChange={this.onAgeChange('min')}
-                                    />
+                                    {/*<TextField*/}
+                                    {/*required*/}
+                                    {/*className={classes.textFieldLeft}*/}
+                                    {/*margin="normal"*/}
+                                    {/*id="outlined-min-weight"*/}
+                                    {/*label="Min wiek"*/}
+                                    {/*variant="outlined"*/}
+                                    {/*onChange={this.onAgeChange('min')}*/}
+                                    {/*/>*/}
 
-                                    <TextField
-                                        required
-                                        className={classes.textFieldRight}
-                                        margin="normal"
-                                        id="outlined-max-weight"
-                                        label="Max wiek"
-                                        variant="outlined"
-                                        onChange={this.onAgeChange('max')}
-                                    />
+                                    {/*<TextField*/}
+                                    {/*required*/}
+                                    {/*className={classes.textFieldRight}*/}
+                                    {/*margin="normal"*/}
+                                    {/*id="outlined-max-weight"*/}
+                                    {/*label="Max wiek"*/}
+                                    {/*variant="outlined"*/}
+                                    {/*onChange={this.onAgeChange('max')}*/}
+                                    {/*/>*/}
 
-                                    <TextField
-                                        required
-                                        className={classes.textField}
-                                        margin="normal"
-                                        id="outlined-name"
-                                        label="Propozycja śniadania"
-                                        variant="outlined"
-                                        onChange={this.onProposalChange('breakfast')}
-                                    />
+                                    {/*<TextField*/}
+                                    {/*required*/}
+                                    {/*className={classes.textField}*/}
+                                    {/*error={this.state.errorText.length !== 0}*/}
+                                    {/*helperText={this.state.errorText}*/}
+                                    {/*margin="normal"*/}
+                                    {/*id="outlined-name"*/}
+                                    {/*label="Propozycja śniadania"*/}
+                                    {/*variant="outlined"*/}
+                                    {/*onChange={this.onProposalChange('breakfast').bind(this)}*/}
+                                    {/*/>*/}
 
-                                    <TextField
-                                        required
-                                        className={classes.textField}
-                                        margin="normal"
-                                        id="outlined-name"
-                                        label="Propozycja lunchu"
-                                        variant="outlined"
-                                        onChange={this.onProposalChange('lunch')}
-                                    />
+                                    {/*<TextField*/}
+                                    {/*required*/}
+                                    {/*className={classes.textField}*/}
+                                    {/*error={this.state.errorText.length !== 0}*/}
+                                    {/*helperText={this.state.errorText}*/}
+                                    {/*margin="normal"*/}
+                                    {/*id="outlined-name"*/}
+                                    {/*label="Propozycja lunchu"*/}
+                                    {/*variant="outlined"*/}
+                                    {/*onChange={this.onProposalChange('lunch').bind(this)}*/}
+                                    {/*/>*/}
 
-                                    <TextField
-                                        required
-                                        className={classes.textField}
-                                        margin="normal"
-                                        id="outlined-name"
-                                        label="Propozycja obiadu"
-                                        variant="outlined"
-                                        onChange={this.onProposalChange('dinner')}
-                                    />
+                                    {/*<TextField*/}
+                                    {/*required*/}
+                                    {/*className={classes.textField}*/}
+                                    {/*error={this.state.errorText.length !== 0}*/}
+                                    {/*helperText={this.state.errorText}*/}
+                                    {/*margin="normal"*/}
+                                    {/*id="outlined-name"*/}
+                                    {/*label="Propozycja obiadu"*/}
+                                    {/*variant="outlined"*/}
+                                    {/*onChange={this.onProposalChange('dinner').bind(this)}*/}
+                                    {/*/>*/}
 
-                                    <TextField
-                                        required
-                                        className={classes.textField}
-                                        margin="normal"
-                                        id="outlined-name"
-                                        label="Propozycja deseru"
-                                        variant="outlined"
-                                        onChange={this.onProposalChange('dessert')}
-                                    />
+                                    {/*<TextField*/}
+                                    {/*required*/}
+                                    {/*className={classes.textField}*/}
+                                    {/*error={this.state.errorText.length !== 0}*/}
+                                    {/*helperText={this.state.errorText}*/}
+                                    {/*margin="normal"*/}
+                                    {/*id="outlined-name"*/}
+                                    {/*label="Propozycja deseru"*/}
+                                    {/*variant="outlined"*/}
+                                    {/*onChange={this.onProposalChange('dessert').bind(this)}*/}
+                                    {/*/>*/}
 
-                                    <TextField
-                                        required
-                                        className={classes.textField}
-                                        margin="normal"
-                                        id="outlined-name"
-                                        label="Propozycja kolacji"
-                                        variant="outlined"
-                                        onChange={this.onProposalChange('supper')}
-                                    />
+                                    {/*<TextField*/}
+                                    {/*required*/}
+                                    {/*className={classes.textField}*/}
+                                    {/*error={this.state.errorText.length !== 0}*/}
+                                    {/*helperText={this.state.errorText}*/}
+                                    {/*margin="normal"*/}
+                                    {/*id="outlined-name"*/}
+                                    {/*label="Propozycja kolacji"*/}
+                                    {/*variant="outlined"*/}
+                                    {/*onChange={this.onProposalChange('supper').bind(this)}*/}
+                                    {/*/>*/}
 
                                     <Button
                                         type='submit'
