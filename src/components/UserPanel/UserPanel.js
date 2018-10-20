@@ -123,7 +123,7 @@ class UserPanel extends Component {
     };
 
     handleClickSend = () => {
-            firebase.database().ref(`/users/${firebase.auth().currentUser.uid}`).set(this.state.form)
+            firebase.database().ref(`/users/${firebase.auth().currentUser.uid}/form`).set(this.state.form)
     };
 
     handleClickOpen = () => {
