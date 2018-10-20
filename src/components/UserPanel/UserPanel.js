@@ -1,18 +1,16 @@
 import React, {Component, Fragment} from 'react';
 import {Grid, Typography, Paper} from '@material-ui/core';
-import ButtonBase from '@material-ui/core/ButtonBase';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
-import { withStyles, MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { withStyles,} from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import Avatar from '@material-ui/core/Avatar';
-import fit from '../../assets/fit.jpg';
 import firebase from 'firebase';
 import { connect } from 'react-redux'
-
+import amber from '@material-ui/core/colors/amber';
 import Sidebar from '../Sidebar';
 import BmiNote from './BmiNote';
 import BmiInfo from './BmiInfo';
+import Subscription from './Subscription'
 
 
 
@@ -33,11 +31,6 @@ const styles = theme => ({
     },
 
     toolbar: theme.mixins.toolbar,
-
-    bigAvatar: {
-        width: 100,
-        height: 100,
-    },
 
     paper: {
         padding: theme.spacing.unit * 2,
@@ -60,10 +53,6 @@ const styles = theme => ({
         fontSize: 17,
     },
 
-    image: {
-        marginLeft: 20,
-        marginTop: 8
-    },
 });
 
 
@@ -97,6 +86,21 @@ const activityLabels = [
     },
 ];
 
+const subscription = [
+    {
+        value: '7 dni',
+        label: '7 dni',
+    },
+    {
+        value: '14 dni',
+        label: '14 dni',
+    },
+    {
+        value: '28 dni',
+        label: '28 dni',
+    },
+];
+
 class UserPanel extends Component {
 
     state = {
@@ -112,6 +116,7 @@ class UserPanel extends Component {
             age: '',
             weight: '',
             height: '',
+            subscription: ''
         },
 
         open: false,
@@ -147,7 +152,7 @@ class UserPanel extends Component {
 
     render() {
 
-        const {classes, form, theme} = this.props;
+        const {classes} = this.props;
 
 
         return (
@@ -162,11 +167,11 @@ class UserPanel extends Component {
                             </Grid>
                             <Grid container spacing={24}>
 
-                                <Grid item xs={7}>
+                                <Grid item xs={5}>
                                     <Paper className={classes.paper} style={{marginTop: 32}}>
-                                        <ButtonBase className={classes.image}>
-                                            <Avatar alt="Adelle Charles" src={fit} className={classes.bigAvatar} align='right'/>
-                                        </ButtonBase>
+                                        <Typography variant='title' align='center' paragraph={true} style={{color:amber[900]}}>
+                                            Cześć, cieszymy się, że dalej walczysz z nami!
+                                        </Typography>
                                         <TextField
                                             required
                                             id="outlined-name"
@@ -272,7 +277,31 @@ class UserPanel extends Component {
                                             margin="normal"
                                             variant="outlined"
                                         />
-                                        <MuiThemeProvider theme={theme}>
+                                        <Typography variant='title' align='center' style={{color:amber[900]}}>
+                                            Wybierz swój abonament:
+                                        </Typography>
+                                        <TextField
+                                            id="outlined-select-subscription"
+                                            select
+                                            label="Abonament"
+                                            className={classes.textField}
+                                            value={this.state.form.subscription}
+                                            onChange={this.handleChange('subscription')}
+                                            SelectProps={{
+                                                MenuProps: {
+                                                    className: classes.menu,
+                                                },
+                                            }}
+                                            margin="normal"
+                                            variant="outlined"
+                                        >
+                                            {subscription.map(option => (
+                                                <MenuItem key={option.value} value={option.value}>
+                                                    {option.label}
+                                                </MenuItem>
+                                            ))}
+                                        </TextField>
+
                                             <Button
                                                 onClick={this.handleClickSend}
                                                 variant='contained'
@@ -280,11 +309,14 @@ class UserPanel extends Component {
                                             className={classes.button}>
                                                 {this.props.form ? 'Zapisz zmiany' : 'Zapisz dane'}
                                             </Button>
-                                        </MuiThemeProvider>
+
                                     </Paper>
                                 </Grid>
-
+                                <Grid item xs={7}>
+                                    <Subscription form={this.state.form}/>
                             <BmiNote handleClickOpen={this.handleClickOpen}/>
+
+                                </Grid>
                             </Grid>
                         </Grid>
                        <BmiInfo form={this.state.form} open={this.state.open} handleClose={this.handleClose} />
