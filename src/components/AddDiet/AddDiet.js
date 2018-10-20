@@ -111,17 +111,11 @@ class AddDiet extends Component {
                 supper: '',
             },
         },
-        errorText: '',
         error: {
-            errorName: '',
-            errorWeight: '',
-            errorAge: '',
-            errorBreakfast: '',
-            errorLunch: '',
-            errorDinner: '',
-            errorDessert: '',
-            errorSupper: '',
-            error: true
+            errorName: 'Potrzebujemy tych danych*',
+            errorWeight: 'Potrzebujemy tych danych*',
+            errorAge: 'Potrzebujemy tych danych*',
+            errorProposal: 'Potrzebujemy tych danych*'
         }
     };
 
@@ -135,6 +129,7 @@ class AddDiet extends Component {
     };
 
     handleChangeName = prop => event => {
+
         if (event.target.value.match('^[a-zA-Z\\s]+$')) {
             this.setState({
                 data: {
@@ -143,8 +138,7 @@ class AddDiet extends Component {
                 },
                 error: {
                     ...this.state.error,
-                    errorName: '',
-                    error: false
+                    errorName: ''
                 }
             })
         } else if (event.target.value === '') {
@@ -154,8 +148,7 @@ class AddDiet extends Component {
                 },
                 error: {
                     ...this.state.error,
-                    errorName: 'Potrzebujemy tych danych',
-                    error: true
+                    errorName: 'Potrzebujemy tych danych'
                 }
             })
         } else {
@@ -165,8 +158,7 @@ class AddDiet extends Component {
                 },
                 error: {
                     ...this.state.error,
-                    errorName: 'Wprowadź poprawne dane',
-                    error: true
+                    errorName: 'Wprowadź poprawne dane'
                 }
             })
         }
@@ -193,7 +185,6 @@ class AddDiet extends Component {
     onWeightChange = prop => event => {
 
         if (event.target.value.match('^[0-9]+$')) {
-
             this.setState({
                 data: {
                     ...this.state.data,
@@ -204,8 +195,7 @@ class AddDiet extends Component {
                 },
                 error: {
                     ...this.state.error,
-                    errorWeight: '',
-                    error: false
+                    errorWeight: ''
                 }
             })
         } else if (event.target.value === '') {
@@ -218,8 +208,7 @@ class AddDiet extends Component {
                 },
                 error: {
                     ...this.state.error,
-                    errorWeight: 'Potrzebujemy tych danych',
-                    error: true
+                    errorWeight: 'Potrzebujemy tych danych'
                 }
             })
         } else {
@@ -232,23 +221,55 @@ class AddDiet extends Component {
                 },
                 error: {
                     ...this.state.error,
-                    errorWeight: 'Wprowadź poprawne dane',
-                    error: true
+                    errorWeight: 'Wprowadź poprawne dane'
                 }
             })
         }
     };
 
     onAgeChange = prop => event => {
-        this.setState({
-            data: {
-                ...this.state.data,
-                age: {
-                    ...this.state.data.age,
-                    [prop]: event.target.value
+
+        if (event.target.value.match('^[0-9]+$')) {
+            this.setState({
+                data: {
+                    ...this.state.data,
+                    age: {
+                        ...this.state.data.age,
+                        [prop]: event.target.value
+                    }
+                },
+                error: {
+                    ...this.state.error,
+                    errorAge: ''
                 }
-            }
-        })
+            })
+        } else if (event.target.value === '') {
+            this.setState({
+                data: {
+                    ...this.state.data,
+                    age: {
+                        ...this.state.data.age,
+                    }
+                },
+                error: {
+                    ...this.state.error,
+                    errorAge: 'Potrzebujemy tych danych'
+                }
+            })
+        } else {
+            this.setState({
+                data: {
+                    ...this.state.data,
+                    age: {
+                        ...this.state.data.age,
+                    }
+                },
+                error: {
+                    ...this.state.error,
+                    errorAge: 'Wprowadź poprawne dane'
+                }
+            })
+        }
     };
 
     onProposalChange = prop => event => {
@@ -262,7 +283,10 @@ class AddDiet extends Component {
                         [prop]: event.target.value
                     }
                 },
-                errorText: ''
+                error: {
+                    ...this.state.error,
+                    errorProposal: ''
+                }
             })
         } else if (event.target.value === '') {
             this.setState({
@@ -272,7 +296,10 @@ class AddDiet extends Component {
                         ...this.state.data.proposalMeals,
                     }
                 },
-                errorText: 'Potrzebujemy tych danych'
+                error: {
+                    ...this.state.error,
+                    errorProposal: 'Potrzebujemy tych danych'
+                }
             })
         } else {
             this.setState({
@@ -282,24 +309,54 @@ class AddDiet extends Component {
                         ...this.state.data.proposalMeals,
                     }
                 },
-                errorText: 'Wprowadź poprawne dane'
+                error: {
+                    ...this.state.error,
+                    errorProposal: 'Wprowadź poprawne dane'
+                }
             })
         }
     };
 
     handleSubmit = event => {
-        event.preventDefault();
-        if (this.state.error.error === true) {
-            this.setState({
-                data: {
-                    ...this.state.data,
-                }
-            })
-        } else {
+        if (Object.values(this.state.error).every(el => el === '')) {
             firebase.database().ref(`/data/diets/${this.props.diets.length}`).set({
                 ...this.state.data,
                 id: `${this.props.diets.length + 1}`
             });
+            this.setState({
+                data: {
+                    id: '',
+                    name: '',
+                    description: '',
+                    typeId: 2,
+                    createdAt: new Date().toISOString().substr(0, 10),
+                    weight: {
+                        max: '',
+                        min: ''
+                    },
+                    age: {
+                        max: '',
+                        min: ''
+                    },
+                    period: 7,
+                    proposalMeals: {
+                        breakfast: '',
+                        lunch: '',
+                        dessert: '',
+                        dinner: '',
+                        supper: '',
+                    },
+                },
+                error: {
+                    errorName: 'Potrzebujemy tych danych*',
+                    errorWeight: 'Potrzebujemy tych danych*',
+                    errorAge: 'Potrzebujemy tych danych*',
+                    errorProposal: 'Potrzebujemy tych danych*'
+
+                }
+            })
+        } else {
+            event.preventDefault();
         }
     };
 
@@ -321,9 +378,8 @@ class AddDiet extends Component {
                                    style={{marginTop: '2rem', paddingTop: '3rem', paddingBottom: '2rem'}}>
                                 <form>
                                     <TextField
-                                        required
                                         className={classes.textField}
-                                        error={this.state.error.errorName.length !== 0}
+                                        error={this.state.error.errorName !== 'Potrzebujemy tych danych*' && this.state.error.errorName.length !== 0}
                                         helperText={this.state.error.errorName}
                                         margin="normal"
                                         id="outlined-name"
@@ -343,7 +399,6 @@ class AddDiet extends Component {
 
                                     <TextField
                                         select
-                                        required
                                         className={classes.textField}
                                         margin="normal"
                                         id="outlined-type"
@@ -358,7 +413,6 @@ class AddDiet extends Component {
 
                                     <TextField
                                         select
-                                        required
                                         className={classes.textField}
                                         margin="normal"
                                         id="outlined-time"
@@ -372,108 +426,103 @@ class AddDiet extends Component {
                                     </TextField>
 
                                     <TextField
-                                    required
-                                    className={classes.textFieldLeft}
-                                    error={this.state.error.errorWeight.length !== 0}
-                                    helperText={this.state.error.errorWeight}
-                                    margin="normal"
-                                    id="outlined-min-weight"
-                                    label="Min waga"
-                                    variant="outlined"
-                                    onChange={this.onWeightChange('min').bind(this)}
+                                        className={classes.textFieldLeft}
+                                        error={this.state.error.errorWeight !== 'Potrzebujemy tych danych*' && this.state.error.errorWeight.length !== 0}
+                                        helperText={this.state.error.errorWeight}
+                                        margin="normal"
+                                        id="outlined-min-weight"
+                                        label="Min waga"
+                                        variant="outlined"
+                                        onChange={this.onWeightChange('min').bind(this)}
                                     />
 
                                     <TextField
-                                    required
-                                    className={classes.textFieldRight}
-                                    error={this.state.error.errorWeight.length !== 0}
-                                    helperText={this.state.error.errorWeight}
-                                    margin="normal"
-                                    id="outlined-max-weight"
-                                    label="Max waga"
-                                    variant="outlined"
-                                    onChange={this.onWeightChange('max').bind(this)}
+                                        className={classes.textFieldRight}
+                                        error={this.state.error.errorWeight !== 'Potrzebujemy tych danych*' && this.state.error.errorWeight.length !== 0}
+                                        helperText={this.state.error.errorWeight}
+                                        margin="normal"
+                                        id="outlined-max-weight"
+                                        label="Max waga"
+                                        variant="outlined"
+                                        onChange={this.onWeightChange('max').bind(this)}
                                     />
 
-                                    {/*<TextField*/}
-                                    {/*required*/}
-                                    {/*className={classes.textFieldLeft}*/}
-                                    {/*margin="normal"*/}
-                                    {/*id="outlined-min-weight"*/}
-                                    {/*label="Min wiek"*/}
-                                    {/*variant="outlined"*/}
-                                    {/*onChange={this.onAgeChange('min')}*/}
-                                    {/*/>*/}
+                                    <TextField
+                                        className={classes.textFieldLeft}
+                                        error={this.state.error.errorAge !== 'Potrzebujemy tych danych*' && this.state.error.errorAge.length !== 0}
+                                        helperText={this.state.error.errorAge}
+                                        margin="normal"
+                                        id="outlined-min-age"
+                                        label="Min wiek"
+                                        variant="outlined"
+                                        onChange={this.onAgeChange('min').bind(this)}
+                                    />
 
-                                    {/*<TextField*/}
-                                    {/*required*/}
-                                    {/*className={classes.textFieldRight}*/}
-                                    {/*margin="normal"*/}
-                                    {/*id="outlined-max-weight"*/}
-                                    {/*label="Max wiek"*/}
-                                    {/*variant="outlined"*/}
-                                    {/*onChange={this.onAgeChange('max')}*/}
-                                    {/*/>*/}
+                                    <TextField
+                                        className={classes.textFieldRight}
+                                        error={this.state.error.errorAge !== 'Potrzebujemy tych danych*' && this.state.error.errorAge.length !== 0}
+                                        helperText={this.state.error.errorAge}
+                                        margin="normal"
+                                        id="outlined-max-age"
+                                        label="Max wiek"
+                                        variant="outlined"
+                                        onChange={this.onAgeChange('max').bind(this)}
+                                    />
 
-                                    {/*<TextField*/}
-                                    {/*required*/}
-                                    {/*className={classes.textField}*/}
-                                    {/*error={this.state.errorText.length !== 0}*/}
-                                    {/*helperText={this.state.errorText}*/}
-                                    {/*margin="normal"*/}
-                                    {/*id="outlined-name"*/}
-                                    {/*label="Propozycja śniadania"*/}
-                                    {/*variant="outlined"*/}
-                                    {/*onChange={this.onProposalChange('breakfast').bind(this)}*/}
-                                    {/*/>*/}
+                                    <TextField
+                                        className={classes.textField}
+                                        error={this.state.error.errorProposal !== 'Potrzebujemy tych danych*' && this.state.error.errorProposal.length !== 0}
+                                        helperText={this.state.error.errorProposal}
+                                        margin="normal"
+                                        id="outlined-breakfast"
+                                        label="Propozycja śniadania"
+                                        variant="outlined"
+                                        onChange={this.onProposalChange('breakfast').bind(this)}
+                                    />
 
-                                    {/*<TextField*/}
-                                    {/*required*/}
-                                    {/*className={classes.textField}*/}
-                                    {/*error={this.state.errorText.length !== 0}*/}
-                                    {/*helperText={this.state.errorText}*/}
-                                    {/*margin="normal"*/}
-                                    {/*id="outlined-name"*/}
-                                    {/*label="Propozycja lunchu"*/}
-                                    {/*variant="outlined"*/}
-                                    {/*onChange={this.onProposalChange('lunch').bind(this)}*/}
-                                    {/*/>*/}
+                                    <TextField
+                                        className={classes.textField}
+                                        error={this.state.error.errorProposal !== 'Potrzebujemy tych danych*' && this.state.error.errorProposal.length !== 0}
+                                        helperText={this.state.error.errorProposal}
+                                        margin="normal"
+                                        id="outlined-lunch"
+                                        label="Propozycja lunchu"
+                                        variant="outlined"
+                                        onChange={this.onProposalChange('lunch').bind(this)}
+                                    />
 
-                                    {/*<TextField*/}
-                                    {/*required*/}
-                                    {/*className={classes.textField}*/}
-                                    {/*error={this.state.errorText.length !== 0}*/}
-                                    {/*helperText={this.state.errorText}*/}
-                                    {/*margin="normal"*/}
-                                    {/*id="outlined-name"*/}
-                                    {/*label="Propozycja obiadu"*/}
-                                    {/*variant="outlined"*/}
-                                    {/*onChange={this.onProposalChange('dinner').bind(this)}*/}
-                                    {/*/>*/}
+                                    <TextField
+                                        className={classes.textField}
+                                        error={this.state.error.errorProposal !== 'Potrzebujemy tych danych*' && this.state.error.errorProposal.length !== 0}
+                                        helperText={this.state.error.errorProposal}
+                                        margin="normal"
+                                        id="outlined-dinner"
+                                        label="Propozycja obiadu"
+                                        variant="outlined"
+                                        onChange={this.onProposalChange('dinner').bind(this)}
+                                    />
 
-                                    {/*<TextField*/}
-                                    {/*required*/}
-                                    {/*className={classes.textField}*/}
-                                    {/*error={this.state.errorText.length !== 0}*/}
-                                    {/*helperText={this.state.errorText}*/}
-                                    {/*margin="normal"*/}
-                                    {/*id="outlined-name"*/}
-                                    {/*label="Propozycja deseru"*/}
-                                    {/*variant="outlined"*/}
-                                    {/*onChange={this.onProposalChange('dessert').bind(this)}*/}
-                                    {/*/>*/}
+                                    <TextField
+                                        className={classes.textField}
+                                        error={this.state.error.errorProposal !== 'Potrzebujemy tych danych*' && this.state.error.errorProposal.length !== 0}
+                                        helperText={this.state.error.errorProposal}
+                                        margin="normal"
+                                        id="outlined-dessert"
+                                        label="Propozycja deseru"
+                                        variant="outlined"
+                                        onChange={this.onProposalChange('dessert').bind(this)}
+                                    />
 
-                                    {/*<TextField*/}
-                                    {/*required*/}
-                                    {/*className={classes.textField}*/}
-                                    {/*error={this.state.errorText.length !== 0}*/}
-                                    {/*helperText={this.state.errorText}*/}
-                                    {/*margin="normal"*/}
-                                    {/*id="outlined-name"*/}
-                                    {/*label="Propozycja kolacji"*/}
-                                    {/*variant="outlined"*/}
-                                    {/*onChange={this.onProposalChange('supper').bind(this)}*/}
-                                    {/*/>*/}
+                                    <TextField
+                                        className={classes.textField}
+                                        error={this.state.error.errorProposal !== 'Potrzebujemy tych danych*' && this.state.error.errorProposal.length !== 0}
+                                        helperText={this.state.error.errorProposal}
+                                        margin="normal"
+                                        id="outlined-supper"
+                                        label="Propozycja kolacji"
+                                        variant="outlined"
+                                        onChange={this.onProposalChange('supper').bind(this)}
+                                    />
 
                                     <Button
                                         type='submit'
@@ -514,7 +563,7 @@ class AddDiet extends Component {
                                             style={{color: blueGrey[800]}}>
                                     W celu dodania diety do wstępnej weryfikacji należy wypełnić wymagane pola
                                     formularzy [ <strong style={{color: amber[900]}}>oznaczone
-                                    (*)</strong> ].</Typography>
+                                    (Potrzebujemy tych danych*)</strong> ].</Typography>
                                 <Divider style={{margin: '1rem'}}/>
                                 <Typography variant="title" gutterBottom align='center'
                                             style={{color: blueGrey[800]}}>
