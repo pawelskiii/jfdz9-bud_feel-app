@@ -16,6 +16,7 @@ import fit from '../../assets/fit.jpg';
 import IconButton from '@material-ui/core/IconButton';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import firebase from 'firebase';
+import {connect} from "react-redux";
 
 const styles = {
     card: {
@@ -52,34 +53,18 @@ const getImage = (dietType) => {
 
 class DietCard extends Component {
 
-    state = {
-        isToggleOn: false,
-    };
-
-
     handleClick = () => {
-        this.setState({
-            isToggleOn: !this.state.isToggleOn,
 
-        });
-
-
-        this.state.isToggleOn
-            ?
-            firebase.database().ref(`/users/${firebase.auth().currentUser.uid}/favs/${this.props.diet.id}`).set(true)
-            :
-            firebase.database().ref(`/users/${firebase.auth().currentUser.uid}/favs/${this.props.diet.id}`).remove()
+        (this.props.favs !== undefined)
+            ? Object.keys(this.props.favs).includes(this.props.diet.id)
+                ? firebase.database().ref(`/users/${firebase.auth().currentUser.uid}/favs/${this.props.diet.id}`).remove()
+                : firebase.database().ref(`/users/${firebase.auth().currentUser.uid}/favs/${this.props.diet.id}`).set(true)
+            : null
     };
 
     render() {
         const {dietType, diet: {id, name, description, createdAt, age, weight, period, proposalMeals}} = this.props;
         const {classes} = this.props;
-
-        if (this.state.isToggleOn === true) {
-            console.log('kliknieto', this.state.isToggleOn)
-        } else {
-            console.log('nie klikniety', this.state.isToggleOn)
-        }
 
         return (
             <Grid item key={id}>
@@ -94,7 +79,7 @@ class DietCard extends Component {
                         <Typography variant='headline' gutterBottom>
                             {name}
                             <IconButton aria-label="Add to favorites" onClick={this.handleClick}>
-                                <FavoriteIcon style={{color: this.state.isToggleOn ? 'orange' : ''}}/>
+                                <FavoriteIcon style={{color: (this.props.favs !== undefined && this.props.favs.length !== 0 && Object.keys(this.props.favs).includes(id)) ? 'red' : ''}}/>
                             </IconButton>
                         </Typography>
                         <Divider/>
@@ -154,4 +139,18 @@ class DietCard extends Component {
     }
 }
 
-export default withStyles(styles)(DietCard);
+const mapStateToProps = state => ({
+    favs: state.favs === null
+        ? {}
+        : state.favs.data,
+    diets: state.diets === null
+        ? {}
+        : state.diets.data,
+    types: state.types === null
+        ? {}
+        : state.types.data,
+});
+
+export default connect(
+    mapStateToProps
+)(withStyles(styles)(DietCard));
