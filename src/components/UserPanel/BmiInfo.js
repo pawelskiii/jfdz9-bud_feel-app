@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Typography, Paper} from '@material-ui/core';
-import { withStyles} from '@material-ui/core/styles';
+import {withStyles} from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -46,12 +46,19 @@ class BmiInfo extends Component {
                 onClose={this.props.handleClose}
                 aria-labelledby="alert-dialog-title"
                 aria-describedby="alert-dialog-description"
-                    >
-            <DialogTitle>
-            <Typography component="h2" variant="headline" style={{color:amber[900]}}>
-                Twoje BMI wynosi:   {(this.props.form.weight/(this.props.form.height/100*this.props.form.height/100)).toFixed(2)}
-            </Typography>
-            </DialogTitle>
+            >
+                <DialogTitle>
+                    {this.props.form.weight !== '' && this.props.form.height !== '' ?
+                        <Typography component="h2" variant="headline" style={{color: amber[900]}}>
+                            Twoje BMI
+                            wynosi: {(this.props.form.weight / (this.props.form.height / 100 * this.props.form.height / 100)).toFixed(2)}
+                        </Typography>
+                        :
+                        <Typography component="h2" variant="headline" style={{color: amber[900]}}>
+                            Wpisz swoją wagę i wzrost!
+                        </Typography>
+                    }
+                </DialogTitle>
                 <DialogContent>
                     <Paper className={classes.root}>
                         <Table className={classes.table}>
@@ -79,7 +86,7 @@ class BmiInfo extends Component {
                                         Otyłość
                                     </CustomTableCell>
                                     <CustomTableCell numeric>do 40</CustomTableCell>
-                                </TableRow>   <TableRow className={classes.row}>
+                                </TableRow> <TableRow className={classes.row}>
                                 <CustomTableCell component="th" scope="row">
                                     Poważna otyłość
                                 </CustomTableCell>
@@ -87,15 +94,17 @@ class BmiInfo extends Component {
                             </TableRow>
                             </TableBody>
                         </Table>
-                        </Paper>
+                    </Paper>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={this.props.handleClose} color="green">
+                    <Button onClick={this.props.handleClose}>
                         Zamknij
                     </Button>
-                    </DialogActions>
-                </Dialog>
-        )}
+                </DialogActions>
+            </Dialog>
+
+        )
+    }
 }
 
 export default withStyles(styles)(BmiInfo);

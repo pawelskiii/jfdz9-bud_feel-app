@@ -2,7 +2,7 @@ import React, {Component, Fragment} from 'react';
 import {withStyles} from '@material-ui/core/styles';
 import amber from '@material-ui/core/colors/amber';
 import blueGrey from '@material-ui/core/colors/blueGrey';
-import {Typography, Grid, Card, CardMedia, CardContent,Paper} from '@material-ui/core';
+import {Typography, Grid, Card, CardMedia, CardContent, Paper} from '@material-ui/core';
 import slim8 from '../../assets/slim8.jpeg';
 import slim9 from '../../assets/slim9.jpeg';
 import slim10 from '../../assets/slim10.jpeg';
@@ -15,7 +15,7 @@ const styles = theme => ({
     },
 
     media: {
-        height: 240,
+        height: 245,
     },
 
     gridElementCenter: {
@@ -32,7 +32,7 @@ class Subscription extends Component {
 
         return (
             <Fragment>
-                <Grid item xs={12} style={{marginTop: 32}} container className={classes.gridElementCenter}>
+                <Grid item xs={12} md={12} style={{marginTop: 32}} container className={classes.gridElementCenter}>
                     <Grid container spacing={24}>
                         <Grid item xs>
                             <Paper>

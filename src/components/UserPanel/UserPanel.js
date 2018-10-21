@@ -2,16 +2,19 @@ import React, {Component, Fragment} from 'react';
 import {Grid, Typography, Paper} from '@material-ui/core';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
-import { withStyles,} from '@material-ui/core/styles';
+import {withStyles,} from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import firebase from 'firebase';
-import { connect } from 'react-redux'
+import {connect} from 'react-redux'
 import amber from '@material-ui/core/colors/amber';
 import Sidebar from '../Sidebar';
 import BmiNote from './BmiNote';
 import BmiInfo from './BmiInfo';
-import Subscription from './Subscription'
-
+import Subscription from './Subscription';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import { Divider } from '@material-ui/core';
 
 
 const styles = theme => ({
@@ -52,6 +55,9 @@ const styles = theme => ({
         marginLeft: '25%',
         fontSize: 17,
     },
+    confirmation: {
+        width: 300,
+    }
 
 });
 
@@ -120,25 +126,34 @@ class UserPanel extends Component {
         },
 
         open: false,
+        message: false
     };
+
 
     handleClickSend = () => {
-            firebase.database().ref(`/users/${firebase.auth().currentUser.uid}`).set(this.state.form)
+        firebase.database().ref(`/users/${firebase.auth().currentUser.uid}/form`).set(this.state.form);
+        this.setState({
+            message: true,
+        });
     };
 
+    handleCloseMessage = value => {
+        this.setState({message: false});
+    };
     handleClickOpen = () => {
-        this.setState({ open: true });
+        this.setState({open: true});
     };
 
     handleClose = () => {
-        this.setState({ open: false });
+        this.setState({open: false});
     };
 
     handleChange = name => event => {
         this.setState({
             form: {
                 ...this.state.form,
-                [name]: event.target.value}
+                [name]: event.target.value
+            }
         })
     };
 
@@ -147,22 +162,20 @@ class UserPanel extends Component {
             this.setState({form: this.props.form, isInitialValue: true})
         }
     }
+
     componentDidMount() {
         if (!this.state.isInitialValue && this.props.form) {
             this.setState({form: this.props.form, isInitialValue: true})
         }
     }
 
-
-
     render() {
 
         const {classes} = this.props;
 
-
         return (
             <Fragment>
-                <div  className={classes.root}>
+                <div className={classes.root}>
                     <Sidebar/>
                     <main className={classes.content}>
                         <div className={classes.toolbar}/>
@@ -171,11 +184,12 @@ class UserPanel extends Component {
                                 <Typography variant='display3' color='primary' align='center'>Moje dane</Typography>
                             </Grid>
                             <Grid container spacing={24}>
-
-                                <Grid item xs={5}>
+                                <Grid item xs={12} md={6} lg={5}>
                                     <Paper className={classes.paper} style={{marginTop: 32}}>
-                                        <Typography variant='title' align='center' paragraph={true} style={{color:amber[900]}}>
-                                            Cześć, cieszymy się, że dalej walczysz z nami!
+                                        <Typography component="h2" variant="headline" align='center' paragraph={true}>
+                                            Cześć <strong
+                                            style={{color: amber[900]}}>{this.state.form.nickName}</strong>, cieszymy
+                                            się, że walczysz z nami!
                                         </Typography>
                                         <TextField
                                             required
@@ -186,8 +200,7 @@ class UserPanel extends Component {
                                             value={this.state.form.nickName}
                                             onChange={this.handleChange('nickName')}
                                             margin="normal"
-                                            variant="outlined"
-                                        />
+                                            variant="outlined"/>
                                         <TextField
                                             id="outlined-name"
                                             fullWidth
@@ -196,9 +209,7 @@ class UserPanel extends Component {
                                             value={this.state.form.name}
                                             onChange={this.handleChange('name')}
                                             margin="normal"
-                                            variant="outlined"
-                                        />
-
+                                            variant="outlined"/>
                                         <TextField
                                             id="outlined-surname"
                                             label="Nazwisko"
@@ -206,8 +217,7 @@ class UserPanel extends Component {
                                             value={this.state.form.surname}
                                             onChange={this.handleChange('surname')}
                                             margin="normal"
-                                            variant="outlined"
-                                        />
+                                            variant="outlined"/>
                                         <TextField
                                             id="outlined-select-gender"
                                             select
@@ -221,8 +231,7 @@ class UserPanel extends Component {
                                                 },
                                             }}
                                             margin="normal"
-                                            variant="outlined"
-                                        >
+                                            variant="outlined">
                                             {genderLabels.map(option => (
                                                 <MenuItem key={option.value} value={option.value}>
                                                     {option.label}
@@ -242,8 +251,7 @@ class UserPanel extends Component {
                                                 },
                                             }}
                                             margin="normal"
-                                            variant="outlined"
-                                        >
+                                            variant="outlined">
                                             {activityLabels.map(option => (
                                                 <MenuItem key={option.value} value={option.value}>
                                                     {option.label}
@@ -258,8 +266,7 @@ class UserPanel extends Component {
                                             type="number"
                                             className={classes.textField}
                                             margin="normal"
-                                            variant="outlined"
-                                        />
+                                            variant="outlined"/>
                                         <TextField
                                             required
                                             id="outlined-mane"
@@ -269,8 +276,7 @@ class UserPanel extends Component {
                                             onChange={this.handleChange('weight')}
                                             type="number"
                                             margin="normal"
-                                            variant="outlined"
-                                        />
+                                            variant="outlined"/>
                                         <TextField
                                             required
                                             id="outlined-name"
@@ -280,9 +286,8 @@ class UserPanel extends Component {
                                             onChange={this.handleChange('height')}
                                             type="number"
                                             margin="normal"
-                                            variant="outlined"
-                                        />
-                                        <Typography variant='title' align='center' style={{color:amber[900]}}>
+                                            variant="outlined"/>
+                                        <Typography variant='title' align='center' style={{color: amber[900]}}>
                                             Wybierz swój abonament:
                                         </Typography>
                                         <TextField
@@ -298,37 +303,56 @@ class UserPanel extends Component {
                                                 },
                                             }}
                                             margin="normal"
-                                            variant="outlined"
-                                        >
+                                            variant="outlined">
                                             {subscription.map(option => (
                                                 <MenuItem key={option.value} value={option.value}>
                                                     {option.label}
                                                 </MenuItem>
                                             ))}
                                         </TextField>
-
-                                            <Button
-                                                onClick={this.handleClickSend}
-                                                variant='contained'
-                                                color='primary'
+                                        <Button
+                                            onClick={this.handleClickSend}
+                                            variant='contained'
+                                            color='primary'
                                             className={classes.button}>
-                                                {this.props.form ? 'Zapisz zmiany' : 'Zapisz dane'}
-                                            </Button>
+                                            {this.props.form ? 'Zapisz zmiany' : 'Zapisz dane'}
+                                        </Button>
+                                        <Dialog
+                                            open={this.state.message}
+                                            onClose={this.handleCloseMessage}
+                                            aria-labelledby="alert-dialog-title"
+                                            aria-describedby="alert-dialog-description">
+                                            <DialogTitle style={{backgroundColor: amber[800]}}>
+                                                <Typography component="h1" variant="headline" align='center' color='secondary'>
+                                                    Wysłane!
+                                                </Typography>
+                                                <br/>
+                                                <Divider/>
+                                                <br/>
+                                                <DialogActions>
+                                                    <Button color='secondary' onClick={this.handleCloseMessage} className={classes.confirmation}
+                                                    >
+                                                        Zamknij
+                                                    </Button>
+                                                </DialogActions>
+                                            </DialogTitle>
+
+                                        </Dialog>
 
                                     </Paper>
                                 </Grid>
-                                <Grid item xs={7}>
+                                <Grid item xs={12} md={6} lg={7}>
                                     <Subscription form={this.state.form}/>
-                            <BmiNote handleClickOpen={this.handleClickOpen}/>
-
+                                    <BmiNote handleClickOpen={this.handleClickOpen}/>
                                 </Grid>
                             </Grid>
                         </Grid>
-                       <BmiInfo form={this.state.form} open={this.state.open} handleClose={this.handleClose} />
+                        <BmiInfo form={this.state.form} open={this.state.open} handleClose={this.handleClose}/>
                     </main>
                 </div>
             </Fragment>
-        )}
+        )
+    }
 }
 
 const mapStateToProps = state => ({
