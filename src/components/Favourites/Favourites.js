@@ -30,10 +30,8 @@ class Favourites extends Component {
     };
 
     getDiets() {
-        console.log(this.props.diets, this.props.favs);
         if (!!this.props.diets && !!this.props.favs) {
             const favsKeys = Object.keys(this.props.favs);
-            /* debugger;*/
             return this.props.diets.filter(diet => {
                 return favsKeys.includes(diet.id.toString());
             });
