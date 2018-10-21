@@ -12,7 +12,7 @@ const SectionCarousel = () => {
     const carouselParameters = {
 
 
-        width: "1201",
+        width: 1201,
         autoplay: true,
         wrapAround: true,
         initialSlideHeight: 400,
