@@ -15,7 +15,7 @@ const styles = theme => ({
     },
 
     media: {
-        height: 240,
+        height: 245,
     },
 
     gridElementCenter: {
@@ -32,7 +32,7 @@ class Subscription extends Component {
 
         return (
             <Fragment>
-                <Grid item xs={12} style={{marginTop: 32}} container className={classes.gridElementCenter}>
+                <Grid item xs={12}  md={12}  style={{marginTop: 32}} container className={classes.gridElementCenter}>
                     <Grid container spacing={24}>
                         <Grid item xs>
                             <Paper>

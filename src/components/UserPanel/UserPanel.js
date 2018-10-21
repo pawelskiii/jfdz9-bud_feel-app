@@ -122,8 +122,9 @@ class UserPanel extends Component {
         open: false,
     };
 
+
     handleClickSend = () => {
-            firebase.database().ref(`/users/${firebase.auth().currentUser.uid}/form`).set(this.state.form)
+        firebase.database().ref(`/users/${firebase.auth().currentUser.uid}/form`).set(this.state.form)
     };
 
     handleClickOpen = () => {
@@ -167,15 +168,15 @@ class UserPanel extends Component {
                     <main className={classes.content}>
                         <div className={classes.toolbar}/>
                         <Grid container spacing={24}>
-                            <Grid item xs={12}
+                            <Grid item xs={12}>
                                 <Typography variant='display3' color='primary' align='center'>Moje dane</Typography>
                             </Grid>
                             <Grid container spacing={24}>
 
-                                <Grid item xs={5}>
+                                <Grid item  xs={12} md={6} lg={5}>
                                     <Paper className={classes.paper} style={{marginTop: 32}}>
-                                        <Typography component="h2" variant="headline" align='center' paragraph={true} style={{color:amber[900]}}>
-                                            Cześć {this.state.form.nickName}, cieszymy się, że dalej walczysz z nami!
+                                        <Typography component="h2" variant="headline" align='center' paragraph={true} >
+                                            Cześć <strong style={{color:amber[900]}}>{this.state.form.nickName}</strong>, cieszymy się, że walczysz z nami!
                                         </Typography>
                                         <TextField
                                             required
@@ -317,7 +318,7 @@ class UserPanel extends Component {
 
                                     </Paper>
                                 </Grid>
-                                <Grid item xs={7}>
+                                <Grid item  xs={12} md={6} lg={7}>
                                     <Subscription form={this.state.form}/>
                             <BmiNote handleClickOpen={this.handleClickOpen}/>
 

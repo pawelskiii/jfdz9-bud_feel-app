@@ -9,6 +9,7 @@
     "firebase": "^5.5.4",
     "nuka-carousel": "^4.4.0",
     "react": "^16.4.2",
+    "react-chartjs": "git://github.com/reactjs/react-chartjs.git#chartjs-v2",
     "react-chartjs-2": "^2.7.4",
     "react-dom": "^16.4.2",
     "react-redux": "^5.0.7",

@@ -48,7 +48,16 @@ const data = {
             '#FF6F00',
             '#FF6F00'
         ]
-    }]
+    }],
+
+    options: {
+        legend: {
+            display: true,
+            labels: {
+                fontSize: '40rem'
+            }
+        }
+    }
 };
 
 const donat = {
@@ -69,7 +78,19 @@ const donat = {
             '#FF6F00',
             '#FF6F00'
         ]
-    }]
+    }],
+
+
+
+    options: {
+        maintainAspectRatio: false,
+
+
+            labels: {
+                fontSize: '40rem'
+            }
+
+    }
 };
 
 class Dashboard extends Component {

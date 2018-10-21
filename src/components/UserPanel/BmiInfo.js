@@ -48,9 +48,16 @@ class BmiInfo extends Component {
                 aria-describedby="alert-dialog-description"
                     >
             <DialogTitle>
-            <Typography component="h2" variant="headline" style={{color:amber[900]}}>
-                Twoje BMI wynosi:   {(this.props.form.weight/(this.props.form.height/100*this.props.form.height/100)).toFixed(2)}
-            </Typography>
+                {this.props.form.weight !== '' && this.props.form.height !== '' ?
+                    <Typography component="h2" variant="headline" style={{color: amber[900]}}>
+                        Twoje BMI
+                        wynosi: {(this.props.form.weight / (this.props.form.height / 100 * this.props.form.height / 100)).toFixed(2)}
+                    </Typography>
+                    :
+                    <Typography component="h2" variant="headline" style={{color: amber[900]}}>
+                        Wpisz swoją wagę i wzrost!
+                    </Typography>
+                }
             </DialogTitle>
                 <DialogContent>
                     <Paper className={classes.root}>
@@ -90,11 +97,12 @@ class BmiInfo extends Component {
                         </Paper>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={this.props.handleClose} color="green">
+                    <Button onClick={this.props.handleClose}>
                         Zamknij
                     </Button>
                     </DialogActions>
                 </Dialog>
+
         )}
 }
 

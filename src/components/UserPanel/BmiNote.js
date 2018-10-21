@@ -28,11 +28,11 @@ class BmiNote extends Component {
 
         return (
             <Fragment>
-                <Paper className={classes.info} style={{marginTop:32, backgroundColor: blueGrey[900]}}>
+                <Paper className={classes.info} style={{marginTop:16, backgroundColor: blueGrey[900]}}>
                     <Typography variant='display1' style={{color:'white'}} align='center'>Chcesz poznać swoje BMI?</Typography>
                 </Paper>
                 <Paper className={classes.info} style={{marginTop:24}}>
-                    <Typography component="h2" variant="headline" paragraph={true} style={{color:amber[900]}} align='center'>
+                    <Typography itcomponent="h2" variant="headline" paragraph={true} style={{color:amber[900]}} align='center'>
                         Co to jest BMI?
                     </Typography>
                     <Typography variant="title"  paragraph={true} align='center' style={{color:blueGrey[800]}}>
@@ -54,6 +54,7 @@ class BmiNote extends Component {
                             >
                             Oblicz swoje BMI
                         </Button>
+
                 </Paper>
             </Fragment>
         )
