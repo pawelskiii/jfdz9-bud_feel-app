@@ -13,6 +13,10 @@ import slim3 from '../../assets/slim3.jpeg';
 import mass from '../../assets/mass.jpeg';
 import fit from '../../assets/fit.jpg';
 
+import IconButton from '@material-ui/core/IconButton';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import firebase from 'firebase';
+
 const styles = {
     card: {
         width: 350,
@@ -47,9 +51,35 @@ const getImage = (dietType) => {
 };
 
 class DietCard extends Component {
+
+    state = {
+        isToggleOn: false,
+    };
+
+
+    handleClick = () => {
+        this.setState({
+            isToggleOn: !this.state.isToggleOn,
+
+        });
+
+
+        this.state.isToggleOn
+            ?
+            firebase.database().ref(`/users/${firebase.auth().currentUser.uid}/favs/${this.props.diet.id}`).set(true)
+            :
+            firebase.database().ref(`/users/${firebase.auth().currentUser.uid}/favs/${this.props.diet.id}`).remove()
+    };
+
     render() {
         const {dietType, diet: {id, name, description, createdAt, age, weight, period, proposalMeals}} = this.props;
         const {classes} = this.props;
+
+        if (this.state.isToggleOn === true) {
+            console.log('kliknieto', this.state.isToggleOn)
+        } else {
+            console.log('nie klikniety', this.state.isToggleOn)
+        }
 
         return (
             <Grid item key={id}>
@@ -61,7 +91,12 @@ class DietCard extends Component {
                         title={dietType}
                     />}
                     <CardContent className={classes.content}>
-                        <Typography variant='headline' gutterBottom>{name}</Typography>
+                        <Typography variant='headline' gutterBottom>
+                            {name}
+                            <IconButton aria-label="Add to favorites" onClick={this.handleClick}>
+                                <FavoriteIcon style={{color: this.state.isToggleOn ? 'orange' : ''}}/>
+                            </IconButton>
+                        </Typography>
                         <Divider/>
                         <Table padding='none'>
                             <TableBody>

@@ -22,6 +22,23 @@ firebase.auth().onAuthStateChanged(user => {
     });
 });
 
+let ref2;
+firebase.auth().onAuthStateChanged(user => {
+    if (user !== null) {
+        ref2 = firebase.database().ref(`/users/${user.uid}/favs/`);
+        ref2.on('value', snapshot => {
+            store.dispatch({
+                type: 'FAVS/SET_FAVS',
+                favs: snapshot.val()
+            })})
+    } else {
+        if (ref2) {
+            ref2.off('value');
+            ref2 = undefined;
+        }
+    }
+});
+
 firebase.database().ref('/data/diets').on('value', snapshot => {
     store.dispatch({
         type: 'DIETS/SET_DIETS',

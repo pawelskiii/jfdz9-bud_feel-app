@@ -28,7 +28,7 @@ class DietCards extends Component {
 
         return (
             <Grid container className={classes.gridElementCenter}>
-                {(diets !== undefined)
+                {(!!diets)
                     ? diets.map(diet =>
                         <DietTableRow
                             diet={diet}
