@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {withStyles} from '@material-ui/core/styles';
 import {Card, CardMedia, CardContent, Typography, Grid, Divider} from '@material-ui/core';
 
+import amber from '@material-ui/core/colors/amber';
+
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -81,7 +83,7 @@ class DietCard extends Component {
                         <Typography variant='headline' gutterBottom>
                             {name}
                             <IconButton aria-label="Add to favorites" onClick={this.handleClick}>
-                                <FavoriteIcon style={{color: (this.props.favs !== undefined && this.props.favs !== null && Object.keys(this.props.favs).includes(id)) ? 'red' : ''}}/>
+                                <FavoriteIcon style={{color: (this.props.favs !== undefined && this.props.favs !== null && Object.keys(this.props.favs).includes(id)) ? amber[800] : ''}}/>
                             </IconButton>
                         </Typography>
                         <Divider/>
