@@ -48,7 +48,7 @@ const data = {
             '#FF6F00',
             '#FF6F00'
         ]
-    }]
+    }],
 };
 
 const donat = {
@@ -69,7 +69,8 @@ const donat = {
             '#FF6F00',
             '#FF6F00'
         ]
-    }]
+    }],
+
 };
 
 class Dashboard extends Component {
@@ -142,7 +143,7 @@ class Dashboard extends Component {
                                         Liczne grono zadowolonych klientów
                                     </Typography>
                                 </CardContent>
-                                <Doughnut data={donat} />
+                                <Doughnut data={donat}/>
                             </Paper>
                         </Grid>
                     </Grid>
