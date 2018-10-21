@@ -7,6 +7,7 @@ import slide_1 from '../../../assets/intoduction.jpg';
 import slide_2 from '../../../assets/intoduction2.jpg';
 import slide_3 from '../../../assets/intoduction3.jpg';
 
+
 /*
 const styles = theme => ({
     defaultButtonStyles: {
@@ -23,27 +24,25 @@ const SectionCarousel = () => {
     const carouselParameters = {
 
 
-        width: "50%",
-        style: {
-            alignItems: "center"
-        },
+        width: "90%",
         autoplay: true,
         wrapAround: true,
-        withoutControls: true,
+        initialSlideHeight: 400,
+
     };
 
     return (
-        <div class="testBorder">
+        <div class="carousel-border">
             <Carousel
                 width={carouselParameters.width}
                 autoplay={carouselParameters.autoplay}
                 wrapAround={carouselParameters.wrapAround}
-                withoutControls={carouselParameters.withoutControls}
-                style={carouselParameters.style}
+                initialSlideHeight={carouselParameters.initialSlideHeight}
             >
                 <img src={slide_1}/>
                 <img src={slide_2}/>
                 <img src={slide_3}/>
+
             </Carousel>
         </div>
     );
