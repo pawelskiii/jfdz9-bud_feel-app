@@ -1,16 +1,12 @@
 import React from 'react';
-import {withStyles} from '@material-ui/core/styles';
-import {
-    // ListItem,
-    //ListItemIcon,
-    //ListItemText,
-    //Divider,
-    //List,
-    Drawer } from '@material-ui/core';
-//import InboxIcon from '@material-ui/icons/Inbox';
-//import DraftsIcon from '@material-ui/icons/Drafts';
+import Drawer from '@material-ui/core/Drawer';
+import {withStyles, MuiThemeProvider, createMuiTheme} from '@material-ui/core/styles';
+import {Link} from 'react-router-dom';
+import Button from '@material-ui/core/Button';
+import amber from '@material-ui/core/colors/amber';
+import blueGrey from '@material-ui/core/colors/blueGrey';
+import {connect} from "react-redux";
 
-import { Link } from 'react-router-dom';
 
 const drawerWidth = 200;
 
@@ -18,14 +14,39 @@ const styles = theme => ({
     drawerPaper: {
         position: 'relative',
         width: drawerWidth,
+        backgroundColor: blueGrey[900],
     },
     toolbar: theme.mixins.toolbar,
+
+    list: {
+        margin: theme.spacing.unit * 2,
+        marginTop: 16,
+        listStyle: 'none',
+        textAlign: 'center'
+    },
+    listContainer: {
+        margin: 0,
+        padding: 0,
+    },
+    button: {
+        width: 160
+    },
 });
+
+
+const theme = createMuiTheme({
+    palette: {
+        primary: amber,
+        secondary: blueGrey
+    }
+});
+
 
 function Sidebar(props) {
     const {classes} = props;
 
     return (
+
         <Drawer
             variant="permanent"
             classes={{
@@ -33,19 +54,65 @@ function Sidebar(props) {
             }}
         >
             <div className={classes.toolbar}/>
-            <nav>
-                <ul>
-                    <li><Link to="/">Strona Główna</Link></li>
-                    <li><Link to="/UserPanel">Moje Ustawienia</Link></li>
-                    <li><Link to="/Favourites">Moje ulubione</Link></li>
-                    <li><Link to="/diets">Wybór diet</Link></li>
-                    <li><Link to="/AddDiet">Dodaj dietę</Link></li>
+            {props.user !== null && <MuiThemeProvider theme={theme}>
+                <ul className={classes.listContainer}>
+                    <li className={classes.list}>
+                        <Link to="/" style={{textDecoration: 'none'}}>
+                            <Button variant="contained"
+                                    style={{backgroundColor: amber[900], color: blueGrey[800]}}
+                                    className={classes.button}>
+                                Strona Główna
+                            </Button>
+                        </Link>
+                    </li>
+                    <li className={classes.list}>
+                        <Link to="/UserPanel" style={{textDecoration: 'none'}}>
+                            <Button variant="contained"
+                                    style={{backgroundColor: amber[800], color: blueGrey[800]}}
+                                    className={classes.button}>
+                                Moje Dane
+                            </Button>
+                        </Link>
+                    </li>
+                    <li className={classes.list}>
+                        <Link to="/Favourites" style={{textDecoration: 'none'}}>
+                            <Button variant="contained"
+                                    style={{backgroundColor: amber[700], color: blueGrey[800]}}
+                                    className={classes.button}>
+                                Moje ulubione
+                            </Button>
+                        </Link>
+                    </li>
+                    <li className={classes.list}>
+                        <Link to="/diets" style={{textDecoration: 'none'}}>
+                            <Button variant="contained"
+                                    style={{backgroundColor: amber[600], color: blueGrey[800]}}
+                                    className={classes.button}>
+                                Wybór diet
+                            </Button>
+                        </Link>
+                    </li>
+                    <li className={classes.list}>
+                        <Link to="/AddDiet" style={{textDecoration: 'none'}}>
+                            <Button variant="contained"
+                                    style={{backgroundColor: amber[500], color: blueGrey[800]}}
+                                    className={classes.button}>
+                                Dodaj dietę
+                            </Button>
+                        </Link>
+                    </li>
                 </ul>
-            </nav>
 
 
+            </MuiThemeProvider>}
         </Drawer>
     );
 }
 
-export default withStyles(styles)(Sidebar);
+const mapStateToProps = state => ({
+    user: state.auth.user
+});
+
+export default connect(
+    mapStateToProps
+)(withStyles(styles)(Sidebar));

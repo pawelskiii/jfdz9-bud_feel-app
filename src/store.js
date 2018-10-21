@@ -22,19 +22,19 @@ firebase.auth().onAuthStateChanged(user => {
     });
 });
 
-let ref;
+let ref2;
 firebase.auth().onAuthStateChanged(user => {
     if (user !== null) {
-        ref = firebase.database().ref(`/users/${user.uid}/favs/`);
-        ref.on('value', snapshot => {
+        ref2 = firebase.database().ref(`/users/${user.uid}/favs/`);
+        ref2.on('value', snapshot => {
             store.dispatch({
                 type: 'FAVS/SET_FAVS',
                 favs: snapshot.val()
             })})
     } else {
-        if (ref) {
-            ref.off('value');
-            ref = undefined;
+        if (ref2) {
+            ref2.off('value');
+            ref2 = undefined;
         }
     }
 });
@@ -53,6 +53,23 @@ firebase.database().ref('/data/types').on('value', snapshot => {
     })
 });
 
+
+let ref;
+firebase.auth().onAuthStateChanged(user => {
+    if (user !== null) {
+        ref = firebase.database().ref(`/users/${user.uid}`);
+        ref.on('value', snapshot => {
+            store.dispatch({
+                type: 'FORM/SET_FORM',
+                form: snapshot.val()
+            })})
+    } else {
+        if (ref) {
+            ref.off('value');
+            ref = undefined;
+        }
+    }
+});
 
 
 export default store ;

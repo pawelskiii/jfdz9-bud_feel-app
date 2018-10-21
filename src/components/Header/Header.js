@@ -38,9 +38,12 @@ class Header extends Component {
                             this.props.user ?
                                 <Fragment>
                                     <div style={{marginLeft: 'auto'}}>
-                                        <Button color="inherit" onClick={() => firebase.auth().signOut()}>
-                                            Sign Out
-                                        </Button>
+                                        <Link to='/' style={{textDecorationLine: 'none'}}>
+                                            <Button color="secondary" onClick={() => firebase.auth().signOut()}>
+                                                Sign Out
+                                            </Button>
+                                        </Link>
+
                                     </div>
                                 </Fragment> :
                                 <Fragment>
