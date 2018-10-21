@@ -56,9 +56,11 @@ class DietCard extends Component {
     handleClick = () => {
 
         (this.props.favs !== undefined)
-            ? Object.keys(this.props.favs).includes(this.props.diet.id)
-                ? firebase.database().ref(`/users/${firebase.auth().currentUser.uid}/favs/${this.props.diet.id}`).remove()
-                : firebase.database().ref(`/users/${firebase.auth().currentUser.uid}/favs/${this.props.diet.id}`).set(true)
+            ? this.props.favs === null
+                ? firebase.database().ref(`/users/${firebase.auth().currentUser.uid}/favs/${this.props.diet.id}`).set(true)
+                : Object.keys(this.props.favs).includes(this.props.diet.id)
+                    ? firebase.database().ref(`/users/${firebase.auth().currentUser.uid}/favs/${this.props.diet.id}`).remove()
+                    : firebase.database().ref(`/users/${firebase.auth().currentUser.uid}/favs/${this.props.diet.id}`).set(true)
             : null
     };
 
@@ -79,7 +81,7 @@ class DietCard extends Component {
                         <Typography variant='headline' gutterBottom>
                             {name}
                             <IconButton aria-label="Add to favorites" onClick={this.handleClick}>
-                                <FavoriteIcon style={{color: (this.props.favs !== undefined && this.props.favs.length !== 0 && Object.keys(this.props.favs).includes(id)) ? 'red' : ''}}/>
+                                <FavoriteIcon style={{color: (this.props.favs !== undefined && this.props.favs !== null && Object.keys(this.props.favs).includes(id)) ? 'red' : ''}}/>
                             </IconButton>
                         </Typography>
                         <Divider/>
