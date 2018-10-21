@@ -143,10 +143,6 @@ class AddDiet extends Component {
             data: {
                 ...this.state.data,
                 [prop]: event.target.value,
-            },
-            value: {
-                ...this.state.value,
-                [prop]: event.target.value
             }
         })
     };
@@ -168,6 +164,7 @@ class AddDiet extends Component {
             this.setState({
                 data: {
                     ...this.state.data,
+                    [prop]: event.target.value,
                 },
                 error: {
                     ...this.state.error,
@@ -178,6 +175,7 @@ class AddDiet extends Component {
             this.setState({
                 data: {
                     ...this.state.data,
+                    [prop]: event.target.value,
                 },
                 error: {
                     ...this.state.error,
@@ -225,7 +223,10 @@ class AddDiet extends Component {
             this.setState({
                 data: {
                     ...this.state.data,
-                    weight: {...this.state.data.weight}
+                    weight: {
+                        ...this.state.data.weight,
+                        [prop]: event.target.value
+                    }
                 },
                 error: {
                     ...this.state.error,
@@ -236,7 +237,10 @@ class AddDiet extends Component {
             this.setState({
                 data: {
                     ...this.state.data,
-                    weight: {...this.state.data.weight}
+                    weight: {
+                        ...this.state.data.weight,
+                        [prop]: event.target.value
+                    }
                 },
                 error: {
                     ...this.state.error,
@@ -270,7 +274,10 @@ class AddDiet extends Component {
             this.setState({
                 data: {
                     ...this.state.data,
-                    weight: {...this.state.data.weight}
+                    weight: {
+                        ...this.state.data.weight,
+                        [prop]: event.target.value
+                    }
                 },
                 error: {
                     ...this.state.error,
@@ -281,7 +288,10 @@ class AddDiet extends Component {
             this.setState({
                 data: {
                     ...this.state.data,
-                    weight: {...this.state.data.weight}
+                    weight: {
+                        ...this.state.data.weight,
+                        [prop]: event.target.value
+                    }
                 },
                 error: {
                     ...this.state.error,
@@ -311,7 +321,10 @@ class AddDiet extends Component {
             this.setState({
                 data: {
                     ...this.state.data,
-                    age: {...this.state.data.age}
+                    age: {
+                        ...this.state.data.age,
+                        [prop]: event.target.value
+                    }
                 },
                 error: {
                     ...this.state.error,
@@ -322,7 +335,10 @@ class AddDiet extends Component {
             this.setState({
                 data: {
                     ...this.state.data,
-                    age: {...this.state.data.age}
+                    age: {
+                        ...this.state.data.age,
+                        [prop]: event.target.value
+                    }
                 },
                 error: {
                     ...this.state.error,
@@ -352,7 +368,10 @@ class AddDiet extends Component {
             this.setState({
                 data: {
                     ...this.state.data,
-                    age: {...this.state.data.age}
+                    age: {
+                        ...this.state.data.age,
+                        [prop]: event.target.value
+                    }
                 },
                 error: {
                     ...this.state.error,
@@ -363,7 +382,10 @@ class AddDiet extends Component {
             this.setState({
                 data: {
                     ...this.state.data,
-                    age: {...this.state.data.age}
+                    age: {
+                        ...this.state.data.age,
+                        [prop]: event.target.value
+                    }
                 },
                 error: {
                     ...this.state.error,
@@ -393,7 +415,10 @@ class AddDiet extends Component {
             this.setState({
                 data: {
                     ...this.state.data,
-                    proposalMeals: {...this.state.data.proposalMeals}
+                    proposalMeals: {
+                        ...this.state.data.proposalMeals,
+                        [prop]: event.target.value
+                    }
                 },
                 error: {
                     ...this.state.error,
@@ -404,7 +429,10 @@ class AddDiet extends Component {
             this.setState({
                 data: {
                     ...this.state.data,
-                    proposalMeals: {...this.state.data.proposalMeals}
+                    proposalMeals: {
+                        ...this.state.data.proposalMeals,
+                        [prop]: event.target.value
+                    }
                 },
                 error: {
                     ...this.state.error,
@@ -434,7 +462,10 @@ class AddDiet extends Component {
             this.setState({
                 data: {
                     ...this.state.data,
-                    proposalMeals: {...this.state.data.proposalMeals}
+                    proposalMeals: {
+                        ...this.state.data.proposalMeals,
+                        [prop]: event.target.value
+                    }
                 },
                 error: {
                     ...this.state.error,
@@ -445,7 +476,10 @@ class AddDiet extends Component {
             this.setState({
                 data: {
                     ...this.state.data,
-                    proposalMeals: {...this.state.data.proposalMeals}
+                    proposalMeals: {
+                        ...this.state.data.proposalMeals,
+                        [prop]: event.target.value
+                    }
                 },
                 error: {
                     ...this.state.error,
@@ -475,7 +509,10 @@ class AddDiet extends Component {
             this.setState({
                 data: {
                     ...this.state.data,
-                    proposalMeals: {...this.state.data.proposalMeals}
+                    proposalMeals: {
+                        ...this.state.data.proposalMeals,
+                        [prop]: event.target.value
+                    }
                 },
                 error: {
                     ...this.state.error,
@@ -486,7 +523,10 @@ class AddDiet extends Component {
             this.setState({
                 data: {
                     ...this.state.data,
-                    proposalMeals: {...this.state.data.proposalMeals}
+                    proposalMeals: {
+                        ...this.state.data.proposalMeals,
+                        [prop]: event.target.value
+                    }
                 },
                 error: {
                     ...this.state.error,
@@ -516,7 +556,10 @@ class AddDiet extends Component {
             this.setState({
                 data: {
                     ...this.state.data,
-                    proposalMeals: {...this.state.data.proposalMeals}
+                    proposalMeals: {
+                        ...this.state.data.proposalMeals,
+                        [prop]: event.target.value
+                    }
                 },
                 error: {
                     ...this.state.error,
@@ -527,7 +570,10 @@ class AddDiet extends Component {
             this.setState({
                 data: {
                     ...this.state.data,
-                    proposalMeals: {...this.state.data.proposalMeals}
+                    proposalMeals: {
+                        ...this.state.data.proposalMeals,
+                        [prop]: event.target.value
+                    }
                 },
                 error: {
                     ...this.state.error,
@@ -557,7 +603,10 @@ class AddDiet extends Component {
             this.setState({
                 data: {
                     ...this.state.data,
-                    proposalMeals: {...this.state.data.proposalMeals}
+                    proposalMeals: {
+                        ...this.state.data.proposalMeals,
+                        [prop]: event.target.value
+                    }
                 },
                 error: {
                     ...this.state.error,
@@ -568,7 +617,10 @@ class AddDiet extends Component {
             this.setState({
                 data: {
                     ...this.state.data,
-                    proposalMeals: {...this.state.data.proposalMeals}
+                    proposalMeals: {
+                        ...this.state.data.proposalMeals,
+                        [prop]: event.target.value
+                    }
                 },
                 error: {
                     ...this.state.error,
@@ -676,29 +728,21 @@ class AddDiet extends Component {
                                         className={classes.textField}
                                         error={this.state.error.errorName !== 'Potrzebujemy tych danych*' && this.state.error.errorName.length !== 0}
                                         helperText={this.state.error.errorName}
-                                        margin="normal"
-                                        id="outlined-name"
                                         label="Nazwa diety"
                                         variant="outlined"
                                         value={this.state.data.name}
                                         onChange={this.handleChangeName('name')}
                                     />
-
                                     <TextField
                                         className={classes.textField}
-                                        margin="normal"
-                                        id="outlined-description"
                                         label="Opis diety"
                                         variant="outlined"
                                         value={this.state.data.description}
                                         onChange={this.handleChange('description')}
                                     />
-
                                     <TextField
                                         select
                                         className={classes.textField}
-                                        margin="normal"
-                                        id="outlined-type"
                                         label="Typ diety"
                                         variant="outlined"
                                         value={this.state.data.typeId === 1 ? 'masa' : this.state.data.typeId === 2 ? 'utrzymanie' : this.state.data.typeId === 3 ? 'redukcja' : ''}
@@ -707,12 +751,9 @@ class AddDiet extends Component {
                                         {(types !== undefined) && types.map(type => <MenuItem value={type.value}
                                                                                               key={type.value}>{type.label}</MenuItem>)}
                                     </TextField>
-
                                     <TextField
                                         select
                                         className={classes.textField}
-                                        margin="normal"
-                                        id="outlined-time"
                                         label="Czas trwania"
                                         variant="outlined"
                                         value={this.state.data.period === 7 ? '7 dni' : this.state.data.period === 14 ? '14 dni' : this.state.data.period === 28 ? '28 dni' : ''}
@@ -721,115 +762,87 @@ class AddDiet extends Component {
                                         {(time !== undefined) && time.map(type => <MenuItem value={type.value}
                                                                                             key={type.value}>{type.label}</MenuItem>)}
                                     </TextField>
-
                                     <TextField
                                         className={classes.textFieldLeft}
                                         error={this.state.error.errorWeightMin !== 'Potrzebujemy tych danych*' && this.state.error.errorWeightMin.length !== 0}
                                         helperText={this.state.error.errorWeightMin}
-                                        margin="normal"
-                                        id="outlined-min-weight"
                                         label="Min waga"
                                         variant="outlined"
                                         value={this.state.data.weight.min}
                                         onChange={this.onWeightChangeMin('min')}
                                     />
-
                                     <TextField
                                         className={classes.textFieldRight}
                                         error={this.state.error.errorWeightMax !== 'Potrzebujemy tych danych*' && this.state.error.errorWeightMax.length !== 0}
                                         helperText={this.state.error.errorWeightMax}
-                                        margin="normal"
-                                        id="outlined-max-weight"
                                         label="Max waga"
                                         variant="outlined"
                                         value={this.state.data.weight.max}
                                         onChange={this.onWeightChangeMax('max')}
                                     />
-
                                     <TextField
                                         className={classes.textFieldLeft}
                                         error={this.state.error.errorAgeMin !== 'Potrzebujemy tych danych*' && this.state.error.errorAgeMin.length !== 0}
                                         helperText={this.state.error.errorAgeMin}
-                                        margin="normal"
-                                        id="outlined-min-age"
                                         label="Min wiek"
                                         variant="outlined"
                                         value={this.state.data.age.min}
                                         onChange={this.onAgeChangeMin('min')}
                                     />
-
                                     <TextField
                                         className={classes.textFieldRight}
                                         error={this.state.error.errorAgeMax !== 'Potrzebujemy tych danych*' && this.state.error.errorAgeMax.length !== 0}
                                         helperText={this.state.error.errorAgeMax}
-                                        margin="normal"
-                                        id="outlined-max-age"
                                         label="Max wiek"
                                         variant="outlined"
                                         value={this.state.data.age.max}
                                         onChange={this.onAgeChangeMax('max')}
                                     />
-
                                     <TextField
                                         className={classes.textField}
                                         error={this.state.error.errorProposalBreakfast !== 'Potrzebujemy tych danych*' && this.state.error.errorProposalBreakfast.length !== 0}
                                         helperText={this.state.error.errorProposalBreakfast}
-                                        margin="normal"
-                                        id="outlined-breakfast"
                                         label="Propozycja śniadania"
                                         variant="outlined"
                                         value={this.state.data.proposalMeals.breakfast}
                                         onChange={this.onProposalBreakfast('breakfast')}
                                     />
-
                                     <TextField
                                         className={classes.textField}
                                         error={this.state.error.errorProposalLunch !== 'Potrzebujemy tych danych*' && this.state.error.errorProposalLunch.length !== 0}
                                         helperText={this.state.error.errorProposalLunch}
-                                        margin="normal"
-                                        id="outlined-lunch"
                                         label="Propozycja lunchu"
                                         variant="outlined"
                                         value={this.state.data.proposalMeals.lunch}
                                         onChange={this.onProposalLunch('lunch')}
                                     />
-
                                     <TextField
                                         className={classes.textField}
                                         error={this.state.error.errorProposalDinner !== 'Potrzebujemy tych danych*' && this.state.error.errorProposalDinner.length !== 0}
                                         helperText={this.state.error.errorProposalDinner}
-                                        margin="normal"
-                                        id="outlined-dinner"
                                         label="Propozycja obiadu"
                                         variant="outlined"
                                         value={this.state.data.proposalMeals.dinner}
                                         onChange={this.onProposalDinner('dinner')}
                                     />
-
                                     <TextField
                                         className={classes.textField}
                                         error={this.state.error.errorProposalDessert !== 'Potrzebujemy tych danych*' && this.state.error.errorProposalDessert.length !== 0}
                                         helperText={this.state.error.errorProposalDessert}
-                                        margin="normal"
-                                        id="outlined-dessert"
                                         label="Propozycja deseru"
                                         variant="outlined"
                                         value={this.state.data.proposalMeals.dessert}
                                         onChange={this.onProposalDessert('dessert')}
                                     />
-
                                     <TextField
                                         className={classes.textField}
                                         error={this.state.error.errorProposalSupper !== 'Potrzebujemy tych danych*' && this.state.error.errorProposalSupper.length !== 0}
                                         helperText={this.state.error.errorProposalSupper}
-                                        margin="normal"
-                                        id="outlined-supper"
                                         label="Propozycja kolacji"
                                         variant="outlined"
                                         value={this.state.data.proposalMeals.supper}
                                         onChange={this.onProposalSupper('supper')}
                                     />
-
                                     <Button
                                         type='submit'
                                         variant="contained"
