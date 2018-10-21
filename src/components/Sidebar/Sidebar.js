@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import Drawer from '@material-ui/core/Drawer';
 import {withStyles, MuiThemeProvider, createMuiTheme} from '@material-ui/core/styles';
 import {Link} from 'react-router-dom';
@@ -52,73 +52,75 @@ function Sidebar(props) {
     const {classes} = props;
 
     return (
+        <Fragment>
+            {props.user !== null && <Drawer
+                variant="permanent"
+                classes={{
+                    paper: classes.drawerPaper,
+                }}
+            >
+                <div className={classes.toolbar}/>
+                {props.user === null && <Card style={{justifyContent: 'center', alignItems: 'center'}}>
+                    <CardMedia className={classes.media} image={or}/>
+                    <CardMedia className={classes.media} image={or}/>
+                    <CardMedia className={classes.media} image={or}/>
+                    <CardMedia className={classes.media} image={or}/>
+                    <CardMedia className={classes.media} image={or}/>
+                    <CardMedia className={classes.media} image={or}/>
+                    <CardMedia className={classes.media} image={or}/>
+                </Card>}
+                <MuiThemeProvider theme={theme}>
+                    <ul className={classes.listContainer}>
+                        <li className={classes.list}>
+                            <Link to="/" style={{textDecoration: 'none'}}>
+                                <Button variant="contained"
+                                        style={{backgroundColor: amber[900], color: blueGrey[800]}}
+                                        className={classes.button}>
+                                    Strona Główna
+                                </Button>
+                            </Link>
+                        </li>
+                        <li className={classes.list}>
+                            <Link to="/UserPanel" style={{textDecoration: 'none'}}>
+                                <Button variant="contained"
+                                        style={{backgroundColor: amber[800], color: blueGrey[800]}}
+                                        className={classes.button}>
+                                    Moje Dane
+                                </Button>
+                            </Link>
+                        </li>
+                        <li className={classes.list}>
+                            <Link to="/Favourites" style={{textDecoration: 'none'}}>
+                                <Button variant="contained"
+                                        style={{backgroundColor: amber[700], color: blueGrey[800]}}
+                                        className={classes.button}>
+                                    Moje ulubione
+                                </Button>
+                            </Link>
+                        </li>
+                        <li className={classes.list}>
+                            <Link to="/diets" style={{textDecoration: 'none'}}>
+                                <Button variant="contained"
+                                        style={{backgroundColor: amber[600], color: blueGrey[800]}}
+                                        className={classes.button}>
+                                    Wybór diet
+                                </Button>
+                            </Link>
+                        </li>
+                        <li className={classes.list}>
+                            <Link to="/AddDiet" style={{textDecoration: 'none'}}>
+                                <Button variant="contained"
+                                        style={{backgroundColor: amber[500], color: blueGrey[800]}}
+                                        className={classes.button}>
+                                    Dodaj dietę
+                                </Button>
+                            </Link>
+                        </li>
+                    </ul>
+                </MuiThemeProvider>
+            </Drawer>}
+        </Fragment>
 
-        <Drawer
-            variant="permanent"
-            classes={{
-                paper: classes.drawerPaper,
-            }}
-        >
-            <div className={classes.toolbar}/>
-            {props.user === null && <Card style={{justifyContent: 'center', alignItems: 'center'}}>
-                <CardMedia className={classes.media} image={or}/>
-                <CardMedia className={classes.media} image={or}/>
-                <CardMedia className={classes.media} image={or}/>
-                <CardMedia className={classes.media} image={or}/>
-                <CardMedia className={classes.media} image={or}/>
-                <CardMedia className={classes.media} image={or}/>
-                <CardMedia className={classes.media} image={or}/>
-            </Card>}
-            {props.user !== null && <MuiThemeProvider theme={theme}>
-                <ul className={classes.listContainer}>
-                    <li className={classes.list}>
-                        <Link to="/" style={{textDecoration: 'none'}}>
-                            <Button variant="contained"
-                                    style={{backgroundColor: amber[900], color: blueGrey[800]}}
-                                    className={classes.button}>
-                                Strona Główna
-                            </Button>
-                        </Link>
-                    </li>
-                    <li className={classes.list}>
-                        <Link to="/UserPanel" style={{textDecoration: 'none'}}>
-                            <Button variant="contained"
-                                    style={{backgroundColor: amber[800], color: blueGrey[800]}}
-                                    className={classes.button}>
-                                Moje Dane
-                            </Button>
-                        </Link>
-                    </li>
-                    <li className={classes.list}>
-                        <Link to="/Favourites" style={{textDecoration: 'none'}}>
-                            <Button variant="contained"
-                                    style={{backgroundColor: amber[700], color: blueGrey[800]}}
-                                    className={classes.button}>
-                                Moje ulubione
-                            </Button>
-                        </Link>
-                    </li>
-                    <li className={classes.list}>
-                        <Link to="/diets" style={{textDecoration: 'none'}}>
-                            <Button variant="contained"
-                                    style={{backgroundColor: amber[600], color: blueGrey[800]}}
-                                    className={classes.button}>
-                                Wybór diet
-                            </Button>
-                        </Link>
-                    </li>
-                    <li className={classes.list}>
-                        <Link to="/AddDiet" style={{textDecoration: 'none'}}>
-                            <Button variant="contained"
-                                    style={{backgroundColor: amber[500], color: blueGrey[800]}}
-                                    className={classes.button}>
-                                Dodaj dietę
-                            </Button>
-                        </Link>
-                    </li>
-                </ul>
-            </MuiThemeProvider>}
-        </Drawer>
     );
 }
 

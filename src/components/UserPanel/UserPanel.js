@@ -14,6 +14,7 @@ import Subscription from './Subscription';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import { Divider } from '@material-ui/core';
 
 
 const styles = theme => ({
@@ -54,6 +55,9 @@ const styles = theme => ({
         marginLeft: '25%',
         fontSize: 17,
     },
+    confirmation: {
+        width: 300,
+    }
 
 });
 
@@ -319,11 +323,15 @@ class UserPanel extends Component {
                                             aria-labelledby="alert-dialog-title"
                                             aria-describedby="alert-dialog-description">
                                             <DialogTitle style={{backgroundColor: amber[800]}}>
-                                                <Typography component="h1" variant="headline">
+                                                <Typography component="h1" variant="headline" align='center' color='secondary'>
                                                     Wysłane!
                                                 </Typography>
+                                                <br/>
+                                                <Divider/>
+                                                <br/>
                                                 <DialogActions>
-                                                    <Button onClick={this.handleCloseMessage}>
+                                                    <Button color='secondary' onClick={this.handleCloseMessage} className={classes.confirmation}
+                                                    >
                                                         Zamknij
                                                     </Button>
                                                 </DialogActions>
