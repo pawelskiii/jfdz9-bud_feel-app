@@ -78,9 +78,9 @@ class DietCard extends Component {
                         <CardContent>
                             <Typography variant='headline' gutterBottom>
                                 {name}
-                                    <IconButton aria-label="Add to favorites" onClick={this.handleClick}>
-                                        <FavoriteIcon />
-                                    </IconButton>
+                                <IconButton aria-label="Add to favorites" onClick={this.handleClick}>
+                                    <FavoriteIcon />
+                                </IconButton>
                             </Typography>
                             <Divider/>
                             <Typography variant='subheading'><b>Typ:</b> {dietType}</Typography>

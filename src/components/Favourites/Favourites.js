@@ -60,16 +60,25 @@ class Favourites extends Component {
 */
 
     getDiets() {
-        if (this.props.diets !== undefined && this.props.favs !== undefined && this.props.favs !== null && this.props.favs === true) {
+       console.log(this.props.diets, this.props.favs)
+        if (!!this.props.diets && !!this.props.favs) {
+            const favsKeys = Object.keys(this.props.favs)
+           /* debugger;*/
+            console.log("pelna tablica")
             return this.props.diets.filter(diet => {
-                return Object.keys(this.props.favs).includes(diet.id);
+                return favsKeys.includes(diet.id.toString());
                 // return console.log("diety" , el.id);
             });
             /*Object.keys(this.props.favs).forEach((el) => {
                 console.log("favsy" , el)
             });*/
+        } else {
+            console.log("pusta tablica")
+           return [] ;
         }
+
     }
+
 
     render() {
 
