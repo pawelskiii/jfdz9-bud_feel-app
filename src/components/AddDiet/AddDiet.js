@@ -7,6 +7,15 @@ import {amber, blueGrey} from '@material-ui/core/colors';
 import firebase from "firebase";
 import {connect} from "react-redux";
 import Foto from '../../assets/addDiets_foto.png';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import Slide from '@material-ui/core/Slide';
+
+function Transition(props) {
+    return <Slide direction="up" {...props} />;
+}
 
 const styles = theme => ({
     root: {
@@ -120,7 +129,9 @@ const superstate = {
         errorProposalDinner: 'Potrzebujemy tych danych*',
         errorProposalDessert: 'Potrzebujemy tych danych*',
         errorProposalSupper: 'Potrzebujemy tych danych*'
-    }
+    },
+    openError: false,
+    openAdd: false
 };
 
 class AddDiet extends Component {
@@ -560,17 +571,30 @@ class AddDiet extends Component {
     };
 
     handleSubmit = event => {
+        event.preventDefault();
         if (Object.values(this.state.error).every(el => el === '')) {
-            firebase.database().ref(`/data/diets/${this.props.diets.length}`).set({
-                ...this.state.data,
-                id: `${this.props.diets.length + 1}`
-            });
             this.setState({
-                superstate
+                openAdd: true
             })
         } else {
-            event.preventDefault();
+            this.setState({openError: true})
         }
+    };
+
+    handleCloseError = event => {
+        event.preventDefault();
+        this.setState({openError: false});
+    };
+
+    handleCloseAdd = () => {
+        firebase.database().ref(`/data/diets/${this.props.diets.length}`).set({
+            ...this.state.data,
+            id: `${this.props.diets.length + 1}`
+        });
+        this.setState({
+            superstate,
+            openAdd: false
+        });
     };
 
     render() {
@@ -580,6 +604,59 @@ class AddDiet extends Component {
                 <Sidebar/>
                 <main className={classes.content}>
                     <div className={classes.toolbar}/>
+
+                    <div>
+                        <Dialog
+                            open={this.state.openError}
+                            TransitionComponent={Transition}
+                            keepMounted
+                            onClose={this.handleCloseError}
+                        >
+                            <DialogContent>
+                                <DialogContentText style={{color: amber[900], fontSize: '2rem'}}>
+                                    Uzupełnij wszystkie wymagane pola!
+                                </DialogContentText>
+                            </DialogContent>
+                            <DialogContent>
+                                <DialogContentText style={{color: blueGrey[800], fontSize: '1.2rem'}}>
+                                    Nie uzupełniłeś wszystkich wymaganych pól. Aby dodać dietę uzupełnij te oznaczone
+                                    <em> Potrzebujemy tych danych*</em>.
+                                </DialogContentText>
+                            </DialogContent>
+                            <DialogActions>
+                                <Button onClick={this.handleCloseError} style={{color: amber[900]}}>
+                                    OK
+                                </Button>
+                            </DialogActions>
+                        </Dialog>
+                    </div>
+
+                    <div>
+                        <Dialog
+                            open={this.state.openAdd}
+                            TransitionComponent={Transition}
+                            keepMounted
+                            onClose={this.handleCloseAdd}
+                        >
+                            <DialogContent>
+                                <DialogContentText style={{color: amber[900], fontSize: '2rem'}}>
+                                    Gratulacje, dodałeś swoją dietę.
+                                </DialogContentText>
+                            </DialogContent>
+                            <DialogContent>
+                                <DialogContentText style={{color: blueGrey[800], fontSize: '1.2rem'}}>
+                                    Dziękujemy za dodanie diety. W przypadku chęci dodania kolejnej, po
+                                    kliknięciu <em>OK</em> będzie mógł to zrobić.
+                                </DialogContentText>
+                            </DialogContent>
+                            <DialogActions>
+                                <Button onClick={this.handleCloseAdd} style={{color: amber[900]}}>
+                                    OK
+                                </Button>
+                            </DialogActions>
+                        </Dialog>
+                    </div>
+
                     <Grid container>
                         <Grid item xs>
                             <Typography variant='display3' color='primary' align='center'>Dodaj dietę</Typography>
