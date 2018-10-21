@@ -56,10 +56,13 @@ class DietCard extends Component {
         isToggleOn: false,
     };
 
+
     handleClick = () => {
         this.setState({
-            isToggleOn: !this.state.isToggleOn
+            isToggleOn: !this.state.isToggleOn,
+
         });
+
 
         this.state.isToggleOn
             ?
@@ -72,6 +75,12 @@ class DietCard extends Component {
         const {dietType, diet: {id, name, description, createdAt, age, weight, period, proposalMeals}} = this.props;
         const {classes} = this.props;
 
+        if (this.state.isToggleOn === true) {
+            console.log('kliknieto', this.state.isToggleOn)
+        } else {
+            console.log('nie klikniety', this.state.isToggleOn)
+        }
+
         return (
             <Grid item key={id}>
                 <Card key={id} className={classes.card}>
@@ -82,7 +91,12 @@ class DietCard extends Component {
                         title={dietType}
                     />}
                     <CardContent className={classes.content}>
-                        <Typography variant='headline' gutterBottom>{name}</Typography>
+                        <Typography variant='headline' gutterBottom>
+                            {name}
+                            <IconButton aria-label="Add to favorites" onClick={this.handleClick}>
+                                <FavoriteIcon style={{color: this.state.isToggleOn ? 'orange' : ''}}/>
+                            </IconButton>
+                        </Typography>
                         <Divider/>
                         <Table padding='none'>
                             <TableBody>
@@ -92,9 +106,6 @@ class DietCard extends Component {
                                     </TableCell>
                                     <TableCell numeric>
                                         <Typography variant='body2'>{dietType}</Typography>
-                                        <IconButton aria-label="Add to favorites" onClick={this.handleClick}>
-                                            <FavoriteIcon />
-                                        </IconButton>
                                     </TableCell>
                                 </TableRow>
                                 <TableRow>
