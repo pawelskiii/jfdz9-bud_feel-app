@@ -130,8 +130,21 @@ const superstate = {
         errorProposalDessert: 'Potrzebujemy tych danych*',
         errorProposalSupper: 'Potrzebujemy tych danych*'
     },
+    value: {
+        valueName: '',
+        valueDescription: '',
+        valueMinWeight: '',
+        valueMaxWeight: '',
+        valueMinAge: '',
+        valueMaxAge: '',
+        valueBreakfast: '',
+        valueLunch: '',
+        valueDinner: '',
+        valueDessert: '',
+        valueSupper: ''
+    },
     openError: false,
-    openAdd: false
+    openAdd: false,
 };
 
 class AddDiet extends Component {
@@ -143,13 +156,14 @@ class AddDiet extends Component {
             data: {
                 ...this.state.data,
                 [prop]: event.target.value,
-            }
+            },
+            // value: event.target.value
         })
     };
 
     handleChangeName = prop => event => {
 
-        if (event.target.value.match('^[a-zA-Z\\s]+$')) {
+        if (event.target.value.match('^[a-ząćśńółężźA-ZĄĆŚŃÓŁĘŻŹ\\s]+$')) {
             this.setState({
                 data: {
                     ...this.state.data,
@@ -158,7 +172,8 @@ class AddDiet extends Component {
                 error: {
                     ...this.state.error,
                     errorName: ''
-                }
+                },
+                // value: event.target.value
             })
         } else if (event.target.value === '') {
             this.setState({
@@ -168,7 +183,8 @@ class AddDiet extends Component {
                 error: {
                     ...this.state.error,
                     errorName: 'Potrzebujemy tych danych'
-                }
+                },
+                // value: event.target.value
             })
         } else {
             this.setState({
@@ -178,7 +194,8 @@ class AddDiet extends Component {
                 error: {
                     ...this.state.error,
                     errorName: 'Wprowadź poprawne dane'
-                }
+                },
+                value: event.target.value
             })
         }
     };
@@ -215,7 +232,8 @@ class AddDiet extends Component {
                 error: {
                     ...this.state.error,
                     errorWeightMin: ''
-                }
+                },
+                value: event.target.value
             })
         } else if (event.target.value === '') {
             this.setState({
@@ -226,7 +244,8 @@ class AddDiet extends Component {
                 error: {
                     ...this.state.error,
                     errorWeightMin: 'Potrzebujemy tych danych'
-                }
+                },
+                value: event.target.value
             })
         } else {
             this.setState({
@@ -237,7 +256,8 @@ class AddDiet extends Component {
                 error: {
                     ...this.state.error,
                     errorWeightMin: 'Wprowadź poprawne dane'
-                }
+                },
+                value: event.target.value
             })
         }
     };
@@ -256,7 +276,8 @@ class AddDiet extends Component {
                 error: {
                     ...this.state.error,
                     errorWeightMax: ''
-                }
+                },
+                value: event.target.value
             })
         } else if (event.target.value === '') {
             this.setState({
@@ -267,7 +288,8 @@ class AddDiet extends Component {
                 error: {
                     ...this.state.error,
                     errorWeightMax: 'Potrzebujemy tych danych'
-                }
+                },
+                value: event.target.value
             })
         } else {
             this.setState({
@@ -278,7 +300,8 @@ class AddDiet extends Component {
                 error: {
                     ...this.state.error,
                     errorWeightMax: 'Wprowadź poprawne dane'
-                }
+                },
+                value: event.target.value
             })
         }
     };
@@ -297,7 +320,8 @@ class AddDiet extends Component {
                 error: {
                     ...this.state.error,
                     errorAgeMin: ''
-                }
+                },
+                value: event.target.value
             })
         } else if (event.target.value === '') {
             this.setState({
@@ -308,7 +332,8 @@ class AddDiet extends Component {
                 error: {
                     ...this.state.error,
                     errorAgeMin: 'Potrzebujemy tych danych'
-                }
+                },
+                value: event.target.value
             })
         } else {
             this.setState({
@@ -319,7 +344,8 @@ class AddDiet extends Component {
                 error: {
                     ...this.state.error,
                     errorAgeMin: 'Wprowadź poprawne dane'
-                }
+                },
+                value: event.target.value
             })
         }
     };
@@ -338,7 +364,8 @@ class AddDiet extends Component {
                 error: {
                     ...this.state.error,
                     errorAgeMax: ''
-                }
+                },
+                value: event.target.value
             })
         } else if (event.target.value === '') {
             this.setState({
@@ -349,7 +376,8 @@ class AddDiet extends Component {
                 error: {
                     ...this.state.error,
                     errorAgeMax: 'Potrzebujemy tych danych'
-                }
+                },
+                value: event.target.value
             })
         } else {
             this.setState({
@@ -360,14 +388,15 @@ class AddDiet extends Component {
                 error: {
                     ...this.state.error,
                     errorAgeMax: 'Wprowadź poprawne dane'
-                }
+                },
+                value: event.target.value
             })
         }
     };
 
     onProposalBreakfast = prop => event => {
 
-        if (event.target.value.match('^[a-zA-Z\\s]+$')) {
+        if (event.target.value.match('^[a-ząćśńółężźA-ZĄĆŚŃÓŁĘŻŹ\\s]+$')) {
             this.setState({
                 data: {
                     ...this.state.data,
@@ -379,7 +408,8 @@ class AddDiet extends Component {
                 error: {
                     ...this.state.error,
                     errorProposalBreakfast: ''
-                }
+                },
+                value: event.target.value
             })
         } else if (event.target.value === '') {
             this.setState({
@@ -390,7 +420,8 @@ class AddDiet extends Component {
                 error: {
                     ...this.state.error,
                     errorProposalBreakfast: 'Potrzebujemy tych danych'
-                }
+                },
+                value: event.target.value
             })
         } else {
             this.setState({
@@ -401,14 +432,15 @@ class AddDiet extends Component {
                 error: {
                     ...this.state.error,
                     errorProposalBreakfast: 'Wprowadź poprawne dane'
-                }
+                },
+                value: event.target.value
             })
         }
     };
 
     onProposalLunch = prop => event => {
 
-        if (event.target.value.match('^[a-zA-Z\\s]+$')) {
+        if (event.target.value.match('^[a-ząćśńółężźA-ZĄĆŚŃÓŁĘŻŹ\\s]+$')) {
             this.setState({
                 data: {
                     ...this.state.data,
@@ -420,7 +452,8 @@ class AddDiet extends Component {
                 error: {
                     ...this.state.error,
                     errorProposalLunch: ''
-                }
+                },
+                value: event.target.value
             })
         } else if (event.target.value === '') {
             this.setState({
@@ -431,7 +464,8 @@ class AddDiet extends Component {
                 error: {
                     ...this.state.error,
                     errorProposalLunch: 'Potrzebujemy tych danych'
-                }
+                },
+                value: event.target.value
             })
         } else {
             this.setState({
@@ -442,14 +476,15 @@ class AddDiet extends Component {
                 error: {
                     ...this.state.error,
                     errorProposalLunch: 'Wprowadź poprawne dane'
-                }
+                },
+                value: event.target.value
             })
         }
     };
 
     onProposalDinner = prop => event => {
 
-        if (event.target.value.match('^[a-zA-Z\\s]+$')) {
+        if (event.target.value.match('^[a-ząćśńółężźA-ZĄĆŚŃÓŁĘŻŹ\\s]+$')) {
             this.setState({
                 data: {
                     ...this.state.data,
@@ -461,7 +496,8 @@ class AddDiet extends Component {
                 error: {
                     ...this.state.error,
                     errorProposalDinner: ''
-                }
+                },
+                value: event.target.value
             })
         } else if (event.target.value === '') {
             this.setState({
@@ -472,7 +508,8 @@ class AddDiet extends Component {
                 error: {
                     ...this.state.error,
                     errorProposalDinner: 'Potrzebujemy tych danych'
-                }
+                },
+                value: event.target.value
             })
         } else {
             this.setState({
@@ -483,14 +520,15 @@ class AddDiet extends Component {
                 error: {
                     ...this.state.error,
                     errorProposalDinner: 'Wprowadź poprawne dane'
-                }
+                },
+                value: event.target.value
             })
         }
     };
 
     onProposalDessert = prop => event => {
 
-        if (event.target.value.match('^[a-zA-Z\\s]+$')) {
+        if (event.target.value.match('^[a-ząćśńółężźA-ZĄĆŚŃÓŁĘŻŹ\\s]+$')) {
             this.setState({
                 data: {
                     ...this.state.data,
@@ -502,7 +540,8 @@ class AddDiet extends Component {
                 error: {
                     ...this.state.error,
                     errorProposalDessert: ''
-                }
+                },
+                value: event.target.value
             })
         } else if (event.target.value === '') {
             this.setState({
@@ -513,7 +552,8 @@ class AddDiet extends Component {
                 error: {
                     ...this.state.error,
                     errorProposalDessert: 'Potrzebujemy tych danych'
-                }
+                },
+                value: event.target.value
             })
         } else {
             this.setState({
@@ -524,14 +564,15 @@ class AddDiet extends Component {
                 error: {
                     ...this.state.error,
                     errorProposalDessert: 'Wprowadź poprawne dane'
-                }
+                },
+                value: event.target.value
             })
         }
     };
 
     onProposalSupper = prop => event => {
 
-        if (event.target.value.match('^[a-zA-Z\\s]+$')) {
+        if (event.target.value.match('^[a-ząćśńółężźA-ZĄĆŚŃÓŁĘŻŹ\\s]+$')) {
             this.setState({
                 data: {
                     ...this.state.data,
@@ -543,7 +584,8 @@ class AddDiet extends Component {
                 error: {
                     ...this.state.error,
                     errorProposalSupper: ''
-                }
+                },
+                value: event.target.value
             })
         } else if (event.target.value === '') {
             this.setState({
@@ -554,7 +596,8 @@ class AddDiet extends Component {
                 error: {
                     ...this.state.error,
                     errorProposalSupper: 'Potrzebujemy tych danych'
-                }
+                },
+                value: event.target.value
             })
         } else {
             this.setState({
@@ -565,7 +608,8 @@ class AddDiet extends Component {
                 error: {
                     ...this.state.error,
                     errorProposalSupper: 'Wprowadź poprawne dane'
-                }
+                },
+                value: event.target.value
             })
         }
     };
@@ -586,15 +630,31 @@ class AddDiet extends Component {
         this.setState({openError: false});
     };
 
+    resetState() {
+        this.setState(superstate);
+    };
+
     handleCloseAdd = () => {
         firebase.database().ref(`/data/diets/${this.props.diets.length}`).set({
             ...this.state.data,
             id: `${this.props.diets.length + 1}`
         });
         this.setState({
-            superstate,
-            openAdd: false
+            value: {
+                valueName: '',
+                valueDescription: '',
+                valueMinWeight: '',
+                valueMaxWeight: '',
+                valueMinAge: '',
+                valueMaxAge: '',
+                valueBreakfast: '',
+                valueLunch: '',
+                valueDinner: '',
+                valueDessert: '',
+                valueSupper: ''
+            }
         });
+        this.resetState();
     };
 
     render() {
@@ -624,7 +684,7 @@ class AddDiet extends Component {
                                 </DialogContentText>
                             </DialogContent>
                             <DialogActions>
-                                <Button onClick={this.handleCloseError} style={{color: amber[900]}}>
+                                <Button onClick={this.handleCloseError} style={{color: amber[900]}} type='submit'>
                                     OK
                                 </Button>
                             </DialogActions>
@@ -650,7 +710,7 @@ class AddDiet extends Component {
                                 </DialogContentText>
                             </DialogContent>
                             <DialogActions>
-                                <Button onClick={this.handleCloseAdd} style={{color: amber[900]}}>
+                                <Button onClick={this.handleCloseAdd} style={{color: amber[900]}} type='submit'>
                                     OK
                                 </Button>
                             </DialogActions>
@@ -675,6 +735,7 @@ class AddDiet extends Component {
                                         id="outlined-name"
                                         label="Nazwa diety"
                                         variant="outlined"
+                                        value={this.state.value.valueName}
                                         onChange={this.handleChangeName('name').bind(this)}
                                     />
 
@@ -684,6 +745,7 @@ class AddDiet extends Component {
                                         id="outlined-description"
                                         label="Opis diety"
                                         variant="outlined"
+                                        value={this.state.value.valueDescription}
                                         onChange={this.handleChange('description')}
                                     />
 
@@ -723,6 +785,7 @@ class AddDiet extends Component {
                                         id="outlined-min-weight"
                                         label="Min waga"
                                         variant="outlined"
+                                        value={this.state.value.valueMinWeight}
                                         onChange={this.onWeightChangeMin('min').bind(this)}
                                     />
 
@@ -734,6 +797,7 @@ class AddDiet extends Component {
                                         id="outlined-max-weight"
                                         label="Max waga"
                                         variant="outlined"
+                                        value={this.state.value.valueMaxWeight}
                                         onChange={this.onWeightChangeMax('max').bind(this)}
                                     />
 
@@ -745,6 +809,7 @@ class AddDiet extends Component {
                                         id="outlined-min-age"
                                         label="Min wiek"
                                         variant="outlined"
+                                        value={this.state.value.valueMinAge}
                                         onChange={this.onAgeChangeMin('min').bind(this)}
                                     />
 
@@ -756,6 +821,7 @@ class AddDiet extends Component {
                                         id="outlined-max-age"
                                         label="Max wiek"
                                         variant="outlined"
+                                        value={this.state.value.valueMaxAge}
                                         onChange={this.onAgeChangeMax('max').bind(this)}
                                     />
 
@@ -767,6 +833,7 @@ class AddDiet extends Component {
                                         id="outlined-breakfast"
                                         label="Propozycja śniadania"
                                         variant="outlined"
+                                        value={this.state.value.valueBreakfast}
                                         onChange={this.onProposalBreakfast('breakfast').bind(this)}
                                     />
 
@@ -778,6 +845,7 @@ class AddDiet extends Component {
                                         id="outlined-lunch"
                                         label="Propozycja lunchu"
                                         variant="outlined"
+                                        value={this.state.value.valueLunch}
                                         onChange={this.onProposalLunch('lunch').bind(this)}
                                     />
 
@@ -789,6 +857,7 @@ class AddDiet extends Component {
                                         id="outlined-dinner"
                                         label="Propozycja obiadu"
                                         variant="outlined"
+                                        value={this.state.value.valueDinner}
                                         onChange={this.onProposalDinner('dinner').bind(this)}
                                     />
 
@@ -800,6 +869,7 @@ class AddDiet extends Component {
                                         id="outlined-dessert"
                                         label="Propozycja deseru"
                                         variant="outlined"
+                                        value={this.state.value.valueDessert}
                                         onChange={this.onProposalDessert('dessert').bind(this)}
                                     />
 
@@ -811,6 +881,7 @@ class AddDiet extends Component {
                                         id="outlined-supper"
                                         label="Propozycja kolacji"
                                         variant="outlined"
+                                        value={this.state.value.valueSupper}
                                         onChange={this.onProposalSupper('supper').bind(this)}
                                     />
 
