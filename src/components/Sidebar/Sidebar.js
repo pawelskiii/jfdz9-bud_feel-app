@@ -6,6 +6,8 @@ import Button from '@material-ui/core/Button';
 import amber from '@material-ui/core/colors/amber';
 import blueGrey from '@material-ui/core/colors/blueGrey';
 import {connect} from "react-redux";
+import or from '../../assets/or.jpg';
+import {Card, CardMedia,} from '@material-ui/core';
 
 
 const drawerWidth = 200;
@@ -31,6 +33,10 @@ const styles = theme => ({
     button: {
         width: 160
     },
+
+    media: {
+        height: 250,
+    },
 });
 
 
@@ -54,6 +60,15 @@ function Sidebar(props) {
             }}
         >
             <div className={classes.toolbar}/>
+            {props.user === null && <Card style={{justifyContent: 'center', alignItems: 'center'}}>
+                <CardMedia className={classes.media} image={or}/>
+                <CardMedia className={classes.media} image={or}/>
+                <CardMedia className={classes.media} image={or}/>
+                <CardMedia className={classes.media} image={or}/>
+                <CardMedia className={classes.media} image={or}/>
+                <CardMedia className={classes.media} image={or}/>
+                <CardMedia className={classes.media} image={or}/>
+            </Card>}
             {props.user !== null && <MuiThemeProvider theme={theme}>
                 <ul className={classes.listContainer}>
                     <li className={classes.list}>
@@ -102,8 +117,6 @@ function Sidebar(props) {
                         </Link>
                     </li>
                 </ul>
-
-
             </MuiThemeProvider>}
         </Drawer>
     );

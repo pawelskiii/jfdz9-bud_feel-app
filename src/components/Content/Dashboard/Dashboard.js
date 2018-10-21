@@ -49,15 +49,6 @@ const data = {
             '#FF6F00'
         ]
     }],
-
-    options: {
-        legend: {
-            display: true,
-            labels: {
-                fontSize: '40rem'
-            }
-        }
-    }
 };
 
 const donat = {
@@ -80,17 +71,6 @@ const donat = {
         ]
     }],
 
-
-
-    options: {
-        maintainAspectRatio: false,
-
-
-            labels: {
-                fontSize: '40rem'
-            }
-
-    }
 };
 
 class Dashboard extends Component {
@@ -163,7 +143,7 @@ class Dashboard extends Component {
                                         Liczne grono zadowolonych klientów
                                     </Typography>
                                 </CardContent>
-                                <Doughnut data={donat} />
+                                <Doughnut data={donat}/>
                             </Paper>
                         </Grid>
                     </Grid>
