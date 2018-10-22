@@ -1,0 +1,37 @@
+import React from 'react';
+import Carousel from 'nuka-carousel';
+import './Carousel.css';
+
+import slide_1 from '../../../assets/intoduction.jpg';
+import slide_2 from '../../../assets/intoduction2.jpg';
+import slide_3 from '../../../assets/intoduction3.jpg';
+
+const SectionCarousel = () => {
+
+    const carouselParameters = {
+
+
+        width: "1201",
+        autoplay: true,
+        wrapAround: true,
+        initialSlideHeight: 400,
+
+    };
+
+    return (
+        <div className="carousel-border">
+            <Carousel
+                width={carouselParameters.width}
+                autoplay={carouselParameters.autoplay}
+                wrapAround={carouselParameters.wrapAround}
+                initialSlideHeight={carouselParameters.initialSlideHeight}
+            >
+                <img src={slide_1} alt="dupa"/>
+                <img src={slide_2} alt="dupa"/>
+                <img src={slide_3} alt="dupa"/>
+
+            </Carousel>
+        </div>
+    );
+};
+export default SectionCarousel;
